@@ -106,4 +106,6 @@ Async implementation: `API.Core_LoginAsync()`
 
 Sync implementation: `API.Core.Login()`
 
-Additonally, unlike other languages, the "Zen of Python" prevents dot/property notation for dictionaries (Think API.Core.Login). I've used dataclasses and some class properties to bypass this, so in the end: `API.Core.Login() == API["Core"]["Login"]()`.
+Additonally, unlike other languages, the "Zen of Python" prevents dot/property notation for dictionaries (Think API.Core.Login). I've used dataclasses and some class properties to bypass this, so in the end:
+
+`API.Core.Login() == API["Core"]["Login"]()`.

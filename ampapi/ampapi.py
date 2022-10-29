@@ -5,8 +5,6 @@ from dataclasses import dataclass
 import requests
 import json
 
-import asyncstdlib as a
-
 @dataclass
 class Module:
     def __setattr__(self, name, value) -> None:

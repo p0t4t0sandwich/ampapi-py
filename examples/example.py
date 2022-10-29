@@ -1,4 +1,4 @@
-from ampapi import AMPAPI
+from ampapi.ampapi import AMPAPI
 
 def start() -> None:
     API = AMPAPI("http://localhost:8080/")

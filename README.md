@@ -1,4 +1,4 @@
-# ampapi-node
+# ampapi-python
 
 ## This implementation is under active development, please feel free to contribute or create an issue if you've found anything that needs fixing
 

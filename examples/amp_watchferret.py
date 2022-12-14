@@ -4,16 +4,16 @@ from dotenv import load_dotenv
 import os
 
 from ampapi_handler import AMPAPIHandler
+    
+# Name of program is now "watchferret", credit to sneakysnek#8707
 
-
-
-def watchdog(instance_name):
+def watchferret(instance_name):
     load_dotenv()
     username = os.getenv("AMP_API_USER")
     password = os.getenv("AMP_API_PASSWORD")
 
     ADS = AMPAPIHandler(
-        baseUri="http://localhost:8108/",
+        baseUri="http://localhost:8080",
         username=username,
         password=password
     )
@@ -53,4 +53,4 @@ def watchdog(instance_name):
                     print(f"Instance Offline: {instance_name}")
 
 if __name__ == "__main__":
-    watchdog("the non-friendly instance name1")
+    watchferret("the non-friendly instance name")

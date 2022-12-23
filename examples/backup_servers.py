@@ -11,7 +11,7 @@ import gzip
 
 from b2sdk.v2 import B2Api, InMemoryAccountInfo
 
-from ampapi_handler import AMPAPIHandler
+from ampapi.ampapi import AMPAPIHandler
 
 
 

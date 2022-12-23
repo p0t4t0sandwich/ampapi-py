@@ -3,7 +3,7 @@ from time import sleep
 from dotenv import load_dotenv
 import os
 
-from ampapi_handler import AMPAPIHandler
+from ampapi.ampapi import AMPAPIHandler
 
 # Name of program is now "watchferret", credit to sneakysnek#8707
 

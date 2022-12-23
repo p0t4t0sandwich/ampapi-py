@@ -52,7 +52,7 @@ def watchferret(instance_name):
     password = os.getenv("AMP_API_PASSWORD")
 
     ADS = AMPAPIHandler(
-        baseUri="http://localhost:8080",
+        baseUri="http://localhost:8080", # The address of your main controller/ADS
         username=username,
         password=password
     )

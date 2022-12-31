@@ -2,11 +2,15 @@
 
 Credit to sneakysnek#8707 for thinking of the name
 
-## Download
+## Installation
 
 `wget --no-check-certificate --content-disposition https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-python/main/watchferret/WatchFerret.py`
 
 `wget --no-check-certificate --content-disposition https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-python/main/watchferret/config.yml`
+
+Run:
+
+`python -m pip install ampapi requests aiohttp`
 
 ## How to find `Instance Name`
 

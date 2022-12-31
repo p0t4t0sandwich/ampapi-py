@@ -2,7 +2,7 @@
 
 Credit to sneakysnek#8707 for thinking of the name
 
-## Installation
+## Getting Started
 
 Downloading files:
 
@@ -13,6 +13,10 @@ Downloading files:
 Installing dependencies:
 
 `python -m pip install ampapi requests aiohttp`
+
+Running the program:
+
+`python WatchFerret.py`
 
 ## How to find `Instance Name`
 

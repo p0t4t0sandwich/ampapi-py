@@ -12,7 +12,7 @@ Downloading files:
 
 Installing dependencies:
 
-`python -m pip install ampapi requests aiohttp`
+`python -m pip install ampapi requests aiohttp pyyaml`
 
 Running the program:
 

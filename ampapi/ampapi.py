@@ -558,6 +558,10 @@ class AMPAPIAsync():
         data = {"Id": Id, "months": months, "days": days, "hours": hours, "minutes": minutes, "daysOfMonth": daysOfMonth, "description": description, }
         return await self.APICallAsync(endpoint="/Core/EditIntervalTrigger", data=data)
 
+    async def Core_SetTriggerEnabledAsync(self, Id, Enabled):
+        data = {"Id": Id, "Enabled": Enabled, }
+        return await self.APICallAsync(endpoint="/Core/SetTriggerEnabled", data=data)
+
     async def Core_AddTaskAsync(self, TriggerID, MethodID, ParameterMapping):
         data = {"TriggerID": TriggerID, "MethodID": MethodID, "ParameterMapping": ParameterMapping, }
         return await self.APICallAsync(endpoint="/Core/AddTask", data=data)
@@ -697,6 +701,10 @@ class AMPAPIAsync():
     async def Core_DismissTaskAsync(self, TaskId):
         data = {"TaskId": TaskId, }
         return await self.APICallAsync(endpoint="/Core/DismissTask", data=data)
+
+    async def Core_DismissAllTasksAsync(self, ):
+        data = {}
+        return await self.APICallAsync(endpoint="/Core/DismissAllTasks", data=data)
 
     async def Core_GetUserInfoAsync(self, UID):
         data = {"UID": UID, }

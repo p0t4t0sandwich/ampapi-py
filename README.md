@@ -20,11 +20,17 @@ or
 pip install 'ampapi @ git+https://github.com/p0t4t0sandwich/ampapi-python.git'
 ```
 
+You also need the following packages installed:
+
+```bash
+pip install requests aiohttp json dataclasses
+```
+
 ## Async Example
 
 ```python
 import asyncio
-from ampapi.ampapi_async import AMPAPIAsync
+from ampapi.ampapi import AMPAPIAsync
 
 async def start() -> None:
     API = AMPAPIAsync("http://localhost:8080/")
@@ -56,7 +62,7 @@ asyncio.run(start())
 ## Non-Async Example
 
 ```python
-from ampapi import AMPAPI
+from ampapi.ampapi import AMPAPI
 
 def start() -> None:
     API = AMPAPI("http://localhost:8080/")

@@ -266,8 +266,8 @@ class AMPAPIAsync():
         data = {"InstanceId": InstanceId, "PortMappings": PortMappings, }
         return await self.APICallAsync(endpoint="/ADSModule/SetInstanceNetworkInfo", data=data)
 
-    async def ADSModule_ApplyInstanceConfigurationAsync(self, InstanceID, Flags):
-        data = {"InstanceID": InstanceID, "Flags": Flags, }
+    async def ADSModule_ApplyInstanceConfigurationAsync(self, InstanceID, Args, RebuildConfiguration):
+        data = {"InstanceID": InstanceID, "Args": Args, "RebuildConfiguration": RebuildConfiguration, }
         return await self.APICallAsync(endpoint="/ADSModule/ApplyInstanceConfiguration", data=data)
 
     async def ADSModule_CreateLocalInstanceAsync(self, Instance, PostCreate):

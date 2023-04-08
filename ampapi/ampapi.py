@@ -813,7 +813,11 @@ class AMPAPIHandler(AMPAPI):
         self.sessionId = sessionId
 
     def Login(self):
-        loginResult = self.Core.Login(self.username, self.password, self.rememberMeToken, True)
+        # TODO: Find where handler the rememberMeToken breaks down
+        # rememberMe: bool = True if self.rememberMeToken != "" else False
+        # loginResult = self.Core.Login(self.username, self.password, self.rememberMeToken, rememberMe)
+
+        loginResult = self.Core.Login(self.username, self.password, "", False)
         if "success" in loginResult.keys() and loginResult["success"]:
             self.rememberMeToken = loginResult["rememberMeToken"]
             self.sessionId = loginResult["sessionID"]

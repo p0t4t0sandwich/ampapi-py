@@ -166,7 +166,7 @@ class AMPAPIHandler(AMPAPI):
             return AMPAPIHandler(
                 baseUri=self.baseUri + f"API/ADSModule/Servers/{instance_id}",
                 username=self.username,
-                password=self.password,
+                password="",
                 rememberMeToken=loginResult["rememberMeToken"],
                 sessionId=loginResult["sessionID"]
             )
@@ -191,7 +191,7 @@ class AMPAPIHandler(AMPAPI):
             return AMPAPIHandler(
                 baseUri=self.baseUri + f"API/ADSModule/Servers/{instance_id}",
                 username=self.username,
-                password=self.password,
+                password="",
                 rememberMeToken=loginResult["rememberMeToken"],
                 sessionId=loginResult["sessionID"]
             )

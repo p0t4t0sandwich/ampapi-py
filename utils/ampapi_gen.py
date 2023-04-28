@@ -88,7 +88,7 @@ type_dict = {
     "Task<IEnumerable<UserInfoSummary>>": "",
     "Task<UserInfo>": "",
     "Task<IEnumerable<UserInfo>>": "",
-    "IList<IPermissionsTreeNode>": "list","APIshans123"
+    "IList<IPermissionsTreeNode>": "list",
     "WebauthnLoginInfo": "",
     "IEnumerable<WebauthnCredentialSummary>": "list",
     "Task<ActionResult<TwoFactorSetupInfo>>": "",

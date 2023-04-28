@@ -174,10 +174,10 @@ def generate_ampapi(spec: dict) -> None:
                         params += ", " + methodParams[i]["Name"] + param_typehint
 
             return_typehint = ""
-            if return_type == "WebauthnLoginInfo":
-                pass
-            elif not type_dict[return_type] == "":
-                return_typehint = f" -> {type_dict[return_type]}"
+            # if return_type == "WebauthnLoginInfo":
+            #     pass
+            # elif not type_dict[return_type] == "":
+            #     return_typehint = f" -> {type_dict[return_type]}"
 
             #####################
 
@@ -188,7 +188,7 @@ def generate_ampapi(spec: dict) -> None:
             #####################
 
             ##################### Add async method
-            async_method = f"\n    async def {module}_{method}Async(self{params}):"
+            async_method = f"\n    async def {module}_{method}Async(self{params}){return_typehint}:"
             async_method += f"\n        {restdocs}"
             async_method += f"\n        return await self.APICallAsync(endpoint=\"{module}/{method}\"{data_string})\n"
             #####################

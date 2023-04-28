@@ -134,7 +134,7 @@ class AMPAPI():
             "updatedDatastore": updatedDatastore, 
         })
 
-    def ADSModule_GetDatastores(self) -> list:
+    def ADSModule_GetDatastores(self):
         """
         :returns: AMP Type: IEnumerable<InstanceDatastore>
         :rtype: list
@@ -214,7 +214,7 @@ class AMPAPI():
             "id": id, 
         })
 
-    def ADSModule_GetDatastoreInstances(self, datastoreId: int) -> list[dict]:
+    def ADSModule_GetDatastoreInstances(self, datastoreId: int):
         """
         :param datastoreId: 
         :type datastoreId: intFalse
@@ -268,7 +268,7 @@ class AMPAPI():
             "datastoreId": datastoreId, 
         })
 
-    def ADSModule_GetDeploymentTemplates(self) -> list:
+    def ADSModule_GetDeploymentTemplates(self):
         """
         :returns: AMP Type: IEnumerable<DeploymentTemplate>
         :rtype: list
@@ -536,7 +536,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="ADSModule/GetTargetInfo")
 
-    def ADSModule_GetSupportedApplications(self) -> list:
+    def ADSModule_GetSupportedApplications(self):
         """
         :returns: AMP Type: IEnumerable<ApplicationSpec>
         :rtype: list
@@ -550,7 +550,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="ADSModule/GetSupportedApplications")
 
-    def ADSModule_RefreshAppCache(self) -> None:
+    def ADSModule_RefreshAppCache(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -564,7 +564,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="ADSModule/RefreshAppCache")
 
-    def ADSModule_RefreshRemoteConfigStores(self) -> None:
+    def ADSModule_RefreshRemoteConfigStores(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -578,7 +578,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="ADSModule/RefreshRemoteConfigStores")
 
-    def ADSModule_GetApplicationEndpoints(self, instanceId: str) -> list:
+    def ADSModule_GetApplicationEndpoints(self, instanceId: str):
         """
         :param instanceId: 
         :type instanceId: strFalse
@@ -614,7 +614,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="ADSModule/ReactivateLocalInstances")
 
-    def ADSModule_GetInstances(self) -> list:
+    def ADSModule_GetInstances(self):
         """
         :returns: AMP Type: IEnumerable<IADSInstance>
         :rtype: list
@@ -628,7 +628,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="ADSModule/GetInstances")
 
-    def ADSModule_GetInstance(self, InstanceId: str) -> dict:
+    def ADSModule_GetInstance(self, InstanceId: str):
         """
         :param InstanceId: 
         :type InstanceId: strFalse
@@ -736,7 +736,7 @@ class AMPAPI():
             "InstanceId": InstanceId, 
         })
 
-    def ADSModule_GetGroup(self, GroupId: str) -> bool:
+    def ADSModule_GetGroup(self, GroupId: str):
         """
         :param GroupId: 
         :type GroupId: strFalse
@@ -782,7 +782,7 @@ class AMPAPI():
             "GroupId": GroupId, 
         })
 
-    def ADSModule_GetLocalInstances(self) -> list[dict]:
+    def ADSModule_GetLocalInstances(self):
         """
         :returns: AMP Type: IEnumerable<JObject>
         :rtype: list[dict]
@@ -796,7 +796,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="ADSModule/GetLocalInstances")
 
-    def ADSModule_GetInstanceStatuses(self) -> list[dict]:
+    def ADSModule_GetInstanceStatuses(self):
         """
         :returns: AMP Type: IEnumerable<JObject>
         :rtype: list[dict]
@@ -810,7 +810,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="ADSModule/GetInstanceStatuses")
 
-    def ADSModule_GetProvisionFitness(self) -> dict:
+    def ADSModule_GetProvisionFitness(self):
         """
         :returns: AMP Type: JObject
         :rtype: dict
@@ -976,7 +976,7 @@ class AMPAPI():
             "InstanceName": InstanceName, 
         })
 
-    def ADSModule_GetInstanceNetworkInfo(self, InstanceName: str) -> list:
+    def ADSModule_GetInstanceNetworkInfo(self, InstanceName: str):
         """
         :param InstanceName: 
         :type InstanceName: strFalse
@@ -1324,7 +1324,7 @@ class AMPAPI():
             "Values": Values, 
         })
 
-    def ADSModule_GetProvisionArguments(self, ModuleName: str) -> list[dict]:
+    def ADSModule_GetProvisionArguments(self, ModuleName: str):
         """
         :param ModuleName: 
         :type ModuleName: strFalse
@@ -1448,7 +1448,7 @@ class AMPAPI():
             "friendlyName": friendlyName, 
         })
 
-    def ADSModule_UpdateTarget(self, TargetID: str) -> None:
+    def ADSModule_UpdateTarget(self, TargetID: str):
         """
         :param TargetID: 
         :type TargetID: strFalse
@@ -1822,7 +1822,7 @@ class AMPAPI():
             "REQ_RAWJSON": REQ_RAWJSON, 
         })
 
-    def FileManagerPlugin_Dummy(self) -> None:
+    def FileManagerPlugin_Dummy(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -1948,7 +1948,7 @@ class AMPAPI():
             "DestinationPath": DestinationPath, 
         })
 
-    def FileManagerPlugin_GetDirectoryListing(self, Dir: str) -> list[dict]:
+    def FileManagerPlugin_GetDirectoryListing(self, Dir: str):
         """
         :param Dir: 
         :type Dir: strFalse
@@ -2010,7 +2010,7 @@ class AMPAPI():
             "Length": Length, 
         })
 
-    def FileManagerPlugin_AppendFileChunk(self, Filename: str, Data: str, Delete: bool) -> None:
+    def FileManagerPlugin_AppendFileChunk(self, Filename: str, Data: str, Delete: bool):
         """
         :param Filename: 
         :type Filename: strFalse
@@ -2050,7 +2050,7 @@ class AMPAPI():
             "Delete": Delete, 
         })
 
-    def FileManagerPlugin_WriteFileChunk(self, Filename: str, Position: int, Data: str) -> None:
+    def FileManagerPlugin_WriteFileChunk(self, Filename: str, Position: int, Data: str):
         """
         :param Filename: 
         :type Filename: strFalse
@@ -2386,7 +2386,7 @@ class AMPAPI():
             "BackupId": BackupId, 
         })
 
-    def LocalFileBackupPlugin_GetBackups(self) -> list[dict]:
+    def LocalFileBackupPlugin_GetBackups(self):
         """
         :returns: AMP Type: IEnumerable<BackupManifest>
         :rtype: list[dict]
@@ -2430,7 +2430,7 @@ class AMPAPI():
             "DeleteExistingData": DeleteExistingData, 
         })
 
-    def LocalFileBackupPlugin_DeleteLocalBackup(self, BackupId: str) -> None:
+    def LocalFileBackupPlugin_DeleteLocalBackup(self, BackupId: str):
         """
         :param BackupId: 
         :type BackupId: strFalse
@@ -2454,7 +2454,7 @@ class AMPAPI():
             "BackupId": BackupId, 
         })
 
-    def LocalFileBackupPlugin_SetBackupSticky(self, BackupId: str, Sticky: bool) -> None:
+    def LocalFileBackupPlugin_SetBackupSticky(self, BackupId: str, Sticky: bool):
         """
         :param BackupId: 
         :type BackupId: strFalse
@@ -2524,7 +2524,7 @@ class AMPAPI():
             "Sticky": Sticky, 
         })
 
-    def Core_GetAuditLogEntries(self, Before, Count: int) -> dict:
+    def Core_GetAuditLogEntries(self, Before, Count: int):
         """
         :param Before: 
             AMP Type: Nullable<DateTime>
@@ -2554,7 +2554,7 @@ class AMPAPI():
             "Count": Count, 
         })
 
-    def Core_GetSettingsSpec(self) -> dict[str, list[dict]]:
+    def Core_GetSettingsSpec(self):
         """
         :returns: AMP Type: Dictionary<String, IEnumerable<JObject>>
         :rtype: dict[str, list[dict]]
@@ -2590,7 +2590,7 @@ class AMPAPI():
             "Node": Node, 
         })
 
-    def Core_RefreshSettingsSourceCache(self) -> None:
+    def Core_RefreshSettingsSourceCache(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -2604,7 +2604,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/RefreshSettingsSourceCache")
 
-    def Core_GetSettingValues(self, SettingNode: str, WithRefresh: bool) -> dict[str, str]:
+    def Core_GetSettingValues(self, SettingNode: str, WithRefresh: bool):
         """
         :param SettingNode: 
         :type SettingNode: strFalse
@@ -2636,7 +2636,7 @@ class AMPAPI():
             "WithRefresh": WithRefresh, 
         })
 
-    def Core_GetProvisionSpec(self) -> list[dict]:
+    def Core_GetProvisionSpec(self):
         """
         :returns: AMP Type: List<JObject>
         :rtype: list[dict]
@@ -2650,7 +2650,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetProvisionSpec")
 
-    def Core_GetConfig(self, node: str) -> dict:
+    def Core_GetConfig(self, node: str):
         """
         :param node: 
         :type node: strFalse
@@ -2674,7 +2674,7 @@ class AMPAPI():
             "node": node, 
         })
 
-    def Core_GetConfigs(self, nodes: list[str]) -> list[dict]:
+    def Core_GetConfigs(self, nodes: list[str]):
         """
         :param nodes: 
         :type nodes: list[str]False
@@ -2698,7 +2698,7 @@ class AMPAPI():
             "nodes": nodes, 
         })
 
-    def Core_SetConfigs(self, data: dict[str, str]) -> bool:
+    def Core_SetConfigs(self, data: dict[str, str]):
         """
         :param data: 
         :type data: dict[str, str]False
@@ -3346,7 +3346,7 @@ class AMPAPI():
             "TriggerID": TriggerID, 
         })
 
-    def Core_GetActiveAMPSessions(self) -> list:
+    def Core_GetActiveAMPSessions(self):
         """
         :returns: AMP Type: IEnumerable<WebSessionSummary>
         :rtype: list
@@ -3360,7 +3360,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetActiveAMPSessions")
 
-    def Core_EndUserSession(self, Id: str) -> None:
+    def Core_EndUserSession(self, Id: str):
         """
         :param Id: 
         :type Id: strFalse
@@ -3468,7 +3468,7 @@ class AMPAPI():
             "IsMember": IsMember, 
         })
 
-    def Core_GetPermissionsSpec(self) -> list:
+    def Core_GetPermissionsSpec(self):
         """
         :returns: AMP Type: IList<IPermissionsTreeNode>
         :rtype: list
@@ -3660,7 +3660,7 @@ class AMPAPI():
             "description": description, 
         })
 
-    def Core_GetWebauthnCredentialSummaries(self) -> list:
+    def Core_GetWebauthnCredentialSummaries(self):
         """
         :returns: AMP Type: IEnumerable<WebauthnCredentialSummary>
         :rtype: list
@@ -3922,7 +3922,7 @@ class AMPAPI():
             "TwoFactorPIN": TwoFactorPIN, 
         })
 
-    def Core_GetUpdates(self) -> dict:
+    def Core_GetUpdates(self):
         """Gets changes to the server status, in addition to any notifications or console output that have occured since the last time GetUpdates() was called by the current session.
             
         :returns: AMP Type: JObject
@@ -3938,7 +3938,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetUpdates")
 
-    def Core_GetNewGuid(self) -> str:
+    def Core_GetNewGuid(self):
         """
         :returns: AMP Type: Guid
         :rtype: str
@@ -3952,7 +3952,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetNewGuid")
 
-    def Core_GetUserList(self) -> dict[str, str]:
+    def Core_GetUserList(self):
         """Returns a list of in-application users
             
         :returns: AMP Type: Dictionary<String, String>
@@ -3968,7 +3968,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetUserList")
 
-    def Core_CurrentSessionHasPermission(self, PermissionNode: str) -> bool:
+    def Core_CurrentSessionHasPermission(self, PermissionNode: str):
         """
         :param PermissionNode: 
         :type PermissionNode: strFalse
@@ -4004,7 +4004,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetTasks")
 
-    def Core_GetStatus(self) -> dict:
+    def Core_GetStatus(self):
         """
         :returns: AMP Type: JObject
         :rtype: dict
@@ -4074,7 +4074,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/DismissAllTasks")
 
-    def Core_GetUserInfo(self, UID: str) -> dict:
+    def Core_GetUserInfo(self, UID: str):
         """Provides information about a given in-application user (as opposed to AMP system users)
             
         :param UID: 
@@ -4112,7 +4112,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/Start")
 
-    def Core_Suspend(self) -> None:
+    def Core_Suspend(self):
         """Prevents the current instance from being started, and stops it if it's currently running.
             
         :returns: AMP Type: Void
@@ -4128,7 +4128,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/Suspend")
 
-    def Core_Resume(self) -> None:
+    def Core_Resume(self):
         """Allows the service to be re-started after previously being suspended.
             
         :returns: AMP Type: Void
@@ -4144,7 +4144,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/Resume")
 
-    def Core_Stop(self) -> None:
+    def Core_Stop(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -4170,7 +4170,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/Restart")
 
-    def Core_Kill(self) -> None:
+    def Core_Kill(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -4208,7 +4208,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/UpdateApplication")
 
-    def Core_AcknowledgeAMPUpdate(self) -> None:
+    def Core_AcknowledgeAMPUpdate(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -4234,7 +4234,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetModuleInfo")
 
-    def Core_GetAPISpec(self) -> dict[str, dict]:
+    def Core_GetAPISpec(self):
         """
         :returns: AMP Type: Dictionary<String, Dictionary<String, MethodInfoSummary>>
         :rtype: dict[str, dict]
@@ -4336,7 +4336,7 @@ class AMPAPI():
             "IsTemporary": IsTemporary, 
         })
 
-    def Core_SendConsoleMessage(self, message: str) -> None:
+    def Core_SendConsoleMessage(self, message: str):
         """
         :param message: 
         :type message: strFalse
@@ -4360,7 +4360,7 @@ class AMPAPI():
             "message": message, 
         })
 
-    def Core_UpdateAMPInstance(self) -> None:
+    def Core_UpdateAMPInstance(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -4386,7 +4386,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetUpdateInfo")
 
-    def Core_Logout(self) -> None:
+    def Core_Logout(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -4400,7 +4400,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/Logout")
 
-    def Core_RestartAMP(self) -> None:
+    def Core_RestartAMP(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -4414,7 +4414,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/RestartAMP")
 
-    def Core_UpgradeAMP(self) -> None:
+    def Core_UpgradeAMP(self):
         """
         :returns: AMP Type: Void
         :rtype: None
@@ -4428,7 +4428,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/UpgradeAMP")
 
-    def Core_GetDiagnosticsInfo(self) -> dict[str, str]:
+    def Core_GetDiagnosticsInfo(self):
         """
         :returns: AMP Type: Dictionary<String, String>
         :rtype: dict[str, str]
@@ -4442,7 +4442,7 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetDiagnosticsInfo")
 
-    def Core_CreateTestTask(self) -> None:
+    def Core_CreateTestTask(self):
         """DEV: Creates a non-ending task with 50% progress for testing purposes
             
         :returns: AMP Type: Void

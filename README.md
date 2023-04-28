@@ -1,12 +1,8 @@
 # ampapi-python
 
-## This implementation is under active development, please feel free to contribute or create an issue if you've found anything that needs fixing
-
 This API allows you to communicate with AMP installations from within Python.
 
 Documentation for available API calls can be found by appending /API to the URL of any existing AMP installation.
-
-Please Note: This program is directly based on the [ampapi-node](https://github.com/CubeCoders/ampapi-node) implementation and is almost verbatim in most aspects.
 
 ## Installation
 
@@ -23,7 +19,7 @@ pip install 'ampapi @ git+https://github.com/p0t4t0sandwich/ampapi-python.git'
 You also need the following packages installed:
 
 ```bash
-pip install requests aiohttp json dataclasses
+pip install requests aiohttp json
 ```
 
 ## Async Example
@@ -68,29 +64,16 @@ def start() -> None:
     API = AMPAPI("http://localhost:8080/")
 
     try:
-        # Perform first-stage API initialization.
-        APIInitOK = API.init()
-
-        if not APIInitOK:
-            print("API Init failed")
-            return
-
         # The third parameter is either used for 2FA logins, or if no password is specified to use a remembered token from a previous login, or a service login token.
-        loginResult = API.Core.Login("admin", "myfancypassword123", "", False)
+        loginResult = API.Core_Login("admin", "myfancypassword123", "", False)
 
         if "success" in loginResult.keys() and loginResult["success"]:
             print("Login successful")
             API.sessionId = loginResult["sessionID"]
 
-            # Perform second-stage API initialization, we only get the full API data once we're logged in.
-            APIInitOK = API.init()
-            if not APIInitOK:
-                print("API Stage 2 Init failed")
-                return
-
             # API call parameters are simply in the same order as shown in the documentation.
-            API.Core.SendConsoleMessage("say Hello Everyone, this message was sent from the Python API!")
-            currentStatus = API.Core.GetStatus()
+            API.Core_SendConsoleMessage("say Hello Everyone, this message was sent from the Python API!")
+            currentStatus = API.Core_GetStatus()
             CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
             print(f"Current CPU usage is: {CPUUsagePercent}%")
 
@@ -104,14 +87,13 @@ def start() -> None:
 start()
 ```
 
-## Additional Notes
+## Notes on generating implementations
 
-As you may have noticed, the async and non-async implementations differ quite a bit. This is due to lambda functions within python being unable to use async methods. Usually this can be solved by manually defining the function, but as that would be cumbersome, I've opted to create a script to grab the API spec from the AMP API and generate all the needed functions (script found under /utils/ampapi_async_gen.py).
+ampapi-python is generated using a script that parses the API spec. The `ampapai_gen.py` script under `/utils` can be used to generate future versions of the API. It requires the `requests` and `json` packages to be installed.
 
-Async implementation: `API.Core_LoginAsync()`
+To generate a new version, set the AMP_URL, AMP_USERNAME, and AMP_PASSWORD environment variables and run the script.
 
-Sync implementation: `API.Core.Login()`
+## Notes on missing methods
 
-Additonally, unlike other languages, the "Zen of Python" prevents dot/property notation for dictionaries (Think API.Core.Login). I've used dataclasses and some class properties to bypass this, so in the end:
-
-`API.Core.Login() == API["Core"]["Login"]()`.
+The generation script only uses the base ADS APISpec of an AMP Network Licence (my current licence). This means any Enterprise methods, methods added by plugins, or module-specific methods are not included. If you find yourself needing these methods frequently, please use the insance's API endpoint with the `ampapai_gen.py` script under `/utils`, then submit a pull request with the generated code.
+If you need a method that is not included, you can use the `AMPAPI.APICall` method to run the method directly.

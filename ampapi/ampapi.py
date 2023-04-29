@@ -1597,7 +1597,7 @@ class AMPAPI():
         :param InstanceName: 
         :type InstanceName: strFalse
             AMP Type: String
-        :returns: AMP Type: Task<ActionResult>
+        :returns: AMP Type: ActionResult
         """
         return self.APICall(endpoint="ADSModule/UpgradeInstance", data={
             "InstanceName": InstanceName, 
@@ -1608,7 +1608,7 @@ class AMPAPI():
         :param InstanceName: 
         :type InstanceName: strFalse
             AMP Type: String
-        :returns: AMP Type: Task<ActionResult>
+        :returns: AMP Type: ActionResult
         """
         return await self.APICallAsync(endpoint="ADSModule/UpgradeInstance", data={
             "InstanceName": InstanceName, 
@@ -1687,7 +1687,7 @@ class AMPAPI():
         :param InstanceName: 
         :type InstanceName: strFalse
             AMP Type: String
-        :returns: AMP Type: Task<ActionResult>
+        :returns: AMP Type: ActionResult
         """
         return self.APICall(endpoint="ADSModule/RestartInstance", data={
             "InstanceName": InstanceName, 
@@ -1698,7 +1698,7 @@ class AMPAPI():
         :param InstanceName: 
         :type InstanceName: strFalse
             AMP Type: String
-        :returns: AMP Type: Task<ActionResult>
+        :returns: AMP Type: ActionResult
         """
         return await self.APICallAsync(endpoint="ADSModule/RestartInstance", data={
             "InstanceName": InstanceName, 
@@ -1709,7 +1709,7 @@ class AMPAPI():
         :param InstanceName: 
         :type InstanceName: strFalse
             AMP Type: String
-        :returns: AMP Type: Task<ActionResult>
+        :returns: AMP Type: ActionResult
         """
         return self.APICall(endpoint="ADSModule/StopInstance", data={
             "InstanceName": InstanceName, 
@@ -1720,7 +1720,7 @@ class AMPAPI():
         :param InstanceName: 
         :type InstanceName: strFalse
             AMP Type: String
-        :returns: AMP Type: Task<ActionResult>
+        :returns: AMP Type: ActionResult
         """
         return await self.APICallAsync(endpoint="ADSModule/StopInstance", data={
             "InstanceName": InstanceName, 
@@ -2050,44 +2050,80 @@ class AMPAPI():
             "Delete": Delete, 
         })
 
-    def FileManagerPlugin_WriteFileChunk(self, Filename: str, Position: int, Data: str):
+    def FileManagerPlugin_ReadFileChunk(self, Filename: str, Offset: int):
         """
         :param Filename: 
         :type Filename: strFalse
             AMP Type: String
-        :param Position: 
-        :type Position: intFalse
+        :param Offset: 
+        :type Offset: intFalse
             AMP Type: Int64
+        :returns: AMP Type: ActionResult<String>
+        """
+        return self.APICall(endpoint="FileManagerPlugin/ReadFileChunk", data={
+            "Filename": Filename, 
+            "Offset": Offset, 
+        })
+
+    async def FileManagerPlugin_ReadFileChunkAsync(self, Filename: str, Offset: int):
+        """
+        :param Filename: 
+        :type Filename: strFalse
+            AMP Type: String
+        :param Offset: 
+        :type Offset: intFalse
+            AMP Type: Int64
+        :returns: AMP Type: ActionResult<String>
+        """
+        return await self.APICallAsync(endpoint="FileManagerPlugin/ReadFileChunk", data={
+            "Filename": Filename, 
+            "Offset": Offset, 
+        })
+
+    def FileManagerPlugin_WriteFileChunk(self, Filename: str, Data: str, Offset: int, FinalChunk: bool):
+        """
+        :param Filename: 
+        :type Filename: strFalse
+            AMP Type: String
         :param Data: 
         :type Data: strFalse
             AMP Type: String
-        :returns: AMP Type: Void
-        :rtype: None
+        :param Offset: 
+        :type Offset: intFalse
+            AMP Type: Int64
+        :param FinalChunk: 
+        :type FinalChunk: boolFalse
+            AMP Type: Boolean
+        :returns: AMP Type: ActionResult
         """
         return self.APICall(endpoint="FileManagerPlugin/WriteFileChunk", data={
             "Filename": Filename, 
-            "Position": Position, 
             "Data": Data, 
+            "Offset": Offset, 
+            "FinalChunk": FinalChunk, 
         })
 
-    async def FileManagerPlugin_WriteFileChunkAsync(self, Filename: str, Position: int, Data: str):
+    async def FileManagerPlugin_WriteFileChunkAsync(self, Filename: str, Data: str, Offset: int, FinalChunk: bool):
         """
         :param Filename: 
         :type Filename: strFalse
             AMP Type: String
-        :param Position: 
-        :type Position: intFalse
-            AMP Type: Int64
         :param Data: 
         :type Data: strFalse
             AMP Type: String
-        :returns: AMP Type: Void
-        :rtype: None
+        :param Offset: 
+        :type Offset: intFalse
+            AMP Type: Int64
+        :param FinalChunk: 
+        :type FinalChunk: boolFalse
+            AMP Type: Boolean
+        :returns: AMP Type: ActionResult
         """
         return await self.APICallAsync(endpoint="FileManagerPlugin/WriteFileChunk", data={
             "Filename": Filename, 
-            "Position": Position, 
             "Data": Data, 
+            "Offset": Offset, 
+            "FinalChunk": FinalChunk, 
         })
 
     def FileManagerPlugin_DownloadFileFromURL(self, Source: str, TargetDirectory: str):
@@ -4442,6 +4478,18 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetDiagnosticsInfo")
 
+    def Core_GetWebserverMetrics(self):
+        """
+        :returns: AMP Type: Object
+        """
+        return self.APICall(endpoint="Core/GetWebserverMetrics")
+
+    async def Core_GetWebserverMetricsAsync(self):
+        """
+        :returns: AMP Type: Object
+        """
+        return await self.APICallAsync(endpoint="Core/GetWebserverMetrics")
+
     def Core_CreateTestTask(self):
         """DEV: Creates a non-ending task with 50% progress for testing purposes
             
@@ -4634,7 +4682,7 @@ class AMPAPIHandler(AMPAPI):
             return AMPAPIHandler(
                 baseUri=self.baseUri + f"API/ADSModule/Servers/{instance_id}",
                 username=self.username,
-                password=self.password,
+                password="",
                 rememberMeToken=loginResult["rememberMeToken"],
                 sessionId=loginResult["sessionID"]
             )
@@ -4659,7 +4707,7 @@ class AMPAPIHandler(AMPAPI):
             return AMPAPIHandler(
                 baseUri=self.baseUri + f"API/ADSModule/Servers/{instance_id}",
                 username=self.username,
-                password=self.password,
+                password="",
                 rememberMeToken=loginResult["rememberMeToken"],
                 sessionId=loginResult["sessionID"]
             )

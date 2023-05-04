@@ -26,10 +26,10 @@ pip install requests aiohttp json
 
 ```python
 import asyncio
-from ampapi.ampapi import AMPAPIAsync
+from ampapi.ampapi import AMPAPI
 
 async def start() -> None:
-    API = AMPAPIAsync("http://localhost:8080/")
+    API = AMPAPI("http://localhost:8080/")
 
     try:
         # The third parameter is either used for 2FA logins, or if no password is specified to use a remembered token from a previous login, or a service login token.

@@ -96,7 +96,7 @@ class AMPAPIHandler(AMPAPI):
             data_json = json.dumps(data_added)
 
             async with ClientSession() as session:
-                async with session.post(url=f'{self.dataSource}{endpoint}', headers=headers, data=data_json) as post:
+                async with session.post(url=f'{self.dataSource}/{endpoint}', headers=headers, data=data_json) as post:
                     response = await post.json()
                     post.close()
 

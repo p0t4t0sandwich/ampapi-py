@@ -458,7 +458,7 @@ class AMPAPI():
         :param Secret: Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request.
         :type Secret: strTrue
             AMP Type: String
-        :param PostCreate: 0: Do nothing, 10: Start instance only, 20: Start instance and update application, 30: Full application startup.
+        :param PostCreate: 0: Do nothing, 1: Start instance only, 2: Start instance and update application, 3: Full application startup.
             AMP Type: PostCreateActions
         :param ExtraProvisionSettings: A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself.
         :type ExtraProvisionSettings: dict[str, str]True
@@ -504,7 +504,7 @@ class AMPAPI():
         :param Secret: Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request.
         :type Secret: strTrue
             AMP Type: String
-        :param PostCreate: 0: Do nothing, 10: Start instance only, 20: Start instance and update application, 30: Full application startup.
+        :param PostCreate: 0: Do nothing, 1: Start instance only, 2: Start instance and update application, 3: Full application startup.
             AMP Type: PostCreateActions
         :param ExtraProvisionSettings: A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself.
         :type ExtraProvisionSettings: dict[str, str]True
@@ -2050,22 +2050,26 @@ class AMPAPI():
             "Delete": Delete, 
         })
 
-    def FileManagerPlugin_ReadFileChunk(self, Filename: str, Offset: int):
+    def FileManagerPlugin_ReadFileChunk(self, Filename: str, Offset: int, ChunkSize: int):
         """
         :param Filename: 
         :type Filename: strFalse
             AMP Type: String
         :param Offset: 
         :type Offset: intFalse
+            AMP Type: Int64
+        :param ChunkSize: 
+        :type ChunkSize: intTrue
             AMP Type: Int64
         :returns: AMP Type: ActionResult<String>
         """
         return self.APICall(endpoint="FileManagerPlugin/ReadFileChunk", data={
             "Filename": Filename, 
             "Offset": Offset, 
+            "ChunkSize": ChunkSize, 
         })
 
-    async def FileManagerPlugin_ReadFileChunkAsync(self, Filename: str, Offset: int):
+    async def FileManagerPlugin_ReadFileChunkAsync(self, Filename: str, Offset: int, ChunkSize: int):
         """
         :param Filename: 
         :type Filename: strFalse
@@ -2073,11 +2077,15 @@ class AMPAPI():
         :param Offset: 
         :type Offset: intFalse
             AMP Type: Int64
+        :param ChunkSize: 
+        :type ChunkSize: intTrue
+            AMP Type: Int64
         :returns: AMP Type: ActionResult<String>
         """
         return await self.APICallAsync(endpoint="FileManagerPlugin/ReadFileChunk", data={
             "Filename": Filename, 
             "Offset": Offset, 
+            "ChunkSize": ChunkSize, 
         })
 
     def FileManagerPlugin_WriteFileChunk(self, Filename: str, Data: str, Offset: int, FinalChunk: bool):

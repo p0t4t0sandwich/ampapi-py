@@ -130,9 +130,7 @@ def generate_ampapi(spec: dict) -> None:
                 if optional == "true": type_name + ", optional"
                 restdocs += f"\n        :param {name}: {description}"
 
-                if type_name == "WebauthnLoginInfo":
-                    pass
-                elif not type_dict[type_name] == "":
+                if not type_dict[type_name] == "":
                     restdocs += f"\n        :type {name}: {type_dict[type_name]}{optional}"
                 restdocs += f"\n            AMP Type: {type_name}"
             ##########
@@ -143,9 +141,7 @@ def generate_ampapi(spec: dict) -> None:
             # Print out the type if it hasn't been added to the type_dict
             if not return_type in type_dict.keys(): print(return_type)
             restdocs += f"\n        :returns: AMP Type: {return_type}"
-            if return_type == "WebauthnLoginInfo":
-                pass
-            elif not type_dict[return_type] == "":
+            if not type_dict[return_type] == "":
                 restdocs += f"\n        :rtype: {type_dict[return_type]}"
             ##########
 

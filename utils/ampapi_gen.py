@@ -96,7 +96,8 @@ type_dict = {
     "Dictionary<String, Dictionary<String, MethodInfoSummary>>": "dict[str, dict]",
     "Object": "",
     "Task<String>": "",
-    "UpdateInfo": ""
+    "UpdateInfo": "",
+    "IEnumerable<ListeningPortSummary>": "list",
 }
 
 def generate_ampapi(spec: dict) -> None:
@@ -131,7 +132,7 @@ def generate_ampapi(spec: dict) -> None:
                 restdocs += f"\n        :param {name}: {description}"
 
                 if not type_dict[type_name] == "":
-                    restdocs += f"\n        :type {name}: {type_dict[type_name]}{optional}"
+                    restdocs += f"\n        :type {name}: {type_dict[type_name]} {optional}"
                 restdocs += f"\n            AMP Type: {type_name}"
             ##########
 

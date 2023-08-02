@@ -95,7 +95,7 @@ class AMPAPI():
     def ADSModule_DeleteDatastore(self, id: int):
         """
         :param id: 
-        :type id: intFalse
+        :type id: int False
             AMP Type: Int32
         :returns: AMP Type: ActionResult
         """
@@ -106,7 +106,7 @@ class AMPAPI():
     async def ADSModule_DeleteDatastoreAsync(self, id: int):
         """
         :param id: 
-        :type id: intFalse
+        :type id: int False
             AMP Type: Int32
         :returns: AMP Type: ActionResult
         """
@@ -151,7 +151,7 @@ class AMPAPI():
     def ADSModule_RequestDatastoreSizeCalculation(self, datastoreId: int):
         """
         :param datastoreId: 
-        :type datastoreId: intFalse
+        :type datastoreId: int False
             AMP Type: Int32
         :returns: AMP Type: RunningTask
         """
@@ -162,7 +162,7 @@ class AMPAPI():
     async def ADSModule_RequestDatastoreSizeCalculationAsync(self, datastoreId: int):
         """
         :param datastoreId: 
-        :type datastoreId: intFalse
+        :type datastoreId: int False
             AMP Type: Int32
         :returns: AMP Type: RunningTask
         """
@@ -173,7 +173,7 @@ class AMPAPI():
     def ADSModule_GetDatastore(self, id: int):
         """
         :param id: 
-        :type id: intFalse
+        :type id: int False
             AMP Type: Int32
         :returns: AMP Type: InstanceDatastore
         """
@@ -184,7 +184,7 @@ class AMPAPI():
     async def ADSModule_GetDatastoreAsync(self, id: int):
         """
         :param id: 
-        :type id: intFalse
+        :type id: int False
             AMP Type: Int32
         :returns: AMP Type: InstanceDatastore
         """
@@ -195,7 +195,7 @@ class AMPAPI():
     def ADSModule_RepairDatastore(self, id: int):
         """
         :param id: 
-        :type id: intFalse
+        :type id: int False
             AMP Type: Int32
         :returns: AMP Type: RunningTask
         """
@@ -206,7 +206,7 @@ class AMPAPI():
     async def ADSModule_RepairDatastoreAsync(self, id: int):
         """
         :param id: 
-        :type id: intFalse
+        :type id: int False
             AMP Type: Int32
         :returns: AMP Type: RunningTask
         """
@@ -217,7 +217,7 @@ class AMPAPI():
     def ADSModule_GetDatastoreInstances(self, datastoreId: int):
         """
         :param datastoreId: 
-        :type datastoreId: intFalse
+        :type datastoreId: int False
             AMP Type: Int32
         :returns: AMP Type: IEnumerable<JObject>
         :rtype: list[dict]
@@ -229,7 +229,7 @@ class AMPAPI():
     async def ADSModule_GetDatastoreInstancesAsync(self, datastoreId: int):
         """
         :param datastoreId: 
-        :type datastoreId: intFalse
+        :type datastoreId: int False
             AMP Type: Int32
         :returns: AMP Type: IEnumerable<JObject>
         :rtype: list[dict]
@@ -241,10 +241,10 @@ class AMPAPI():
     def ADSModule_MoveInstanceDatastore(self, instanceId: str, datastoreId: int):
         """
         :param instanceId: 
-        :type instanceId: strFalse
+        :type instanceId: str False
             AMP Type: Guid
         :param datastoreId: 
-        :type datastoreId: intFalse
+        :type datastoreId: int False
             AMP Type: Int32
         :returns: AMP Type: Task<RunningTask>
         """
@@ -256,10 +256,10 @@ class AMPAPI():
     async def ADSModule_MoveInstanceDatastoreAsync(self, instanceId: str, datastoreId: int):
         """
         :param instanceId: 
-        :type instanceId: strFalse
+        :type instanceId: str False
             AMP Type: Guid
         :param datastoreId: 
-        :type datastoreId: intFalse
+        :type datastoreId: int False
             AMP Type: Int32
         :returns: AMP Type: Task<RunningTask>
         """
@@ -285,7 +285,7 @@ class AMPAPI():
     def ADSModule_CreateDeploymentTemplate(self, Name: str):
         """
         :param Name: 
-        :type Name: strFalse
+        :type Name: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -296,7 +296,7 @@ class AMPAPI():
     async def ADSModule_CreateDeploymentTemplateAsync(self, Name: str):
         """
         :param Name: 
-        :type Name: strFalse
+        :type Name: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -327,7 +327,7 @@ class AMPAPI():
     def ADSModule_DeleteDeploymentTemplate(self, Id: int):
         """
         :param Id: 
-        :type Id: intFalse
+        :type Id: int False
             AMP Type: Int32
         :returns: AMP Type: ActionResult
         """
@@ -338,7 +338,7 @@ class AMPAPI():
     async def ADSModule_DeleteDeploymentTemplateAsync(self, Id: int):
         """
         :param Id: 
-        :type Id: intFalse
+        :type Id: int False
             AMP Type: Int32
         :returns: AMP Type: ActionResult
         """
@@ -349,10 +349,10 @@ class AMPAPI():
     def ADSModule_CloneTemplate(self, Id: int, NewName: str):
         """
         :param Id: 
-        :type Id: intFalse
+        :type Id: int False
             AMP Type: Int32
         :param NewName: 
-        :type NewName: strFalse
+        :type NewName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -364,10 +364,10 @@ class AMPAPI():
     async def ADSModule_CloneTemplateAsync(self, Id: int, NewName: str):
         """
         :param Id: 
-        :type Id: intFalse
+        :type Id: int False
             AMP Type: Int32
         :param NewName: 
-        :type NewName: strFalse
+        :type NewName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -380,19 +380,19 @@ class AMPAPI():
         """Overlays an existing template on an existing instance. Used to perform package reconfigurations. Do not use this to 'transform' an existing application into another. The instance should be deleted and re-created in that situation.
             
         :param InstanceID: 
-        :type InstanceID: strFalse
+        :type InstanceID: str False
             AMP Type: Guid
         :param TemplateID: 
-        :type TemplateID: intFalse
+        :type TemplateID: int False
             AMP Type: Int32
         :param NewFriendlyName: 
-        :type NewFriendlyName: strTrue
+        :type NewFriendlyName: str True
             AMP Type: String
         :param Secret: 
-        :type Secret: strTrue
+        :type Secret: str True
             AMP Type: String
         :param RestartIfPreviouslyRunning: 
-        :type RestartIfPreviouslyRunning: boolTrue
+        :type RestartIfPreviouslyRunning: bool True
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -408,19 +408,19 @@ class AMPAPI():
         """Overlays an existing template on an existing instance. Used to perform package reconfigurations. Do not use this to 'transform' an existing application into another. The instance should be deleted and re-created in that situation.
             
         :param InstanceID: 
-        :type InstanceID: strFalse
+        :type InstanceID: str False
             AMP Type: Guid
         :param TemplateID: 
-        :type TemplateID: intFalse
+        :type TemplateID: int False
             AMP Type: Int32
         :param NewFriendlyName: 
-        :type NewFriendlyName: strTrue
+        :type NewFriendlyName: str True
             AMP Type: String
         :param Secret: 
-        :type Secret: strTrue
+        :type Secret: str True
             AMP Type: String
         :param RestartIfPreviouslyRunning: 
-        :type RestartIfPreviouslyRunning: boolTrue
+        :type RestartIfPreviouslyRunning: bool True
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -435,33 +435,33 @@ class AMPAPI():
     def ADSModule_DeployTemplate(self, TemplateID: int, NewUsername: str, NewPassword: str, NewEmail: str, RequiredTags: list[str], Tag: str, FriendlyName: str, Secret: str, PostCreate, ExtraProvisionSettings: dict[str, str]):
         """
         :param TemplateID: The ID of the template to be deployed, as per the Template Management UI in AMP itself.
-        :type TemplateID: intFalse
+        :type TemplateID: int False
             AMP Type: Int32
         :param NewUsername: If specified, AMP will create a new user with this name for this instance. Must be unique. If this user already exists, this will be ignored but the new instance will be assigned to this user.
-        :type NewUsername: strTrue
+        :type NewUsername: str True
             AMP Type: String
         :param NewPassword: If 'NewUsername' is specified and the user doesn't already exist, the password that will be assigned to this user.
-        :type NewPassword: strTrue
+        :type NewPassword: str True
             AMP Type: String
         :param NewEmail: If 'NewUsername' is specified and the user doesn't already exist, the email address that will be assigned to this user.
-        :type NewEmail: strTrue
+        :type NewEmail: str True
             AMP Type: String
         :param RequiredTags: If specified, AMP will only deploy this template to targets that have every single 'tag' specified in their target configuration. You can adjust this via the controller by clicking 'Edit' on the target settings.
-        :type RequiredTags: list[str]True
+        :type RequiredTags: list[str] True
             AMP Type: List<String>
         :param Tag: Unrelated to RequiredTags. This is to uniquely identify this instance to your own systems. It may be something like an order ID or service ID so you can find the associated instance again at a later time. If 'UseTagAsInstanceName' is enabled, then this will also be used as the instance name for the created instance - but it must be unique.
-        :type Tag: strTrue
+        :type Tag: str True
             AMP Type: String
         :param FriendlyName: A friendly name for this instance. If left blank, AMP will generate one for you.
-        :type FriendlyName: strTrue
+        :type FriendlyName: str True
             AMP Type: String
         :param Secret: Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request.
-        :type Secret: strTrue
+        :type Secret: str True
             AMP Type: String
         :param PostCreate: 0: Do nothing, 1: Start instance only, 2: Start instance and update application, 3: Full application startup.
             AMP Type: PostCreateActions
         :param ExtraProvisionSettings: A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself.
-        :type ExtraProvisionSettings: dict[str, str]True
+        :type ExtraProvisionSettings: dict[str, str] True
             AMP Type: Dictionary<String, String>
         :returns: AMP Type: RunningTask
         """
@@ -481,33 +481,33 @@ class AMPAPI():
     async def ADSModule_DeployTemplateAsync(self, TemplateID: int, NewUsername: str, NewPassword: str, NewEmail: str, RequiredTags: list[str], Tag: str, FriendlyName: str, Secret: str, PostCreate, ExtraProvisionSettings: dict[str, str]):
         """
         :param TemplateID: The ID of the template to be deployed, as per the Template Management UI in AMP itself.
-        :type TemplateID: intFalse
+        :type TemplateID: int False
             AMP Type: Int32
         :param NewUsername: If specified, AMP will create a new user with this name for this instance. Must be unique. If this user already exists, this will be ignored but the new instance will be assigned to this user.
-        :type NewUsername: strTrue
+        :type NewUsername: str True
             AMP Type: String
         :param NewPassword: If 'NewUsername' is specified and the user doesn't already exist, the password that will be assigned to this user.
-        :type NewPassword: strTrue
+        :type NewPassword: str True
             AMP Type: String
         :param NewEmail: If 'NewUsername' is specified and the user doesn't already exist, the email address that will be assigned to this user.
-        :type NewEmail: strTrue
+        :type NewEmail: str True
             AMP Type: String
         :param RequiredTags: If specified, AMP will only deploy this template to targets that have every single 'tag' specified in their target configuration. You can adjust this via the controller by clicking 'Edit' on the target settings.
-        :type RequiredTags: list[str]True
+        :type RequiredTags: list[str] True
             AMP Type: List<String>
         :param Tag: Unrelated to RequiredTags. This is to uniquely identify this instance to your own systems. It may be something like an order ID or service ID so you can find the associated instance again at a later time. If 'UseTagAsInstanceName' is enabled, then this will also be used as the instance name for the created instance - but it must be unique.
-        :type Tag: strTrue
+        :type Tag: str True
             AMP Type: String
         :param FriendlyName: A friendly name for this instance. If left blank, AMP will generate one for you.
-        :type FriendlyName: strTrue
+        :type FriendlyName: str True
             AMP Type: String
         :param Secret: Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request.
-        :type Secret: strTrue
+        :type Secret: str True
             AMP Type: String
         :param PostCreate: 0: Do nothing, 1: Start instance only, 2: Start instance and update application, 3: Full application startup.
             AMP Type: PostCreateActions
         :param ExtraProvisionSettings: A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself.
-        :type ExtraProvisionSettings: dict[str, str]True
+        :type ExtraProvisionSettings: dict[str, str] True
             AMP Type: Dictionary<String, String>
         :returns: AMP Type: RunningTask
         """
@@ -581,7 +581,7 @@ class AMPAPI():
     def ADSModule_GetApplicationEndpoints(self, instanceId: str):
         """
         :param instanceId: 
-        :type instanceId: strFalse
+        :type instanceId: str False
             AMP Type: Guid
         :returns: AMP Type: IEnumerable<EndpointInfo>
         :rtype: list
@@ -593,7 +593,7 @@ class AMPAPI():
     async def ADSModule_GetApplicationEndpointsAsync(self, instanceId: str):
         """
         :param instanceId: 
-        :type instanceId: strFalse
+        :type instanceId: str False
             AMP Type: Guid
         :returns: AMP Type: IEnumerable<EndpointInfo>
         :rtype: list
@@ -631,7 +631,7 @@ class AMPAPI():
     def ADSModule_GetInstance(self, InstanceId: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: Guid
         :returns: AMP Type: JObject
         :rtype: dict
@@ -643,7 +643,7 @@ class AMPAPI():
     async def ADSModule_GetInstanceAsync(self, InstanceId: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: Guid
         :returns: AMP Type: JObject
         :rtype: dict
@@ -655,22 +655,22 @@ class AMPAPI():
     def ADSModule_ModifyCustomFirewallRule(self, instanceId: str, PortNumber: int, Range: int, Protocol: str, Description: str, Open: bool):
         """
         :param instanceId: 
-        :type instanceId: strFalse
+        :type instanceId: str False
             AMP Type: Guid
         :param PortNumber: 
-        :type PortNumber: intFalse
+        :type PortNumber: int False
             AMP Type: Int32
         :param Range: 
-        :type Range: intFalse
+        :type Range: int False
             AMP Type: Int32
         :param Protocol: 
-        :type Protocol: strFalse
+        :type Protocol: str False
             AMP Type: PortProtocol
         :param Description: 
-        :type Description: strFalse
+        :type Description: str False
             AMP Type: String
         :param Open: 
-        :type Open: boolFalse
+        :type Open: bool False
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult>
         """
@@ -686,22 +686,22 @@ class AMPAPI():
     async def ADSModule_ModifyCustomFirewallRuleAsync(self, instanceId: str, PortNumber: int, Range: int, Protocol: str, Description: str, Open: bool):
         """
         :param instanceId: 
-        :type instanceId: strFalse
+        :type instanceId: str False
             AMP Type: Guid
         :param PortNumber: 
-        :type PortNumber: intFalse
+        :type PortNumber: int False
             AMP Type: Int32
         :param Range: 
-        :type Range: intFalse
+        :type Range: int False
             AMP Type: Int32
         :param Protocol: 
-        :type Protocol: strFalse
+        :type Protocol: str False
             AMP Type: PortProtocol
         :param Description: 
-        :type Description: strFalse
+        :type Description: str False
             AMP Type: String
         :param Open: 
-        :type Open: boolFalse
+        :type Open: bool False
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult>
         """
@@ -717,7 +717,7 @@ class AMPAPI():
     def ADSModule_ManageInstance(self, InstanceId: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult<String>
         """
@@ -728,7 +728,7 @@ class AMPAPI():
     async def ADSModule_ManageInstanceAsync(self, InstanceId: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult<String>
         """
@@ -739,7 +739,7 @@ class AMPAPI():
     def ADSModule_GetGroup(self, GroupId: str):
         """
         :param GroupId: 
-        :type GroupId: strFalse
+        :type GroupId: str False
             AMP Type: Guid
         :returns: AMP Type: IADSInstance
         :rtype: bool
@@ -751,7 +751,7 @@ class AMPAPI():
     async def ADSModule_GetGroupAsync(self, GroupId: str):
         """
         :param GroupId: 
-        :type GroupId: strFalse
+        :type GroupId: str False
             AMP Type: Guid
         :returns: AMP Type: IADSInstance
         :rtype: bool
@@ -763,7 +763,7 @@ class AMPAPI():
     def ADSModule_RefreshGroup(self, GroupId: str):
         """
         :param GroupId: 
-        :type GroupId: strFalse
+        :type GroupId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -774,7 +774,7 @@ class AMPAPI():
     async def ADSModule_RefreshGroupAsync(self, GroupId: str):
         """
         :param GroupId: 
-        :type GroupId: strFalse
+        :type GroupId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -827,19 +827,19 @@ class AMPAPI():
     def ADSModule_AttachADS(self, Friendly: str, IsHTTPS: bool, Host: str, Port: int, InstanceID: str):
         """
         :param Friendly: 
-        :type Friendly: strFalse
+        :type Friendly: str False
             AMP Type: String
         :param IsHTTPS: 
-        :type IsHTTPS: boolFalse
+        :type IsHTTPS: bool False
             AMP Type: Boolean
         :param Host: 
-        :type Host: strFalse
+        :type Host: str False
             AMP Type: String
         :param Port: 
-        :type Port: intFalse
+        :type Port: int False
             AMP Type: Int32
         :param InstanceID: 
-        :type InstanceID: strFalse
+        :type InstanceID: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -854,19 +854,19 @@ class AMPAPI():
     async def ADSModule_AttachADSAsync(self, Friendly: str, IsHTTPS: bool, Host: str, Port: int, InstanceID: str):
         """
         :param Friendly: 
-        :type Friendly: strFalse
+        :type Friendly: str False
             AMP Type: String
         :param IsHTTPS: 
-        :type IsHTTPS: boolFalse
+        :type IsHTTPS: bool False
             AMP Type: Boolean
         :param Host: 
-        :type Host: strFalse
+        :type Host: str False
             AMP Type: String
         :param Port: 
-        :type Port: intFalse
+        :type Port: int False
             AMP Type: Int32
         :param InstanceID: 
-        :type InstanceID: strFalse
+        :type InstanceID: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -881,7 +881,7 @@ class AMPAPI():
     def ADSModule_DetatchTarget(self, Id: str):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -892,7 +892,7 @@ class AMPAPI():
     async def ADSModule_DetatchTargetAsync(self, Id: str):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -903,19 +903,19 @@ class AMPAPI():
     def ADSModule_UpdateTargetInfo(self, Id: str, FriendlyName: str, Url: str, Description: str, Tags: list[str]):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :param FriendlyName: 
-        :type FriendlyName: strFalse
+        :type FriendlyName: str False
             AMP Type: String
         :param Url: 
-        :type Url: strFalse
+        :type Url: str False
             AMP Type: Uri
         :param Description: 
-        :type Description: strFalse
+        :type Description: str False
             AMP Type: String
         :param Tags: 
-        :type Tags: list[str]False
+        :type Tags: list[str] False
             AMP Type: List<String>
         :returns: AMP Type: ActionResult
         """
@@ -930,19 +930,19 @@ class AMPAPI():
     async def ADSModule_UpdateTargetInfoAsync(self, Id: str, FriendlyName: str, Url: str, Description: str, Tags: list[str]):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :param FriendlyName: 
-        :type FriendlyName: strFalse
+        :type FriendlyName: str False
             AMP Type: String
         :param Url: 
-        :type Url: strFalse
+        :type Url: str False
             AMP Type: Uri
         :param Description: 
-        :type Description: strFalse
+        :type Description: str False
             AMP Type: String
         :param Tags: 
-        :type Tags: list[str]False
+        :type Tags: list[str] False
             AMP Type: List<String>
         :returns: AMP Type: ActionResult
         """
@@ -957,7 +957,7 @@ class AMPAPI():
     def ADSModule_ConvertToManaged(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -968,7 +968,7 @@ class AMPAPI():
     async def ADSModule_ConvertToManagedAsync(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -979,7 +979,7 @@ class AMPAPI():
     def ADSModule_GetInstanceNetworkInfo(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: IEnumerable<PortUsage>
         :rtype: list
@@ -991,7 +991,7 @@ class AMPAPI():
     async def ADSModule_GetInstanceNetworkInfoAsync(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: IEnumerable<PortUsage>
         :rtype: list
@@ -1003,10 +1003,10 @@ class AMPAPI():
     def ADSModule_SetInstanceNetworkInfo(self, InstanceId: str, PortMappings: dict[str, int]):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: Guid
         :param PortMappings: 
-        :type PortMappings: dict[str, int]False
+        :type PortMappings: dict[str, int] False
             AMP Type: Dictionary<String, Int32>
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1018,10 +1018,10 @@ class AMPAPI():
     async def ADSModule_SetInstanceNetworkInfoAsync(self, InstanceId: str, PortMappings: dict[str, int]):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: Guid
         :param PortMappings: 
-        :type PortMappings: dict[str, int]False
+        :type PortMappings: dict[str, int] False
             AMP Type: Dictionary<String, Int32>
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1033,13 +1033,13 @@ class AMPAPI():
     def ADSModule_ApplyInstanceConfiguration(self, InstanceID: str, Args: dict[str, str], RebuildConfiguration: bool):
         """
         :param InstanceID: 
-        :type InstanceID: strFalse
+        :type InstanceID: str False
             AMP Type: Guid
         :param Args: 
-        :type Args: dict[str, str]False
+        :type Args: dict[str, str] False
             AMP Type: Dictionary<String, String>
         :param RebuildConfiguration: 
-        :type RebuildConfiguration: boolTrue
+        :type RebuildConfiguration: bool True
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1052,13 +1052,13 @@ class AMPAPI():
     async def ADSModule_ApplyInstanceConfigurationAsync(self, InstanceID: str, Args: dict[str, str], RebuildConfiguration: bool):
         """
         :param InstanceID: 
-        :type InstanceID: strFalse
+        :type InstanceID: str False
             AMP Type: Guid
         :param Args: 
-        :type Args: dict[str, str]False
+        :type Args: dict[str, str] False
             AMP Type: Dictionary<String, String>
         :param RebuildConfiguration: 
-        :type RebuildConfiguration: boolTrue
+        :type RebuildConfiguration: bool True
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1097,48 +1097,48 @@ class AMPAPI():
     def ADSModule_CreateInstance(self, TargetADSInstance: str, NewInstanceId: str, Module: str, InstanceName: str, FriendlyName: str, IPBinding: str, PortNumber: int, AdminUsername: str, AdminPassword: str, ProvisionSettings: dict[str, str], AutoConfigure: bool, PostCreate, StartOnBoot: bool, DisplayImageSource: str, TargetDatastore: int):
         """
         :param TargetADSInstance: 
-        :type TargetADSInstance: strFalse
+        :type TargetADSInstance: str False
             AMP Type: Guid
         :param NewInstanceId: 
-        :type NewInstanceId: strFalse
+        :type NewInstanceId: str False
             AMP Type: Guid
         :param Module: 
-        :type Module: strFalse
+        :type Module: str False
             AMP Type: String
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :param FriendlyName: 
-        :type FriendlyName: strFalse
+        :type FriendlyName: str False
             AMP Type: String
         :param IPBinding: 
-        :type IPBinding: strFalse
+        :type IPBinding: str False
             AMP Type: String
         :param PortNumber: 
-        :type PortNumber: intFalse
+        :type PortNumber: int False
             AMP Type: Int32
         :param AdminUsername: 
-        :type AdminUsername: strFalse
+        :type AdminUsername: str False
             AMP Type: String
         :param AdminPassword: 
-        :type AdminPassword: strFalse
+        :type AdminPassword: str False
             AMP Type: String
         :param ProvisionSettings: 
-        :type ProvisionSettings: dict[str, str]False
+        :type ProvisionSettings: dict[str, str] False
             AMP Type: Dictionary<String, String>
         :param AutoConfigure: When enabled, all settings other than the Module, Target and FriendlyName are ignored and replaced with automatically generated values.
-        :type AutoConfigure: boolTrue
+        :type AutoConfigure: bool True
             AMP Type: Boolean
         :param PostCreate: 
             AMP Type: PostCreateActions
         :param StartOnBoot: 
-        :type StartOnBoot: boolTrue
+        :type StartOnBoot: bool True
             AMP Type: Boolean
         :param DisplayImageSource: 
-        :type DisplayImageSource: strTrue
+        :type DisplayImageSource: str True
             AMP Type: String
         :param TargetDatastore: 
-        :type TargetDatastore: intTrue
+        :type TargetDatastore: int True
             AMP Type: Int32
         :returns: AMP Type: ActionResult
         """
@@ -1163,48 +1163,48 @@ class AMPAPI():
     async def ADSModule_CreateInstanceAsync(self, TargetADSInstance: str, NewInstanceId: str, Module: str, InstanceName: str, FriendlyName: str, IPBinding: str, PortNumber: int, AdminUsername: str, AdminPassword: str, ProvisionSettings: dict[str, str], AutoConfigure: bool, PostCreate, StartOnBoot: bool, DisplayImageSource: str, TargetDatastore: int):
         """
         :param TargetADSInstance: 
-        :type TargetADSInstance: strFalse
+        :type TargetADSInstance: str False
             AMP Type: Guid
         :param NewInstanceId: 
-        :type NewInstanceId: strFalse
+        :type NewInstanceId: str False
             AMP Type: Guid
         :param Module: 
-        :type Module: strFalse
+        :type Module: str False
             AMP Type: String
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :param FriendlyName: 
-        :type FriendlyName: strFalse
+        :type FriendlyName: str False
             AMP Type: String
         :param IPBinding: 
-        :type IPBinding: strFalse
+        :type IPBinding: str False
             AMP Type: String
         :param PortNumber: 
-        :type PortNumber: intFalse
+        :type PortNumber: int False
             AMP Type: Int32
         :param AdminUsername: 
-        :type AdminUsername: strFalse
+        :type AdminUsername: str False
             AMP Type: String
         :param AdminPassword: 
-        :type AdminPassword: strFalse
+        :type AdminPassword: str False
             AMP Type: String
         :param ProvisionSettings: 
-        :type ProvisionSettings: dict[str, str]False
+        :type ProvisionSettings: dict[str, str] False
             AMP Type: Dictionary<String, String>
         :param AutoConfigure: When enabled, all settings other than the Module, Target and FriendlyName are ignored and replaced with automatically generated values.
-        :type AutoConfigure: boolTrue
+        :type AutoConfigure: bool True
             AMP Type: Boolean
         :param PostCreate: 
             AMP Type: PostCreateActions
         :param StartOnBoot: 
-        :type StartOnBoot: boolTrue
+        :type StartOnBoot: bool True
             AMP Type: Boolean
         :param DisplayImageSource: 
-        :type DisplayImageSource: strTrue
+        :type DisplayImageSource: str True
             AMP Type: String
         :param TargetDatastore: 
-        :type TargetDatastore: intTrue
+        :type TargetDatastore: int True
             AMP Type: Int32
         :returns: AMP Type: ActionResult
         """
@@ -1229,13 +1229,13 @@ class AMPAPI():
     def ADSModule_SetInstanceConfig(self, InstanceName: str, SettingNode: str, Value: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :param SettingNode: 
-        :type SettingNode: strFalse
+        :type SettingNode: str False
             AMP Type: String
         :param Value: 
-        :type Value: strFalse
+        :type Value: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1248,13 +1248,13 @@ class AMPAPI():
     async def ADSModule_SetInstanceConfigAsync(self, InstanceName: str, SettingNode: str, Value: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :param SettingNode: 
-        :type SettingNode: strFalse
+        :type SettingNode: str False
             AMP Type: String
         :param Value: 
-        :type Value: strFalse
+        :type Value: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1267,7 +1267,7 @@ class AMPAPI():
     def ADSModule_RefreshInstanceConfig(self, InstanceId: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1278,7 +1278,7 @@ class AMPAPI():
     async def ADSModule_RefreshInstanceConfigAsync(self, InstanceId: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1289,13 +1289,13 @@ class AMPAPI():
     def ADSModule_HandoutInstanceConfigs(self, ForModule: str, SettingNode: str, Values: list[str]):
         """
         :param ForModule: 
-        :type ForModule: strFalse
+        :type ForModule: str False
             AMP Type: String
         :param SettingNode: 
-        :type SettingNode: strFalse
+        :type SettingNode: str False
             AMP Type: String
         :param Values: 
-        :type Values: list[str]False
+        :type Values: list[str] False
             AMP Type: List<String>
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1308,13 +1308,13 @@ class AMPAPI():
     async def ADSModule_HandoutInstanceConfigsAsync(self, ForModule: str, SettingNode: str, Values: list[str]):
         """
         :param ForModule: 
-        :type ForModule: strFalse
+        :type ForModule: str False
             AMP Type: String
         :param SettingNode: 
-        :type SettingNode: strFalse
+        :type SettingNode: str False
             AMP Type: String
         :param Values: 
-        :type Values: list[str]False
+        :type Values: list[str] False
             AMP Type: List<String>
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1327,7 +1327,7 @@ class AMPAPI():
     def ADSModule_GetProvisionArguments(self, ModuleName: str):
         """
         :param ModuleName: 
-        :type ModuleName: strFalse
+        :type ModuleName: str False
             AMP Type: String
         :returns: AMP Type: IEnumerable<JObject>
         :rtype: list[dict]
@@ -1339,7 +1339,7 @@ class AMPAPI():
     async def ADSModule_GetProvisionArgumentsAsync(self, ModuleName: str):
         """
         :param ModuleName: 
-        :type ModuleName: strFalse
+        :type ModuleName: str False
             AMP Type: String
         :returns: AMP Type: IEnumerable<JObject>
         :rtype: list[dict]
@@ -1351,13 +1351,13 @@ class AMPAPI():
     def ADSModule_TestADSLoginDetails(self, url: str, username: str, password: str):
         """
         :param url: 
-        :type url: strFalse
+        :type url: str False
             AMP Type: String
         :param username: 
-        :type username: strFalse
+        :type username: str False
             AMP Type: String
         :param password: 
-        :type password: strFalse
+        :type password: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1370,13 +1370,13 @@ class AMPAPI():
     async def ADSModule_TestADSLoginDetailsAsync(self, url: str, username: str, password: str):
         """
         :param url: 
-        :type url: strFalse
+        :type url: str False
             AMP Type: String
         :param username: 
-        :type username: strFalse
+        :type username: str False
             AMP Type: String
         :param password: 
-        :type password: strFalse
+        :type password: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1389,22 +1389,22 @@ class AMPAPI():
     def ADSModule_RegisterTarget(self, controllerUrl: str, myUrl: str, username: str, password: str, twoFactorToken: str, friendlyName: str):
         """
         :param controllerUrl: 
-        :type controllerUrl: strFalse
+        :type controllerUrl: str False
             AMP Type: String
         :param myUrl: 
-        :type myUrl: strFalse
+        :type myUrl: str False
             AMP Type: String
         :param username: 
-        :type username: strFalse
+        :type username: str False
             AMP Type: String
         :param password: 
-        :type password: strFalse
+        :type password: str False
             AMP Type: String
         :param twoFactorToken: 
-        :type twoFactorToken: strFalse
+        :type twoFactorToken: str False
             AMP Type: String
         :param friendlyName: 
-        :type friendlyName: strFalse
+        :type friendlyName: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1420,22 +1420,22 @@ class AMPAPI():
     async def ADSModule_RegisterTargetAsync(self, controllerUrl: str, myUrl: str, username: str, password: str, twoFactorToken: str, friendlyName: str):
         """
         :param controllerUrl: 
-        :type controllerUrl: strFalse
+        :type controllerUrl: str False
             AMP Type: String
         :param myUrl: 
-        :type myUrl: strFalse
+        :type myUrl: str False
             AMP Type: String
         :param username: 
-        :type username: strFalse
+        :type username: str False
             AMP Type: String
         :param password: 
-        :type password: strFalse
+        :type password: str False
             AMP Type: String
         :param twoFactorToken: 
-        :type twoFactorToken: strFalse
+        :type twoFactorToken: str False
             AMP Type: String
         :param friendlyName: 
-        :type friendlyName: strFalse
+        :type friendlyName: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1451,7 +1451,7 @@ class AMPAPI():
     def ADSModule_UpdateTarget(self, TargetID: str):
         """
         :param TargetID: 
-        :type TargetID: strFalse
+        :type TargetID: str False
             AMP Type: Guid
         :returns: AMP Type: Void
         :rtype: None
@@ -1463,7 +1463,7 @@ class AMPAPI():
     async def ADSModule_UpdateTargetAsync(self, TargetID: str):
         """
         :param TargetID: 
-        :type TargetID: strFalse
+        :type TargetID: str False
             AMP Type: Guid
         :returns: AMP Type: Void
         :rtype: None
@@ -1472,36 +1472,39 @@ class AMPAPI():
             "TargetID": TargetID, 
         })
 
-    def ADSModule_UpdateInstanceInfo(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy, ContainerMaxCPU):
+    def ADSModule_UpdateInstanceInfo(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy, ContainerMaxCPU, ContainerImage: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: String
         :param FriendlyName: 
-        :type FriendlyName: strFalse
+        :type FriendlyName: str False
             AMP Type: String
         :param Description: 
-        :type Description: strFalse
+        :type Description: str False
             AMP Type: String
         :param StartOnBoot: 
-        :type StartOnBoot: boolFalse
+        :type StartOnBoot: bool False
             AMP Type: Boolean
         :param Suspended: 
-        :type Suspended: boolFalse
+        :type Suspended: bool False
             AMP Type: Boolean
         :param ExcludeFromFirewall: 
-        :type ExcludeFromFirewall: boolFalse
+        :type ExcludeFromFirewall: bool False
             AMP Type: Boolean
         :param RunInContainer: 
-        :type RunInContainer: boolFalse
+        :type RunInContainer: bool False
             AMP Type: Boolean
         :param ContainerMemory: 
-        :type ContainerMemory: intFalse
+        :type ContainerMemory: int False
             AMP Type: Int32
         :param MemoryPolicy: 
             AMP Type: ContainerMemoryPolicy
         :param ContainerMaxCPU: 
             AMP Type: Single
+        :param ContainerImage: 
+        :type ContainerImage: str False
+            AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
         return self.APICall(endpoint="ADSModule/UpdateInstanceInfo", data={
@@ -1515,38 +1518,42 @@ class AMPAPI():
             "ContainerMemory": ContainerMemory, 
             "MemoryPolicy": MemoryPolicy, 
             "ContainerMaxCPU": ContainerMaxCPU, 
+            "ContainerImage": ContainerImage, 
         })
 
-    async def ADSModule_UpdateInstanceInfoAsync(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy, ContainerMaxCPU):
+    async def ADSModule_UpdateInstanceInfoAsync(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy, ContainerMaxCPU, ContainerImage: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: String
         :param FriendlyName: 
-        :type FriendlyName: strFalse
+        :type FriendlyName: str False
             AMP Type: String
         :param Description: 
-        :type Description: strFalse
+        :type Description: str False
             AMP Type: String
         :param StartOnBoot: 
-        :type StartOnBoot: boolFalse
+        :type StartOnBoot: bool False
             AMP Type: Boolean
         :param Suspended: 
-        :type Suspended: boolFalse
+        :type Suspended: bool False
             AMP Type: Boolean
         :param ExcludeFromFirewall: 
-        :type ExcludeFromFirewall: boolFalse
+        :type ExcludeFromFirewall: bool False
             AMP Type: Boolean
         :param RunInContainer: 
-        :type RunInContainer: boolFalse
+        :type RunInContainer: bool False
             AMP Type: Boolean
         :param ContainerMemory: 
-        :type ContainerMemory: intFalse
+        :type ContainerMemory: int False
             AMP Type: Int32
         :param MemoryPolicy: 
             AMP Type: ContainerMemoryPolicy
         :param ContainerMaxCPU: 
             AMP Type: Single
+        :param ContainerImage: 
+        :type ContainerImage: str False
+            AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
         return await self.APICallAsync(endpoint="ADSModule/UpdateInstanceInfo", data={
@@ -1560,15 +1567,16 @@ class AMPAPI():
             "ContainerMemory": ContainerMemory, 
             "MemoryPolicy": MemoryPolicy, 
             "ContainerMaxCPU": ContainerMaxCPU, 
+            "ContainerImage": ContainerImage, 
         })
 
     def ADSModule_SetInstanceSuspended(self, InstanceName: str, Suspended: bool):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :param Suspended: 
-        :type Suspended: boolFalse
+        :type Suspended: bool False
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1580,10 +1588,10 @@ class AMPAPI():
     async def ADSModule_SetInstanceSuspendedAsync(self, InstanceName: str, Suspended: bool):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :param Suspended: 
-        :type Suspended: boolFalse
+        :type Suspended: bool False
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1595,7 +1603,7 @@ class AMPAPI():
     def ADSModule_UpgradeInstance(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -1606,7 +1614,7 @@ class AMPAPI():
     async def ADSModule_UpgradeInstanceAsync(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -1641,7 +1649,7 @@ class AMPAPI():
     def ADSModule_UpgradeAllInstances(self, RestartRunning: bool):
         """
         :param RestartRunning: 
-        :type RestartRunning: boolFalse
+        :type RestartRunning: bool False
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1652,7 +1660,7 @@ class AMPAPI():
     async def ADSModule_UpgradeAllInstancesAsync(self, RestartRunning: bool):
         """
         :param RestartRunning: 
-        :type RestartRunning: boolFalse
+        :type RestartRunning: bool False
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1663,7 +1671,7 @@ class AMPAPI():
     def ADSModule_StartInstance(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1674,7 +1682,7 @@ class AMPAPI():
     async def ADSModule_StartInstanceAsync(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1685,7 +1693,7 @@ class AMPAPI():
     def ADSModule_RestartInstance(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -1696,7 +1704,7 @@ class AMPAPI():
     async def ADSModule_RestartInstanceAsync(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -1707,7 +1715,7 @@ class AMPAPI():
     def ADSModule_StopInstance(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -1718,7 +1726,7 @@ class AMPAPI():
     async def ADSModule_StopInstanceAsync(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -1729,7 +1737,7 @@ class AMPAPI():
     def ADSModule_DeleteInstanceUsers(self, InstanceId: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1740,7 +1748,7 @@ class AMPAPI():
     async def ADSModule_DeleteInstanceUsersAsync(self, InstanceId: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1751,7 +1759,7 @@ class AMPAPI():
     def ADSModule_DeleteInstance(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: RunningTask
         """
@@ -1762,7 +1770,7 @@ class AMPAPI():
     async def ADSModule_DeleteInstanceAsync(self, InstanceName: str):
         """
         :param InstanceName: 
-        :type InstanceName: strFalse
+        :type InstanceName: str False
             AMP Type: String
         :returns: AMP Type: RunningTask
         """
@@ -1773,7 +1781,7 @@ class AMPAPI():
     def ADSModule_ExtractEverywhere(self, SourceArchive: str):
         """
         :param SourceArchive: 
-        :type SourceArchive: strFalse
+        :type SourceArchive: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1784,7 +1792,7 @@ class AMPAPI():
     async def ADSModule_ExtractEverywhereAsync(self, SourceArchive: str):
         """
         :param SourceArchive: 
-        :type SourceArchive: strFalse
+        :type SourceArchive: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -1795,10 +1803,10 @@ class AMPAPI():
     def ADSModule_Servers(self, id: str, REQ_RAWJSON: str):
         """
         :param id: 
-        :type id: strFalse
+        :type id: str False
             AMP Type: String
         :param REQ_RAWJSON: 
-        :type REQ_RAWJSON: strFalse
+        :type REQ_RAWJSON: str False
             AMP Type: String
         :returns: AMP Type: Task<JObject>
         """
@@ -1810,10 +1818,10 @@ class AMPAPI():
     async def ADSModule_ServersAsync(self, id: str, REQ_RAWJSON: str):
         """
         :param id: 
-        :type id: strFalse
+        :type id: str False
             AMP Type: String
         :param REQ_RAWJSON: 
-        :type REQ_RAWJSON: strFalse
+        :type REQ_RAWJSON: str False
             AMP Type: String
         :returns: AMP Type: Task<JObject>
         """
@@ -1839,7 +1847,7 @@ class AMPAPI():
     def FileManagerPlugin_CalculateFileMD5Sum(self, FilePath: str):
         """
         :param FilePath: 
-        :type FilePath: strFalse
+        :type FilePath: str False
             AMP Type: String
         :returns: AMP Type: ActionResult<String>
         """
@@ -1850,7 +1858,7 @@ class AMPAPI():
     async def FileManagerPlugin_CalculateFileMD5SumAsync(self, FilePath: str):
         """
         :param FilePath: 
-        :type FilePath: strFalse
+        :type FilePath: str False
             AMP Type: String
         :returns: AMP Type: ActionResult<String>
         """
@@ -1861,13 +1869,13 @@ class AMPAPI():
     def FileManagerPlugin_ChangeExclusion(self, ModifyPath: str, AsDirectory: bool, Exclude: bool):
         """
         :param ModifyPath: 
-        :type ModifyPath: strFalse
+        :type ModifyPath: str False
             AMP Type: String
         :param AsDirectory: 
-        :type AsDirectory: boolFalse
+        :type AsDirectory: bool False
             AMP Type: Boolean
         :param Exclude: 
-        :type Exclude: boolFalse
+        :type Exclude: bool False
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -1880,13 +1888,13 @@ class AMPAPI():
     async def FileManagerPlugin_ChangeExclusionAsync(self, ModifyPath: str, AsDirectory: bool, Exclude: bool):
         """
         :param ModifyPath: 
-        :type ModifyPath: strFalse
+        :type ModifyPath: str False
             AMP Type: String
         :param AsDirectory: 
-        :type AsDirectory: boolFalse
+        :type AsDirectory: bool False
             AMP Type: Boolean
         :param Exclude: 
-        :type Exclude: boolFalse
+        :type Exclude: bool False
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -1899,7 +1907,7 @@ class AMPAPI():
     def FileManagerPlugin_CreateArchive(self, PathToArchive: str):
         """
         :param PathToArchive: 
-        :type PathToArchive: strFalse
+        :type PathToArchive: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -1910,7 +1918,7 @@ class AMPAPI():
     async def FileManagerPlugin_CreateArchiveAsync(self, PathToArchive: str):
         """
         :param PathToArchive: 
-        :type PathToArchive: strFalse
+        :type PathToArchive: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -1921,10 +1929,10 @@ class AMPAPI():
     def FileManagerPlugin_ExtractArchive(self, ArchivePath: str, DestinationPath: str):
         """
         :param ArchivePath: 
-        :type ArchivePath: strFalse
+        :type ArchivePath: str False
             AMP Type: String
         :param DestinationPath: 
-        :type DestinationPath: strTrue
+        :type DestinationPath: str True
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -1936,10 +1944,10 @@ class AMPAPI():
     async def FileManagerPlugin_ExtractArchiveAsync(self, ArchivePath: str, DestinationPath: str):
         """
         :param ArchivePath: 
-        :type ArchivePath: strFalse
+        :type ArchivePath: str False
             AMP Type: String
         :param DestinationPath: 
-        :type DestinationPath: strTrue
+        :type DestinationPath: str True
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -1951,7 +1959,7 @@ class AMPAPI():
     def FileManagerPlugin_GetDirectoryListing(self, Dir: str):
         """
         :param Dir: 
-        :type Dir: strFalse
+        :type Dir: str False
             AMP Type: String
         :returns: AMP Type: IEnumerable<JObject>
         :rtype: list[dict]
@@ -1963,7 +1971,7 @@ class AMPAPI():
     async def FileManagerPlugin_GetDirectoryListingAsync(self, Dir: str):
         """
         :param Dir: 
-        :type Dir: strFalse
+        :type Dir: str False
             AMP Type: String
         :returns: AMP Type: IEnumerable<JObject>
         :rtype: list[dict]
@@ -1975,13 +1983,13 @@ class AMPAPI():
     def FileManagerPlugin_GetFileChunk(self, Filename: str, Position: int, Length: int):
         """
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :param Position: 
-        :type Position: intFalse
+        :type Position: int False
             AMP Type: Int64
         :param Length: 
-        :type Length: intFalse
+        :type Length: int False
             AMP Type: Int32
         :returns: AMP Type: FileChunkData
         """
@@ -1994,13 +2002,13 @@ class AMPAPI():
     async def FileManagerPlugin_GetFileChunkAsync(self, Filename: str, Position: int, Length: int):
         """
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :param Position: 
-        :type Position: intFalse
+        :type Position: int False
             AMP Type: Int64
         :param Length: 
-        :type Length: intFalse
+        :type Length: int False
             AMP Type: Int32
         :returns: AMP Type: FileChunkData
         """
@@ -2013,13 +2021,13 @@ class AMPAPI():
     def FileManagerPlugin_AppendFileChunk(self, Filename: str, Data: str, Delete: bool):
         """
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :param Data: 
-        :type Data: strFalse
+        :type Data: str False
             AMP Type: String
         :param Delete: 
-        :type Delete: boolFalse
+        :type Delete: bool False
             AMP Type: Boolean
         :returns: AMP Type: Void
         :rtype: None
@@ -2033,13 +2041,13 @@ class AMPAPI():
     async def FileManagerPlugin_AppendFileChunkAsync(self, Filename: str, Data: str, Delete: bool):
         """
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :param Data: 
-        :type Data: strFalse
+        :type Data: str False
             AMP Type: String
         :param Delete: 
-        :type Delete: boolFalse
+        :type Delete: bool False
             AMP Type: Boolean
         :returns: AMP Type: Void
         :rtype: None
@@ -2053,13 +2061,13 @@ class AMPAPI():
     def FileManagerPlugin_ReadFileChunk(self, Filename: str, Offset: int, ChunkSize: int):
         """
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :param Offset: 
-        :type Offset: intFalse
+        :type Offset: int False
             AMP Type: Int64
         :param ChunkSize: 
-        :type ChunkSize: intTrue
+        :type ChunkSize: int True
             AMP Type: Int64
         :returns: AMP Type: ActionResult<String>
         """
@@ -2072,13 +2080,13 @@ class AMPAPI():
     async def FileManagerPlugin_ReadFileChunkAsync(self, Filename: str, Offset: int, ChunkSize: int):
         """
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :param Offset: 
-        :type Offset: intFalse
+        :type Offset: int False
             AMP Type: Int64
         :param ChunkSize: 
-        :type ChunkSize: intTrue
+        :type ChunkSize: int True
             AMP Type: Int64
         :returns: AMP Type: ActionResult<String>
         """
@@ -2091,16 +2099,16 @@ class AMPAPI():
     def FileManagerPlugin_WriteFileChunk(self, Filename: str, Data: str, Offset: int, FinalChunk: bool):
         """
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :param Data: 
-        :type Data: strFalse
+        :type Data: str False
             AMP Type: String
         :param Offset: 
-        :type Offset: intFalse
+        :type Offset: int False
             AMP Type: Int64
         :param FinalChunk: 
-        :type FinalChunk: boolFalse
+        :type FinalChunk: bool False
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -2114,16 +2122,16 @@ class AMPAPI():
     async def FileManagerPlugin_WriteFileChunkAsync(self, Filename: str, Data: str, Offset: int, FinalChunk: bool):
         """
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :param Data: 
-        :type Data: strFalse
+        :type Data: str False
             AMP Type: String
         :param Offset: 
-        :type Offset: intFalse
+        :type Offset: int False
             AMP Type: Int64
         :param FinalChunk: 
-        :type FinalChunk: boolFalse
+        :type FinalChunk: bool False
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -2137,10 +2145,10 @@ class AMPAPI():
     def FileManagerPlugin_DownloadFileFromURL(self, Source: str, TargetDirectory: str):
         """
         :param Source: 
-        :type Source: strFalse
+        :type Source: str False
             AMP Type: Uri
         :param TargetDirectory: 
-        :type TargetDirectory: strFalse
+        :type TargetDirectory: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2152,10 +2160,10 @@ class AMPAPI():
     async def FileManagerPlugin_DownloadFileFromURLAsync(self, Source: str, TargetDirectory: str):
         """
         :param Source: 
-        :type Source: strFalse
+        :type Source: str False
             AMP Type: Uri
         :param TargetDirectory: 
-        :type TargetDirectory: strFalse
+        :type TargetDirectory: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2167,10 +2175,10 @@ class AMPAPI():
     def FileManagerPlugin_RenameFile(self, Filename: str, NewFilename: str):
         """
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :param NewFilename: 
-        :type NewFilename: strFalse
+        :type NewFilename: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2182,10 +2190,10 @@ class AMPAPI():
     async def FileManagerPlugin_RenameFileAsync(self, Filename: str, NewFilename: str):
         """
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :param NewFilename: 
-        :type NewFilename: strFalse
+        :type NewFilename: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2197,10 +2205,10 @@ class AMPAPI():
     def FileManagerPlugin_CopyFile(self, Origin: str, TargetDirectory: str):
         """
         :param Origin: 
-        :type Origin: strFalse
+        :type Origin: str False
             AMP Type: String
         :param TargetDirectory: 
-        :type TargetDirectory: strFalse
+        :type TargetDirectory: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2212,10 +2220,10 @@ class AMPAPI():
     async def FileManagerPlugin_CopyFileAsync(self, Origin: str, TargetDirectory: str):
         """
         :param Origin: 
-        :type Origin: strFalse
+        :type Origin: str False
             AMP Type: String
         :param TargetDirectory: 
-        :type TargetDirectory: strFalse
+        :type TargetDirectory: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2228,7 +2236,7 @@ class AMPAPI():
         """Moves a file to trash, files must be trashed before they can be deleted.
             
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2240,7 +2248,7 @@ class AMPAPI():
         """Moves a file to trash, files must be trashed before they can be deleted.
             
         :param Filename: 
-        :type Filename: strFalse
+        :type Filename: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2252,7 +2260,7 @@ class AMPAPI():
         """Moves a directory to trash, files must be trashed before they can be deleted.
             
         :param DirectoryName: 
-        :type DirectoryName: strFalse
+        :type DirectoryName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2264,7 +2272,7 @@ class AMPAPI():
         """Moves a directory to trash, files must be trashed before they can be deleted.
             
         :param DirectoryName: 
-        :type DirectoryName: strFalse
+        :type DirectoryName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2276,7 +2284,7 @@ class AMPAPI():
         """Empties a trash bin
             
         :param TrashDirectoryName: 
-        :type TrashDirectoryName: strFalse
+        :type TrashDirectoryName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2288,7 +2296,7 @@ class AMPAPI():
         """Empties a trash bin
             
         :param TrashDirectoryName: 
-        :type TrashDirectoryName: strFalse
+        :type TrashDirectoryName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2300,7 +2308,7 @@ class AMPAPI():
         """Creates a new directory. The parent directory must already exist.
             
         :param NewPath: 
-        :type NewPath: strFalse
+        :type NewPath: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2312,7 +2320,7 @@ class AMPAPI():
         """Creates a new directory. The parent directory must already exist.
             
         :param NewPath: 
-        :type NewPath: strFalse
+        :type NewPath: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2324,10 +2332,10 @@ class AMPAPI():
         """Renames a directory
             
         :param oldDirectory: The full path to the old directory
-        :type oldDirectory: strFalse
+        :type oldDirectory: str False
             AMP Type: String
         :param NewDirectoryName: The name component of the new directory (not the full path)
-        :type NewDirectoryName: strFalse
+        :type NewDirectoryName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2340,10 +2348,10 @@ class AMPAPI():
         """Renames a directory
             
         :param oldDirectory: The full path to the old directory
-        :type oldDirectory: strFalse
+        :type oldDirectory: str False
             AMP Type: String
         :param NewDirectoryName: The name component of the new directory (not the full path)
-        :type NewDirectoryName: strFalse
+        :type NewDirectoryName: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2367,7 +2375,7 @@ class AMPAPI():
     def LocalFileBackupPlugin_UploadToS3(self, BackupId: str):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :returns: AMP Type: RunningTask
         """
@@ -2378,7 +2386,7 @@ class AMPAPI():
     async def LocalFileBackupPlugin_UploadToS3Async(self, BackupId: str):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :returns: AMP Type: RunningTask
         """
@@ -2389,7 +2397,7 @@ class AMPAPI():
     def LocalFileBackupPlugin_DownloadFromS3(self, BackupId: str):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :returns: AMP Type: RunningTask
         """
@@ -2400,7 +2408,7 @@ class AMPAPI():
     async def LocalFileBackupPlugin_DownloadFromS3Async(self, BackupId: str):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :returns: AMP Type: RunningTask
         """
@@ -2411,7 +2419,7 @@ class AMPAPI():
     def LocalFileBackupPlugin_DeleteFromS3(self, BackupId: str):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<ActionResult>
         """
@@ -2422,7 +2430,7 @@ class AMPAPI():
     async def LocalFileBackupPlugin_DeleteFromS3Async(self, BackupId: str):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<ActionResult>
         """
@@ -2447,10 +2455,10 @@ class AMPAPI():
     def LocalFileBackupPlugin_RestoreBackup(self, BackupId: str, DeleteExistingData: bool):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :param DeleteExistingData: 
-        :type DeleteExistingData: boolTrue
+        :type DeleteExistingData: bool True
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -2462,10 +2470,10 @@ class AMPAPI():
     async def LocalFileBackupPlugin_RestoreBackupAsync(self, BackupId: str, DeleteExistingData: bool):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :param DeleteExistingData: 
-        :type DeleteExistingData: boolTrue
+        :type DeleteExistingData: bool True
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -2477,7 +2485,7 @@ class AMPAPI():
     def LocalFileBackupPlugin_DeleteLocalBackup(self, BackupId: str):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :returns: AMP Type: Void
         :rtype: None
@@ -2489,7 +2497,7 @@ class AMPAPI():
     async def LocalFileBackupPlugin_DeleteLocalBackupAsync(self, BackupId: str):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :returns: AMP Type: Void
         :rtype: None
@@ -2501,10 +2509,10 @@ class AMPAPI():
     def LocalFileBackupPlugin_SetBackupSticky(self, BackupId: str, Sticky: bool):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :param Sticky: 
-        :type Sticky: boolFalse
+        :type Sticky: bool False
             AMP Type: Boolean
         :returns: AMP Type: Void
         :rtype: None
@@ -2517,10 +2525,10 @@ class AMPAPI():
     async def LocalFileBackupPlugin_SetBackupStickyAsync(self, BackupId: str, Sticky: bool):
         """
         :param BackupId: 
-        :type BackupId: strFalse
+        :type BackupId: str False
             AMP Type: Guid
         :param Sticky: 
-        :type Sticky: boolFalse
+        :type Sticky: bool False
             AMP Type: Boolean
         :returns: AMP Type: Void
         :rtype: None
@@ -2533,13 +2541,13 @@ class AMPAPI():
     def LocalFileBackupPlugin_TakeBackup(self, Title: str, Description: str, Sticky: bool):
         """
         :param Title: 
-        :type Title: strFalse
+        :type Title: str False
             AMP Type: String
         :param Description: 
-        :type Description: strFalse
+        :type Description: str False
             AMP Type: String
         :param Sticky: 
-        :type Sticky: boolFalse
+        :type Sticky: bool False
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -2552,13 +2560,13 @@ class AMPAPI():
     async def LocalFileBackupPlugin_TakeBackupAsync(self, Title: str, Description: str, Sticky: bool):
         """
         :param Title: 
-        :type Title: strFalse
+        :type Title: str False
             AMP Type: String
         :param Description: 
-        :type Description: strFalse
+        :type Description: str False
             AMP Type: String
         :param Sticky: 
-        :type Sticky: boolFalse
+        :type Sticky: bool False
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -2573,7 +2581,7 @@ class AMPAPI():
         :param Before: 
             AMP Type: Nullable<DateTime>
         :param Count: 
-        :type Count: intFalse
+        :type Count: int False
             AMP Type: Int32
         :returns: AMP Type: IEnumerable<IAuditLogEntry>
         :rtype: dict
@@ -2588,7 +2596,7 @@ class AMPAPI():
         :param Before: 
             AMP Type: Nullable<DateTime>
         :param Count: 
-        :type Count: intFalse
+        :type Count: int False
             AMP Type: Int32
         :returns: AMP Type: IEnumerable<IAuditLogEntry>
         :rtype: dict
@@ -2615,7 +2623,7 @@ class AMPAPI():
     def Core_RefreshSettingValueList(self, Node: str):
         """
         :param Node: 
-        :type Node: strFalse
+        :type Node: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2626,7 +2634,7 @@ class AMPAPI():
     async def Core_RefreshSettingValueListAsync(self, Node: str):
         """
         :param Node: 
-        :type Node: strFalse
+        :type Node: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2651,10 +2659,10 @@ class AMPAPI():
     def Core_GetSettingValues(self, SettingNode: str, WithRefresh: bool):
         """
         :param SettingNode: 
-        :type SettingNode: strFalse
+        :type SettingNode: str False
             AMP Type: String
         :param WithRefresh: 
-        :type WithRefresh: boolTrue
+        :type WithRefresh: bool True
             AMP Type: Boolean
         :returns: AMP Type: IDictionary<String, String>
         :rtype: dict[str, str]
@@ -2667,10 +2675,10 @@ class AMPAPI():
     async def Core_GetSettingValuesAsync(self, SettingNode: str, WithRefresh: bool):
         """
         :param SettingNode: 
-        :type SettingNode: strFalse
+        :type SettingNode: str False
             AMP Type: String
         :param WithRefresh: 
-        :type WithRefresh: boolTrue
+        :type WithRefresh: bool True
             AMP Type: Boolean
         :returns: AMP Type: IDictionary<String, String>
         :rtype: dict[str, str]
@@ -2697,7 +2705,7 @@ class AMPAPI():
     def Core_GetConfig(self, node: str):
         """
         :param node: 
-        :type node: strFalse
+        :type node: str False
             AMP Type: String
         :returns: AMP Type: JObject
         :rtype: dict
@@ -2709,7 +2717,7 @@ class AMPAPI():
     async def Core_GetConfigAsync(self, node: str):
         """
         :param node: 
-        :type node: strFalse
+        :type node: str False
             AMP Type: String
         :returns: AMP Type: JObject
         :rtype: dict
@@ -2721,7 +2729,7 @@ class AMPAPI():
     def Core_GetConfigs(self, nodes: list[str]):
         """
         :param nodes: 
-        :type nodes: list[str]False
+        :type nodes: list[str] False
             AMP Type: String[]
         :returns: AMP Type: IEnumerable<JObject>
         :rtype: list[dict]
@@ -2733,7 +2741,7 @@ class AMPAPI():
     async def Core_GetConfigsAsync(self, nodes: list[str]):
         """
         :param nodes: 
-        :type nodes: list[str]False
+        :type nodes: list[str] False
             AMP Type: String[]
         :returns: AMP Type: IEnumerable<JObject>
         :rtype: list[dict]
@@ -2745,7 +2753,7 @@ class AMPAPI():
     def Core_SetConfigs(self, data: dict[str, str]):
         """
         :param data: 
-        :type data: dict[str, str]False
+        :type data: dict[str, str] False
             AMP Type: Dictionary<String, String>
         :returns: AMP Type: Boolean
         :rtype: bool
@@ -2757,7 +2765,7 @@ class AMPAPI():
     async def Core_SetConfigsAsync(self, data: dict[str, str]):
         """
         :param data: 
-        :type data: dict[str, str]False
+        :type data: dict[str, str] False
             AMP Type: Dictionary<String, String>
         :returns: AMP Type: Boolean
         :rtype: bool
@@ -2769,10 +2777,10 @@ class AMPAPI():
     def Core_SetConfig(self, node: str, value: str):
         """
         :param node: 
-        :type node: strFalse
+        :type node: str False
             AMP Type: String
         :param value: 
-        :type value: strFalse
+        :type value: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2784,10 +2792,10 @@ class AMPAPI():
     async def Core_SetConfigAsync(self, node: str, value: str):
         """
         :param node: 
-        :type node: strFalse
+        :type node: str False
             AMP Type: String
         :param value: 
-        :type value: strFalse
+        :type value: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -2823,7 +2831,7 @@ class AMPAPI():
     def Core_GetRole(self, RoleId: str):
         """
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<AuthRoleSummary>
         """
@@ -2834,7 +2842,7 @@ class AMPAPI():
     async def Core_GetRoleAsync(self, RoleId: str):
         """
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<AuthRoleSummary>
         """
@@ -2845,10 +2853,10 @@ class AMPAPI():
     def Core_CreateRole(self, Name: str, AsCommonRole: bool):
         """
         :param Name: 
-        :type Name: strFalse
+        :type Name: str False
             AMP Type: String
         :param AsCommonRole: 
-        :type AsCommonRole: boolTrue
+        :type AsCommonRole: bool True
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult<Guid>>
         """
@@ -2860,10 +2868,10 @@ class AMPAPI():
     async def Core_CreateRoleAsync(self, Name: str, AsCommonRole: bool):
         """
         :param Name: 
-        :type Name: strFalse
+        :type Name: str False
             AMP Type: String
         :param AsCommonRole: 
-        :type AsCommonRole: boolTrue
+        :type AsCommonRole: bool True
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult<Guid>>
         """
@@ -2875,7 +2883,7 @@ class AMPAPI():
     def Core_DeleteRole(self, RoleId: str):
         """
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<ActionResult>
         """
@@ -2886,7 +2894,7 @@ class AMPAPI():
     async def Core_DeleteRoleAsync(self, RoleId: str):
         """
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<ActionResult>
         """
@@ -2897,10 +2905,10 @@ class AMPAPI():
     def Core_RenameRole(self, RoleId: str, NewName: str):
         """
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :param NewName: 
-        :type NewName: strFalse
+        :type NewName: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -2912,10 +2920,10 @@ class AMPAPI():
     async def Core_RenameRoleAsync(self, RoleId: str, NewName: str):
         """
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :param NewName: 
-        :type NewName: strFalse
+        :type NewName: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -2927,13 +2935,13 @@ class AMPAPI():
     def Core_SetAMPRolePermission(self, RoleId: str, PermissionNode: str, Enabled: bool | None):
         """
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :param PermissionNode: 
-        :type PermissionNode: strFalse
+        :type PermissionNode: str False
             AMP Type: String
         :param Enabled: 
-        :type Enabled: bool | NoneFalse
+        :type Enabled: bool | None False
             AMP Type: Nullable<Boolean>
         :returns: AMP Type: Task<ActionResult>
         """
@@ -2946,13 +2954,13 @@ class AMPAPI():
     async def Core_SetAMPRolePermissionAsync(self, RoleId: str, PermissionNode: str, Enabled: bool | None):
         """
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :param PermissionNode: 
-        :type PermissionNode: strFalse
+        :type PermissionNode: str False
             AMP Type: String
         :param Enabled: 
-        :type Enabled: bool | NoneFalse
+        :type Enabled: bool | None False
             AMP Type: Nullable<Boolean>
         :returns: AMP Type: Task<ActionResult>
         """
@@ -2965,7 +2973,7 @@ class AMPAPI():
     def Core_GetAMPRolePermissions(self, RoleId: str):
         """
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<IEnumerable<String>>
         """
@@ -2976,7 +2984,7 @@ class AMPAPI():
     async def Core_GetAMPRolePermissionsAsync(self, RoleId: str):
         """
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<IEnumerable<String>>
         """
@@ -2999,7 +3007,7 @@ class AMPAPI():
     def Core_AddEventTrigger(self, triggerId: str):
         """
         :param triggerId: 
-        :type triggerId: strFalse
+        :type triggerId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -3010,7 +3018,7 @@ class AMPAPI():
     async def Core_AddEventTriggerAsync(self, triggerId: str):
         """
         :param triggerId: 
-        :type triggerId: strFalse
+        :type triggerId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -3021,7 +3029,7 @@ class AMPAPI():
     def Core_RunEventTriggerImmediately(self, triggerId: str):
         """
         :param triggerId: 
-        :type triggerId: strFalse
+        :type triggerId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -3032,7 +3040,7 @@ class AMPAPI():
     async def Core_RunEventTriggerImmediatelyAsync(self, triggerId: str):
         """
         :param triggerId: 
-        :type triggerId: strFalse
+        :type triggerId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -3043,22 +3051,22 @@ class AMPAPI():
     def Core_AddIntervalTrigger(self, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str):
         """
         :param months: 
-        :type months: list[int]False
+        :type months: list[int] False
             AMP Type: Int32[]
         :param days: 
-        :type days: list[int]False
+        :type days: list[int] False
             AMP Type: Int32[]
         :param hours: 
-        :type hours: list[int]False
+        :type hours: list[int] False
             AMP Type: Int32[]
         :param minutes: 
-        :type minutes: list[int]False
+        :type minutes: list[int] False
             AMP Type: Int32[]
         :param daysOfMonth: 
-        :type daysOfMonth: list[int]False
+        :type daysOfMonth: list[int] False
             AMP Type: Int32[]
         :param description: 
-        :type description: strFalse
+        :type description: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -3074,22 +3082,22 @@ class AMPAPI():
     async def Core_AddIntervalTriggerAsync(self, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str):
         """
         :param months: 
-        :type months: list[int]False
+        :type months: list[int] False
             AMP Type: Int32[]
         :param days: 
-        :type days: list[int]False
+        :type days: list[int] False
             AMP Type: Int32[]
         :param hours: 
-        :type hours: list[int]False
+        :type hours: list[int] False
             AMP Type: Int32[]
         :param minutes: 
-        :type minutes: list[int]False
+        :type minutes: list[int] False
             AMP Type: Int32[]
         :param daysOfMonth: 
-        :type daysOfMonth: list[int]False
+        :type daysOfMonth: list[int] False
             AMP Type: Int32[]
         :param description: 
-        :type description: strFalse
+        :type description: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -3105,7 +3113,7 @@ class AMPAPI():
     def Core_GetTimeIntervalTrigger(self, Id: str):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :returns: AMP Type: TimeIntervalTrigger
         """
@@ -3116,7 +3124,7 @@ class AMPAPI():
     async def Core_GetTimeIntervalTriggerAsync(self, Id: str):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :returns: AMP Type: TimeIntervalTrigger
         """
@@ -3127,25 +3135,25 @@ class AMPAPI():
     def Core_EditIntervalTrigger(self, Id: str, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :param months: 
-        :type months: list[int]False
+        :type months: list[int] False
             AMP Type: Int32[]
         :param days: 
-        :type days: list[int]False
+        :type days: list[int] False
             AMP Type: Int32[]
         :param hours: 
-        :type hours: list[int]False
+        :type hours: list[int] False
             AMP Type: Int32[]
         :param minutes: 
-        :type minutes: list[int]False
+        :type minutes: list[int] False
             AMP Type: Int32[]
         :param daysOfMonth: 
-        :type daysOfMonth: list[int]False
+        :type daysOfMonth: list[int] False
             AMP Type: Int32[]
         :param description: 
-        :type description: strFalse
+        :type description: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -3162,25 +3170,25 @@ class AMPAPI():
     async def Core_EditIntervalTriggerAsync(self, Id: str, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :param months: 
-        :type months: list[int]False
+        :type months: list[int] False
             AMP Type: Int32[]
         :param days: 
-        :type days: list[int]False
+        :type days: list[int] False
             AMP Type: Int32[]
         :param hours: 
-        :type hours: list[int]False
+        :type hours: list[int] False
             AMP Type: Int32[]
         :param minutes: 
-        :type minutes: list[int]False
+        :type minutes: list[int] False
             AMP Type: Int32[]
         :param daysOfMonth: 
-        :type daysOfMonth: list[int]False
+        :type daysOfMonth: list[int] False
             AMP Type: Int32[]
         :param description: 
-        :type description: strFalse
+        :type description: str False
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -3197,10 +3205,10 @@ class AMPAPI():
     def Core_SetTriggerEnabled(self, Id: str, Enabled: bool):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :param Enabled: 
-        :type Enabled: boolFalse
+        :type Enabled: bool False
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -3212,10 +3220,10 @@ class AMPAPI():
     async def Core_SetTriggerEnabledAsync(self, Id: str, Enabled: bool):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :param Enabled: 
-        :type Enabled: boolFalse
+        :type Enabled: bool False
             AMP Type: Boolean
         :returns: AMP Type: ActionResult
         """
@@ -3227,13 +3235,13 @@ class AMPAPI():
     def Core_AddTask(self, TriggerID: str, MethodID: str, ParameterMapping: dict[str, str]):
         """
         :param TriggerID: 
-        :type TriggerID: strFalse
+        :type TriggerID: str False
             AMP Type: Guid
         :param MethodID: 
-        :type MethodID: strFalse
+        :type MethodID: str False
             AMP Type: String
         :param ParameterMapping: 
-        :type ParameterMapping: dict[str, str]False
+        :type ParameterMapping: dict[str, str] False
             AMP Type: Dictionary<String, String>
         :returns: AMP Type: ActionResult
         """
@@ -3246,13 +3254,13 @@ class AMPAPI():
     async def Core_AddTaskAsync(self, TriggerID: str, MethodID: str, ParameterMapping: dict[str, str]):
         """
         :param TriggerID: 
-        :type TriggerID: strFalse
+        :type TriggerID: str False
             AMP Type: Guid
         :param MethodID: 
-        :type MethodID: strFalse
+        :type MethodID: str False
             AMP Type: String
         :param ParameterMapping: 
-        :type ParameterMapping: dict[str, str]False
+        :type ParameterMapping: dict[str, str] False
             AMP Type: Dictionary<String, String>
         :returns: AMP Type: ActionResult
         """
@@ -3265,13 +3273,13 @@ class AMPAPI():
     def Core_EditTask(self, TriggerID: str, TaskID: str, ParameterMapping: dict[str, str]):
         """
         :param TriggerID: 
-        :type TriggerID: strFalse
+        :type TriggerID: str False
             AMP Type: Guid
         :param TaskID: 
-        :type TaskID: strFalse
+        :type TaskID: str False
             AMP Type: Guid
         :param ParameterMapping: 
-        :type ParameterMapping: dict[str, str]False
+        :type ParameterMapping: dict[str, str] False
             AMP Type: Dictionary<String, String>
         :returns: AMP Type: ActionResult
         """
@@ -3284,13 +3292,13 @@ class AMPAPI():
     async def Core_EditTaskAsync(self, TriggerID: str, TaskID: str, ParameterMapping: dict[str, str]):
         """
         :param TriggerID: 
-        :type TriggerID: strFalse
+        :type TriggerID: str False
             AMP Type: Guid
         :param TaskID: 
-        :type TaskID: strFalse
+        :type TaskID: str False
             AMP Type: Guid
         :param ParameterMapping: 
-        :type ParameterMapping: dict[str, str]False
+        :type ParameterMapping: dict[str, str] False
             AMP Type: Dictionary<String, String>
         :returns: AMP Type: ActionResult
         """
@@ -3303,13 +3311,13 @@ class AMPAPI():
     def Core_ChangeTaskOrder(self, TriggerID: str, TaskID: str, NewOrder: int):
         """
         :param TriggerID: 
-        :type TriggerID: strFalse
+        :type TriggerID: str False
             AMP Type: Guid
         :param TaskID: 
-        :type TaskID: strFalse
+        :type TaskID: str False
             AMP Type: Guid
         :param NewOrder: 
-        :type NewOrder: intFalse
+        :type NewOrder: int False
             AMP Type: Int32
         :returns: AMP Type: ActionResult
         """
@@ -3322,13 +3330,13 @@ class AMPAPI():
     async def Core_ChangeTaskOrderAsync(self, TriggerID: str, TaskID: str, NewOrder: int):
         """
         :param TriggerID: 
-        :type TriggerID: strFalse
+        :type TriggerID: str False
             AMP Type: Guid
         :param TaskID: 
-        :type TaskID: strFalse
+        :type TaskID: str False
             AMP Type: Guid
         :param NewOrder: 
-        :type NewOrder: intFalse
+        :type NewOrder: int False
             AMP Type: Int32
         :returns: AMP Type: ActionResult
         """
@@ -3341,10 +3349,10 @@ class AMPAPI():
     def Core_DeleteTask(self, TriggerID: str, TaskID: str):
         """
         :param TriggerID: 
-        :type TriggerID: strFalse
+        :type TriggerID: str False
             AMP Type: Guid
         :param TaskID: 
-        :type TaskID: strFalse
+        :type TaskID: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -3356,10 +3364,10 @@ class AMPAPI():
     async def Core_DeleteTaskAsync(self, TriggerID: str, TaskID: str):
         """
         :param TriggerID: 
-        :type TriggerID: strFalse
+        :type TriggerID: str False
             AMP Type: Guid
         :param TaskID: 
-        :type TaskID: strFalse
+        :type TaskID: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -3371,7 +3379,7 @@ class AMPAPI():
     def Core_DeleteTrigger(self, TriggerID: str):
         """
         :param TriggerID: 
-        :type TriggerID: strFalse
+        :type TriggerID: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -3382,7 +3390,7 @@ class AMPAPI():
     async def Core_DeleteTriggerAsync(self, TriggerID: str):
         """
         :param TriggerID: 
-        :type TriggerID: strFalse
+        :type TriggerID: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -3407,7 +3415,7 @@ class AMPAPI():
     def Core_EndUserSession(self, Id: str):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :returns: AMP Type: Void
         :rtype: None
@@ -3419,7 +3427,7 @@ class AMPAPI():
     async def Core_EndUserSessionAsync(self, Id: str):
         """
         :param Id: 
-        :type Id: strFalse
+        :type Id: str False
             AMP Type: Guid
         :returns: AMP Type: Void
         :rtype: None
@@ -3443,7 +3451,7 @@ class AMPAPI():
     def Core_GetAMPUserInfo(self, Username: str):
         """
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :returns: AMP Type: Task<UserInfo>
         """
@@ -3454,7 +3462,7 @@ class AMPAPI():
     async def Core_GetAMPUserInfoAsync(self, Username: str):
         """
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :returns: AMP Type: Task<UserInfo>
         """
@@ -3477,13 +3485,13 @@ class AMPAPI():
     def Core_SetAMPUserRoleMembership(self, UserId: str, RoleId: str, IsMember: bool):
         """
         :param UserId: 
-        :type UserId: strFalse
+        :type UserId: str False
             AMP Type: Guid
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :param IsMember: 
-        :type IsMember: boolFalse
+        :type IsMember: bool False
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3496,13 +3504,13 @@ class AMPAPI():
     async def Core_SetAMPUserRoleMembershipAsync(self, UserId: str, RoleId: str, IsMember: bool):
         """
         :param UserId: 
-        :type UserId: strFalse
+        :type UserId: str False
             AMP Type: Guid
         :param RoleId: 
-        :type RoleId: strFalse
+        :type RoleId: str False
             AMP Type: Guid
         :param IsMember: 
-        :type IsMember: boolFalse
+        :type IsMember: bool False
             AMP Type: Boolean
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3529,7 +3537,7 @@ class AMPAPI():
     def Core_CreateUser(self, Username: str):
         """
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult<Guid>>
         """
@@ -3540,7 +3548,7 @@ class AMPAPI():
     async def Core_CreateUserAsync(self, Username: str):
         """
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult<Guid>>
         """
@@ -3551,7 +3559,7 @@ class AMPAPI():
     def Core_DeleteUser(self, Username: str):
         """
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3562,7 +3570,7 @@ class AMPAPI():
     async def Core_DeleteUserAsync(self, Username: str):
         """
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3573,22 +3581,22 @@ class AMPAPI():
     def Core_UpdateUserInfo(self, Username: str, Disabled: bool, PasswordExpires: bool, CannotChangePassword: bool, MustChangePassword: bool, EmailAddress: str):
         """
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :param Disabled: 
-        :type Disabled: boolFalse
+        :type Disabled: bool False
             AMP Type: Boolean
         :param PasswordExpires: 
-        :type PasswordExpires: boolFalse
+        :type PasswordExpires: bool False
             AMP Type: Boolean
         :param CannotChangePassword: 
-        :type CannotChangePassword: boolFalse
+        :type CannotChangePassword: bool False
             AMP Type: Boolean
         :param MustChangePassword: 
-        :type MustChangePassword: boolFalse
+        :type MustChangePassword: bool False
             AMP Type: Boolean
         :param EmailAddress: 
-        :type EmailAddress: strTrue
+        :type EmailAddress: str True
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3604,22 +3612,22 @@ class AMPAPI():
     async def Core_UpdateUserInfoAsync(self, Username: str, Disabled: bool, PasswordExpires: bool, CannotChangePassword: bool, MustChangePassword: bool, EmailAddress: str):
         """
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :param Disabled: 
-        :type Disabled: boolFalse
+        :type Disabled: bool False
             AMP Type: Boolean
         :param PasswordExpires: 
-        :type PasswordExpires: boolFalse
+        :type PasswordExpires: bool False
             AMP Type: Boolean
         :param CannotChangePassword: 
-        :type CannotChangePassword: boolFalse
+        :type CannotChangePassword: bool False
             AMP Type: Boolean
         :param MustChangePassword: 
-        :type MustChangePassword: boolFalse
+        :type MustChangePassword: bool False
             AMP Type: Boolean
         :param EmailAddress: 
-        :type EmailAddress: strTrue
+        :type EmailAddress: str True
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3647,7 +3655,7 @@ class AMPAPI():
     def Core_GetWebauthnCredentialIDs(self, username: str):
         """
         :param username: 
-        :type username: strFalse
+        :type username: str False
             AMP Type: String
         :returns: AMP Type: WebauthnLoginInfo
         """
@@ -3658,7 +3666,7 @@ class AMPAPI():
     async def Core_GetWebauthnCredentialIDsAsync(self, username: str):
         """
         :param username: 
-        :type username: strFalse
+        :type username: str False
             AMP Type: String
         :returns: AMP Type: WebauthnLoginInfo
         """
@@ -3669,13 +3677,13 @@ class AMPAPI():
     def Core_WebauthnRegister(self, attestationObject: str, clientDataJSON: str, description: str):
         """
         :param attestationObject: 
-        :type attestationObject: strFalse
+        :type attestationObject: str False
             AMP Type: String
         :param clientDataJSON: 
-        :type clientDataJSON: strFalse
+        :type clientDataJSON: str False
             AMP Type: String
         :param description: 
-        :type description: strTrue
+        :type description: str True
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -3688,13 +3696,13 @@ class AMPAPI():
     async def Core_WebauthnRegisterAsync(self, attestationObject: str, clientDataJSON: str, description: str):
         """
         :param attestationObject: 
-        :type attestationObject: strFalse
+        :type attestationObject: str False
             AMP Type: String
         :param clientDataJSON: 
-        :type clientDataJSON: strFalse
+        :type clientDataJSON: str False
             AMP Type: String
         :param description: 
-        :type description: strTrue
+        :type description: str True
             AMP Type: String
         :returns: AMP Type: ActionResult
         """
@@ -3721,7 +3729,7 @@ class AMPAPI():
     def Core_RevokeWebauthnCredential(self, ID: int):
         """
         :param ID: 
-        :type ID: intFalse
+        :type ID: int False
             AMP Type: Int32
         :returns: AMP Type: ActionResult
         """
@@ -3732,7 +3740,7 @@ class AMPAPI():
     async def Core_RevokeWebauthnCredentialAsync(self, ID: int):
         """
         :param ID: 
-        :type ID: intFalse
+        :type ID: int False
             AMP Type: Int32
         :returns: AMP Type: ActionResult
         """
@@ -3743,10 +3751,10 @@ class AMPAPI():
     def Core_UpdateAccountInfo(self, EmailAddress: str, TwoFactorPIN: str):
         """
         :param EmailAddress: 
-        :type EmailAddress: strFalse
+        :type EmailAddress: str False
             AMP Type: String
         :param TwoFactorPIN: 
-        :type TwoFactorPIN: strFalse
+        :type TwoFactorPIN: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3758,10 +3766,10 @@ class AMPAPI():
     async def Core_UpdateAccountInfoAsync(self, EmailAddress: str, TwoFactorPIN: str):
         """
         :param EmailAddress: 
-        :type EmailAddress: strFalse
+        :type EmailAddress: str False
             AMP Type: String
         :param TwoFactorPIN: 
-        :type TwoFactorPIN: strFalse
+        :type TwoFactorPIN: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3774,10 +3782,10 @@ class AMPAPI():
         """Sets up two-factor authentication for the given user. ConfirmTwoFactorSetup must be invoked to complete setup.
             
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :param Password: 
-        :type Password: strFalse
+        :type Password: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult<TwoFactorSetupInfo>>
         """
@@ -3790,10 +3798,10 @@ class AMPAPI():
         """Sets up two-factor authentication for the given user. ConfirmTwoFactorSetup must be invoked to complete setup.
             
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :param Password: 
-        :type Password: strFalse
+        :type Password: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult<TwoFactorSetupInfo>>
         """
@@ -3806,10 +3814,10 @@ class AMPAPI():
         """Completes two-factor setup by supplying a valid two factor code based on the secret provided by EnableTwoFactor
             
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :param TwoFactorCode: 
-        :type TwoFactorCode: strFalse
+        :type TwoFactorCode: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3822,10 +3830,10 @@ class AMPAPI():
         """Completes two-factor setup by supplying a valid two factor code based on the secret provided by EnableTwoFactor
             
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :param TwoFactorCode: 
-        :type TwoFactorCode: strFalse
+        :type TwoFactorCode: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3837,10 +3845,10 @@ class AMPAPI():
     def Core_DisableTwoFactor(self, Password: str, TwoFactorCode: str):
         """
         :param Password: 
-        :type Password: strFalse
+        :type Password: str False
             AMP Type: String
         :param TwoFactorCode: 
-        :type TwoFactorCode: strFalse
+        :type TwoFactorCode: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3852,10 +3860,10 @@ class AMPAPI():
     async def Core_DisableTwoFactorAsync(self, Password: str, TwoFactorCode: str):
         """
         :param Password: 
-        :type Password: strFalse
+        :type Password: str False
             AMP Type: String
         :param TwoFactorCode: 
-        :type TwoFactorCode: strFalse
+        :type TwoFactorCode: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3868,10 +3876,10 @@ class AMPAPI():
         """For administrative users to alter the password of another user
             
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :param NewPassword: 
-        :type NewPassword: strFalse
+        :type NewPassword: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3884,10 +3892,10 @@ class AMPAPI():
         """For administrative users to alter the password of another user
             
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :param NewPassword: 
-        :type NewPassword: strFalse
+        :type NewPassword: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3899,7 +3907,7 @@ class AMPAPI():
     def Core_DeleteInstanceUsers(self, InstanceId: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3910,7 +3918,7 @@ class AMPAPI():
     async def Core_DeleteInstanceUsersAsync(self, InstanceId: str):
         """
         :param InstanceId: 
-        :type InstanceId: strFalse
+        :type InstanceId: str False
             AMP Type: Guid
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3922,16 +3930,16 @@ class AMPAPI():
         """For a user to change their own password, requires knowing the old password
             
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :param OldPassword: 
-        :type OldPassword: strFalse
+        :type OldPassword: str False
             AMP Type: String
         :param NewPassword: 
-        :type NewPassword: strFalse
+        :type NewPassword: str False
             AMP Type: String
         :param TwoFactorPIN: 
-        :type TwoFactorPIN: strFalse
+        :type TwoFactorPIN: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -3946,16 +3954,16 @@ class AMPAPI():
         """For a user to change their own password, requires knowing the old password
             
         :param Username: 
-        :type Username: strFalse
+        :type Username: str False
             AMP Type: String
         :param OldPassword: 
-        :type OldPassword: strFalse
+        :type OldPassword: str False
             AMP Type: String
         :param NewPassword: 
-        :type NewPassword: strFalse
+        :type NewPassword: str False
             AMP Type: String
         :param TwoFactorPIN: 
-        :type TwoFactorPIN: strFalse
+        :type TwoFactorPIN: str False
             AMP Type: String
         :returns: AMP Type: Task<ActionResult>
         """
@@ -4015,7 +4023,7 @@ class AMPAPI():
     def Core_CurrentSessionHasPermission(self, PermissionNode: str):
         """
         :param PermissionNode: 
-        :type PermissionNode: strFalse
+        :type PermissionNode: str False
             AMP Type: String
         :returns: AMP Type: Boolean
         :rtype: bool
@@ -4027,7 +4035,7 @@ class AMPAPI():
     async def Core_CurrentSessionHasPermissionAsync(self, PermissionNode: str):
         """
         :param PermissionNode: 
-        :type PermissionNode: strFalse
+        :type PermissionNode: str False
             AMP Type: String
         :returns: AMP Type: Boolean
         :rtype: bool
@@ -4048,6 +4056,20 @@ class AMPAPI():
         """
         return await self.APICallAsync(endpoint="Core/GetTasks")
 
+    def Core_GetPortSummaries(self):
+        """
+        :returns: AMP Type: IEnumerable<ListeningPortSummary>
+        :rtype: list
+        """
+        return self.APICall(endpoint="Core/GetPortSummaries")
+
+    async def Core_GetPortSummariesAsync(self):
+        """
+        :returns: AMP Type: IEnumerable<ListeningPortSummary>
+        :rtype: list
+        """
+        return await self.APICallAsync(endpoint="Core/GetPortSummaries")
+
     def Core_GetStatus(self):
         """
         :returns: AMP Type: JObject
@@ -4065,7 +4087,7 @@ class AMPAPI():
     def Core_CancelTask(self, TaskId: str):
         """
         :param TaskId: 
-        :type TaskId: strFalse
+        :type TaskId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -4076,7 +4098,7 @@ class AMPAPI():
     async def Core_CancelTaskAsync(self, TaskId: str):
         """
         :param TaskId: 
-        :type TaskId: strFalse
+        :type TaskId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -4087,7 +4109,7 @@ class AMPAPI():
     def Core_DismissTask(self, TaskId: str):
         """
         :param TaskId: 
-        :type TaskId: strFalse
+        :type TaskId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -4098,7 +4120,7 @@ class AMPAPI():
     async def Core_DismissTaskAsync(self, TaskId: str):
         """
         :param TaskId: 
-        :type TaskId: strFalse
+        :type TaskId: str False
             AMP Type: Guid
         :returns: AMP Type: ActionResult
         """
@@ -4122,7 +4144,7 @@ class AMPAPI():
         """Provides information about a given in-application user (as opposed to AMP system users)
             
         :param UID: 
-        :type UID: strFalse
+        :type UID: str False
             AMP Type: String
         :returns: AMP Type: JObject
         :rtype: dict
@@ -4135,7 +4157,7 @@ class AMPAPI():
         """Provides information about a given in-application user (as opposed to AMP system users)
             
         :param UID: 
-        :type UID: strFalse
+        :type UID: str False
             AMP Type: String
         :returns: AMP Type: JObject
         :rtype: dict
@@ -4307,16 +4329,16 @@ class AMPAPI():
     def Core_Login(self, username: str, password: str, token: str, rememberMe: bool):
         """
         :param username: 
-        :type username: strFalse
+        :type username: str False
             AMP Type: String
         :param password: 
-        :type password: strFalse
+        :type password: str False
             AMP Type: String
         :param token: 
-        :type token: strFalse
+        :type token: str False
             AMP Type: String
         :param rememberMe: 
-        :type rememberMe: boolFalse
+        :type rememberMe: bool False
             AMP Type: Boolean
         :returns: AMP Type: Task<JObject>
         """
@@ -4330,16 +4352,16 @@ class AMPAPI():
     async def Core_LoginAsync(self, username: str, password: str, token: str, rememberMe: bool):
         """
         :param username: 
-        :type username: strFalse
+        :type username: str False
             AMP Type: String
         :param password: 
-        :type password: strFalse
+        :type password: str False
             AMP Type: String
         :param token: 
-        :type token: strFalse
+        :type token: str False
             AMP Type: String
         :param rememberMe: 
-        :type rememberMe: boolFalse
+        :type rememberMe: bool False
             AMP Type: Boolean
         :returns: AMP Type: Task<JObject>
         """
@@ -4353,10 +4375,10 @@ class AMPAPI():
     def Core_GetRemoteLoginToken(self, Description: str, IsTemporary: bool):
         """
         :param Description: 
-        :type Description: strTrue
+        :type Description: str True
             AMP Type: String
         :param IsTemporary: 
-        :type IsTemporary: boolTrue
+        :type IsTemporary: bool True
             AMP Type: Boolean
         :returns: AMP Type: Task<String>
         """
@@ -4368,10 +4390,10 @@ class AMPAPI():
     async def Core_GetRemoteLoginTokenAsync(self, Description: str, IsTemporary: bool):
         """
         :param Description: 
-        :type Description: strTrue
+        :type Description: str True
             AMP Type: String
         :param IsTemporary: 
-        :type IsTemporary: boolTrue
+        :type IsTemporary: bool True
             AMP Type: Boolean
         :returns: AMP Type: Task<String>
         """
@@ -4383,7 +4405,7 @@ class AMPAPI():
     def Core_SendConsoleMessage(self, message: str):
         """
         :param message: 
-        :type message: strFalse
+        :type message: str False
             AMP Type: String
         :returns: AMP Type: Void
         :rtype: None
@@ -4395,7 +4417,7 @@ class AMPAPI():
     async def Core_SendConsoleMessageAsync(self, message: str):
         """
         :param message: 
-        :type message: strFalse
+        :type message: str False
             AMP Type: String
         :returns: AMP Type: Void
         :rtype: None

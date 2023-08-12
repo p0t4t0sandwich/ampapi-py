@@ -4,35 +4,6 @@ from __future__ import annotations
 import requests
 import json
 
-import os
-
-class AMPAPI():
-    def __init__(self, baseUri: str) -> None:
-        self.baseUri = baseUri
-        self.sessionId = ""
-        self.dataSource = ""
-
-        if not self.baseUri[-1] == "/":
-            self.dataSource = self.baseUri + "/API"
-        else:
-            self.dataSource = self.baseUri + "API"
-
-    def APICall(self, endpoint: str, data: dict = {}) -> dict:
-        headers = {'Accept': 'text/javascript',}
-        session = {"SESSIONID": self.sessionId}
-        data_added = dict(session, **data)
-
-        data_json = json.dumps(data_added)
-
-        res = requests.post(
-            url=f"{self.dataSource}/{endpoint}",
-            headers=headers,
-            data=data_json
-        )
-        res_json = json.loads(res.content)
-
-        return res_json
-
 type_dict = {
     "InstanceDatastore": "",
     "ActionResult": "",
@@ -201,27 +172,8 @@ def generate_ampapi(spec: dict) -> None:
 
     f.close()
 
+if __name__ == "__main__":
+    res = requests.get("https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/main/APISpec.json")
+    res_json = json.loads(res.content)
 
-def start() -> None:
-    URL = os.getenv("AMP_URL")
-    USERNAME = os.getenv("AMP_USERNAME")
-    PASSWORD = os.getenv("AMP_PASSWORD")
-
-    API = AMPAPI(URL)
-
-    loginResult = API.APICall("Core/Login", {"username": USERNAME, "password": PASSWORD, "token": "", "rememberMe": False})
-
-    if "success" in loginResult.keys() and loginResult["success"]:
-        print("Login successful")
-        API.sessionId = loginResult["sessionID"]
-
-        # Grab the APISpec
-        spec = API.APICall("Core/GetAPISpec")["result"]
-
-        generate_ampapi(spec)
-
-    else:
-        print("Login failed")
-        print(loginResult)
-
-start()
+    generate_ampapi(res_json)

@@ -1,0 +1,16 @@
+    def %METHOD_NAME%(self, %METHOD_PARAMETERS%) -> %METHOD_RETURN_TYPE%:
+        """%METHOD_DESCRIPTION%
+        Name Description Optional%METHOD_PARAMETER_DOC%
+        :returns: %METHOD_RETURN_TYPE%
+        """
+        return self.api_call("%MODULE_NAME%/%METHOD_NAME%", { %METHOD_PARAMETER_MAP%
+        })
+
+    async def %METHOD_NAME%Async(self, %METHOD_PARAMETERS%) -> %METHOD_RETURN_TYPE%:
+        """%METHOD_DESCRIPTION%
+        Name Description Optional%METHOD_PARAMETER_DOC%
+        :returns: %METHOD_RETURN_TYPE%
+        """
+        return await self.api_call_async("%MODULE_NAME%/%METHOD_NAME%", { %METHOD_PARAMETER_MAP%
+        })
+

@@ -1,0 +1,16 @@
+#!/bin/python3
+# author: p0t4t0sandich
+# description: A Python library for the AMP API
+
+from typing import Any
+from ampapi.ampapi import AMPAPI
+
+
+class %MODULE_NAME%(AMPAPI):
+    def __init__(self, ampapi: AMPAPI) -> None:
+        """Initializes the %MODULE_NAME% class
+        :param ampapi: The AMPAPI class to clone
+        :returns: None
+        """
+        super().__init__(ampapi.baseUri, ampapi.username, ampapi.password, ampapi.rememberMeToken, ampapi.sessionId)
+

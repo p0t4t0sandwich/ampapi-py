@@ -22,78 +22,119 @@ You also need the following packages installed:
 pip install requests aiohttp json
 ```
 
-## Async Example
+## Examples
+
+### CommonAPI Example
+
+```python
+from ampapi.modules.CommonAPI import CommonAPI
+
+def main():
+    # If you know the module that the instance is using, specify it instead of CommonAPI
+    API = CommonAPI("http://localhost:8080/", "admin", "myfancypassword123", "")
+    API.Login()
+
+    # API call parameters are simply in the same order as shown in the documentation.
+    API.Core.SendConsoleMessage("say Hello Everyone, this message was sent from the Python API!")
+
+    currentStatus = API.Core.GetStatus()
+    CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
+
+    print("Current CPU usage is: " + str(CPUUsagePercent) + "%")
+
+main()
+```
+
+### Async CommonAPI Example
 
 ```python
 import asyncio
-from ampapi.ampapi import AMPAPI
+from ampapi.modules.CommonAPI import CommonAPI
 
-async def start() -> None:
-    API = AMPAPI("http://localhost:8080/")
+async def main():
+    # If you know the module that the instance is using, specify it instead of CommonAPI
+    API = CommonAPI("http://localhost:8080/", "admin", "myfancypassword123", "")
+    await API.LoginAsync()
 
-    try:
-        # The third parameter is either used for 2FA logins, or if no password is specified to use a remembered token from a previous login, or a service login token.
-        loginResult = await API.Core_LoginAsync("admin", "myfancypassword123", "", False)
+    # API call parameters are simply in the same order as shown in the documentation.
+    await API.Core.SendConsoleMessageAsync("say Hello Everyone, this message was sent from the Python API!")
 
-        if "success" in loginResult.keys() and loginResult["success"]:
-            print("Login successful")
-            API.sessionId = loginResult["sessionID"]
+    currentStatus = await API.Core.GetStatusAsync()
+    CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
 
-            # API call parameters are simply in the same order as shown in the documentation.
-            await API.Core_SendConsoleMessageAsync("say Hello Everyone, this message was sent from the Python API!")
-            currentStatus = await API.Core_GetStatusAsync()
-            CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
-            print(f"Current CPU usage is: {CPUUsagePercent}%")
+    print("Current CPU usage is: " + str(CPUUsagePercent) + "%")
 
-        else:
-            print("Login failed")
-            print(loginResult)
-
-    except Exception as err:
-        print(err)
-
-asyncio.run(start())
+asyncio.run(main())
 ```
 
-## Non-Async Example
+### Example using the ADS to manage an instance
+
+```python
+from ampapi.modules.ADS import ADS
+from ampapi.modules.Minecraft import Minecraft
+
+ADS = ADS("http://localhost:8080/", "admin", "myfancypassword123", "", "")
+
+# Get the available instances
+instancesResult = ADS.ADSModule.GetInstances()
+
+targets = instancesResult["result"]
+
+# In this example, my Hub server is on the second target
+# If you're running a standalone setup, you can just use targets[1]
+target = targets[1]
+
+hub_instance_id = ""
+
+# Get the available instances
+instances = target["AvailableInstances"]
+for instance in instances:
+    # Find the instance named "Hub"
+    if instance["InstanceName"] == "Hub":
+        hub_instance_id = instance["InstanceID"]
+        break
+
+# Use the instance ID to get the API for the instance
+Hub = ADS.InstanceLogin(hub_instance_id, Minecraft)
+
+# Get the current CPU usage
+currentStatus = Hub.Core.GetStatus()
+CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
+
+# Send a message to the console
+Hub.Core.SendConsoleMessage("say Current CPU usage is: " + CPUUsagePercent + "%")
+```
+
+### CommonAPI Example, handling the sessionId and rememberMeToken manually (not recommended)
 
 ```python
 from ampapi.ampapi import AMPAPI
 
-def start() -> None:
+try:
     API = AMPAPI("http://localhost:8080/")
 
-    try:
-        # The third parameter is either used for 2FA logins, or if no password is specified to use a remembered token from a previous login, or a service login token.
-        loginResult = API.Core_Login("admin", "myfancypassword123", "", False)
+    # The third parameter is either used for 2FA logins, or if no password is specified to use a remembered token from a previous login, or a service login token.
+    loginResult = API.Core.Login("admin", "myfancypassword123", "", False)
 
-        if "success" in loginResult.keys() and loginResult["success"]:
-            print("Login successful")
-            API.sessionId = loginResult["sessionID"]
+    if "success" in loginResult.keys() and loginResult["success"]:
+        print("Login successful")
+        API.sessionId = loginResult["sessionID"]
 
-            # API call parameters are simply in the same order as shown in the documentation.
-            API.Core_SendConsoleMessage("say Hello Everyone, this message was sent from the Python API!")
-            currentStatus = API.Core_GetStatus()
-            CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
-            print(f"Current CPU usage is: {CPUUsagePercent}%")
+        # API call parameters are simply in the same order as shown in the documentation.
+        API.Core.SendConsoleMessage("say Hello Everyone, this message was sent from the Python API!")
+        currentStatus = API.Core.GetStatus()
+        CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
+        print(f"Current CPU usage is: {CPUUsagePercent}%")
 
-        else:
-            print("Login failed")
-            print(loginResult)
+    else:
+        print("Login failed")
+        print(loginResult)
 
-    except Exception as err:
-        print(err)
-
-start()
+except Exception as err:
+    # In reality, you'd handle this exception better
+    raise Exception(err)
 ```
 
-## Notes on generating implementations
+## TODO
 
-ampapi-python is generated using a script that parses the API spec. The `ampapai_gen.py` script under `/utils` can be used to generate future versions of the API. It requires the `requests` and `json` packages to be installed.
-
-To generate a new version, set the AMP_URL, AMP_USERNAME, and AMP_PASSWORD environment variables and run the script.
-
-## Notes on missing methods
-
-The generation script only uses the base ADS APISpec of an AMP Network Licence (my current licence). This means any Enterprise methods, methods added by plugins, or module-specific methods are not included. If you find yourself needing these methods frequently, please use the insance's API endpoint with the `ampapai_gen.py` script under `/utils`, then submit a pull request with the generated code.
-If you need a method that is not included, you can use the `AMPAPI.APICall` method to run the method directly.
+- Add a check to see if it's been 5min since the last API call, and if so, attempt to re-log

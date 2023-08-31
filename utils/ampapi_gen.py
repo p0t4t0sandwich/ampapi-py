@@ -5,175 +5,224 @@ import requests
 import json
 
 type_dict = {
-    "InstanceDatastore": "",
-    "ActionResult": "",
+    "InstanceDatastore": "Any",
+    "ActionResult": "Any",
     "Int32": "int",
     "IEnumerable<InstanceDatastore>": "list",
-    "RunningTask": "",
+    "RunningTask": "Any",
     "IEnumerable<JObject>": "list[dict]",
-    "Guid": "str",
-    "Task<RunningTask>": "",
+    "Guid": "str", # UUID
+    "Task<RunningTask>": "Any",
     "IEnumerable<DeploymentTemplate>": "list",
     "String": "str",
-    "DeploymentTemplate": "",
+    "DeploymentTemplate": "Any",
     "Boolean": "bool",
     "List<String>": "list[str]",
-    "PostCreateActions": "",
+    "PostCreateActions": "Any",
     "Dictionary<String, String>": "dict[str, str]",
-    "RemoteTargetInfo": "",
+    "RemoteTargetInfo": "Any",
     "IEnumerable<ApplicationSpec>": "list",
     "Void": "None",
     "IEnumerable<EndpointInfo>": "list",
     "IEnumerable<IADSInstance>": "list",
     "JObject": "dict",
     "PortProtocol": "str",
-    "Task<ActionResult>": "",
-    "ActionResult<String>": "",
+    "Task<ActionResult>": "Any",
+    "ActionResult<String>": "Any",
     "IADSInstance": "bool",
     "Uri": "str",
     "IEnumerable<PortUsage>": "list",
     "Dictionary<String, Int32>": "dict[str, int]",
-    "LocalAMPInstance": "",
-    "ContainerMemoryPolicy": "",
-    "Single": "",
-    "Task<JObject>": "",
+    "LocalAMPInstance": "Any",
+    "ContainerMemoryPolicy": "Any",
+    "Single": "Any",
+    "Task<JObject>": "Any",
     "Int64": "int",
-    "FileChunkData": "",
+    "FileChunkData": "Any",
     "IEnumerable<BackupManifest>": "list[dict]",
-    "Nullable<DateTime>": "",
+    "Nullable<DateTime>": "Any",
     "IEnumerable<IAuditLogEntry>": "dict",
     "Dictionary<String, IEnumerable<JObject>>": "dict[str, list[dict]]",
     "IDictionary<String, String>": "dict[str, str]",
     "List<JObject>": "list[dict]",
     "String[]": "list[str]",
-    "Task<IEnumerable<AuthRoleSummary>>": "",
-    "Task<IDictionary<Guid, String>>": "",
-    "Task<AuthRoleSummary>": "",
-    "Task<ActionResult<Guid>>": "",
+    "Task<IEnumerable<AuthRoleSummary>>": "Any",
+    "Task<IDictionary<Guid, String>>": "Any",
+    "Task<AuthRoleSummary>": "Any",
+    "Task<ActionResult<Guid>>": "Any",
     "Nullable<Boolean>": "bool | None",
-    "Task<IEnumerable<String>>": "",
-    "ScheduleInfo": "",
+    "Task<IEnumerable<String>>": "Any",
+    "ScheduleInfo": "Any",
     "Int32[]": "list[int]",
-    "TimeIntervalTrigger": "",
+    "TimeIntervalTrigger": "Any",
     "IEnumerable<WebSessionSummary>": "list",
-    "Task<IEnumerable<UserInfoSummary>>": "",
-    "Task<UserInfo>": "",
-    "Task<IEnumerable<UserInfo>>": "",
+    "Task<IEnumerable<UserInfoSummary>>": "Any",
+    "Task<UserInfo>": "Any",
+    "Task<IEnumerable<UserInfo>>": "Any",
     "IList<IPermissionsTreeNode>": "list",
-    "WebauthnLoginInfo": "",
+    "WebauthnLoginInfo": "Any",
     "IEnumerable<WebauthnCredentialSummary>": "list",
-    "Task<ActionResult<TwoFactorSetupInfo>>": "",
-    "IEnumerable<RunningTask>": "", "ModuleInfo": "",
+    "Task<ActionResult<TwoFactorSetupInfo>>": "Any",
+    "IEnumerable<RunningTask>": "Any", "ModuleInfo": "Any",
     "Dictionary<String, Dictionary<String, MethodInfoSummary>>": "dict[str, dict]",
-    "Object": "",
-    "Task<String>": "",
-    "UpdateInfo": "",
+    "Object": "Any",
+    "Task<String>": "Any",
+    "UpdateInfo": "Any",
     "IEnumerable<ListeningPortSummary>": "list",
+
+    ## Custom types
+    # "Result<Instance>": "Result<Instance>",
+    # "Result<RemoteTargetInfo>": "Result<RemoteTargetInfo>",
+    # "SettingsSpec": "SettingsSpec",
+    # "Status": "Status",
+    # "Updates": "Updates",
+    # "Result<Map<String, String>>": "Result<Map<String, String>>",
+    # "LoginResult": "LoginResult"
 }
 
-def generate_ampapi(spec: dict) -> None:
-    f = open("../ampapi/ampapi.py", "w+")
+custom_types = {
+    # # API.ADSModule.GetInstance
+    # "ADSModule.GetInstance": "Result<Instance>",
+    # # API.ADSModule.GetTargetInfo
+    # "ADSModule.GetTargetInfo": "Result<RemoteTargetInfo>",
 
-    with open("./ampapi_core.py", "r") as ac:
-        ampapi_core = ac.read()
-        f.write(ampapi_core)
+    # # API.Core.GetSettingsSpec
+    # "Core.GetSettingsSpec": "SettingsSpec",
+    # # API.Core.GetStatus
+    # "Core.GetStatus": "Status",
+    # # API.Core.GetUpdates
+    # "Core.GetUpdates": "Updates",
+    # # API.Core.GetUserList
+    # "Core.GetUserList": "Result<Map<String, String>>",
+    # # API.Core.Login
+    # "Core.Login": "LoginResult",
+}
 
-    for module in spec.keys():
-        methods = spec[module]
-        for method in methods.keys():
-            methodParams = spec[module][method]["Parameters"]
+def generate_apimodule_method(module: str, method: str, method_spec: dict):
+    # Read the template file
+    api_module_method_template = ""
+    with open("templates/api_module_method.txt", "r") as tf:
+        api_module_method_template = tf.read()
+        tf.close()
 
-            ##################### Add docs
-            description = ""
-            if "Description" in spec[module][method].keys():
-                description = spec[module][method]["Description"] + "\n            "
+    # Get the method description
+    description = ""
+    if "Description" in method_spec.keys():
+        description = "\n     * " + method_spec["Description"]
 
-            restdocs = f"\"\"\"{description}"
+    # Get the method parameters
+    parameters_docs = ""
+    methodParams = method_spec["Parameters"]
+    if len(methodParams) > 0:
+        parameters_docs += "\n"
+    for i in range(len(methodParams)):
+        api_module_method_parameter_doc_template = ""
+        with open("templates/api_module_method_parameter_doc.txt", "r") as tf:
+            api_module_method_parameter_doc_template = tf.read()
+            tf.close()
 
-            ########## Parameters
-            for i in range(len(methodParams)):
-                name = methodParams[i]["Name"]
-                type_name = methodParams[i]["TypeName"]
+        name = methodParams[i]["Name"]
+        type_name = methodParams[i]["TypeName"]
 
-                # Print out the type if it hasn't been added to the type_dict
-                if not type_name in type_dict.keys(): print(type_name)
-                description = methodParams[i]["Description"]
-                optional = methodParams[i]["Optional"]
-                if optional == "true": type_name + ", optional"
-                restdocs += f"\n        :param {name}: {description}"
+        # Print out the type if it hasn't been added to the type_dict
+        if not type_name in type_dict.keys(): print(type_name)
 
-                if not type_dict[type_name] == "":
-                    restdocs += f"\n        :type {name}: {type_dict[type_name]} {optional}"
-                restdocs += f"\n            AMP Type: {type_name}"
-            ##########
+        description = methodParams[i]["Description"]
+        optional = methodParams[i]["Optional"]
+        if optional == "true": type_name += ", " + optional
 
-            ########## Return type
-            return_type = spec[module][method]["ReturnTypeName"]
+        template = api_module_method_parameter_doc_template\
+            .replace("%METHOD_PARAMETER_NAME%", name)\
+            .replace("%METHOD_PARAMETER_TYPE%", type_dict[type_name])\
+            .replace("%METHOD_PARAMETER_DESCRIPTION%", description)\
+            .replace("%METHOD_PARAMETER_OPTIONAL%", str(optional))
 
-            # Print out the type if it hasn't been added to the type_dict
-            if not return_type in type_dict.keys(): print(return_type)
-            restdocs += f"\n        :returns: AMP Type: {return_type}"
-            if not type_dict[return_type] == "":
-                restdocs += f"\n        :rtype: {type_dict[return_type]}"
-            ##########
+        parameters_docs += template
+    parameters_docs = parameters_docs[:-1]
 
-            restdocs += "\n        \"\"\""
-            #####################
+    # Get the method return type
+    return_type = method_spec["ReturnTypeName"]
 
-            ##################### Set up data and params and type hints
-            data = {}
-            for i in range(len(methodParams)):
-                data[methodParams[i]["Name"]] = methodParams[i]["Name"]
+    # Print out the type if it hasn't been added to the type_dict
+    if not return_type in type_dict.keys(): print(return_type)
+    return_type = type_dict[return_type]
 
-            data_string = ""
-            params = ""
-            if len(data.keys()) != 0:
-                data_string = ", data={"
-                for i in range(len(methodParams)):
-                    data_string += '\n            "' + methodParams[i]["Name"] + '": ' + methodParams[i]["Name"] + ", "
-                if data_string[-1]==",": data_string = data_string[:-2]
-                data_string += "\n        }"
+    # Get the method parameters
+    parameters = ""
+    for i in range(len(methodParams)):
+        name = methodParams[i]["Name"]
+        type_name = methodParams[i]["TypeName"]
 
-                if len(data.keys()) != 0:
-                    for i in range(len(methodParams)):
-                        param_typehint = ""
-                        if not type_dict[methodParams[i]["TypeName"]] == "":
-                            param_typehint = f": {type_dict[methodParams[i]['TypeName']]}"
-                        params += ", " + methodParams[i]["Name"] + param_typehint
+        # Print out the type if it hasn't been added to the type_dict
+        if not type_name in type_dict.keys(): print(type_name)
+        parameters += f"{name}: {type_dict[type_name]}, "
 
-            return_typehint = ""
-            # if return_type == "WebauthnLoginInfo":
-            #     pass
-            # elif not type_dict[return_type] == "":
-            #     return_typehint = f" -> {type_dict[return_type]}"
+    parameters = parameters[:-2]
 
-            #####################
+    # Get the parameters for the data map
+    map_string = ""
+    if len(methodParams) > 0:
+        map_string += "\n"
+    for i in range(len(methodParams)):
+        api_module_method_parameter_map_template = ""
+        with open("templates/api_module_method_parameter_map.txt", "r") as tf:
+            api_module_method_parameter_map_template = tf.read()
+            tf.close()
 
-            ##################### Add sync method
-            sync_method = f"\n    def {module}_{method}(self{params}){return_typehint}:"
-            sync_method += f"\n        {restdocs}"
-            sync_method += f"\n        return self.APICall(endpoint=\"{module}/{method}\"{data_string})\n"
-            #####################
+        name = methodParams[i]["Name"]
+        map_string += api_module_method_parameter_map_template.replace("%METHOD_PARAMETER_NAME%", name)
+    map_string = map_string[:-1]
 
-            ##################### Add async method
-            async_method = f"\n    async def {module}_{method}Async(self{params}){return_typehint}:"
-            async_method += f"\n        {restdocs}"
-            async_method += f"\n        return await self.APICallAsync(endpoint=\"{module}/{method}\"{data_string})\n"
-            #####################
+    # Replace placeholders
+    template = api_module_method_template\
+        .replace("%METHOD_DESCRIPTION%", description)\
+        .replace("%METHOD_PARAMETER_DOC%", parameters_docs)\
+        .replace("%MODULE_NAME%", module)\
+        .replace("%METHOD_NAME%", method)\
+        .replace("%METHOD_PARAMETERS%", parameters)\
+        .replace("%METHOD_RETURN_TYPE%", return_type)\
+        .replace("%METHOD_PARAMETER_MAP%", map_string)
 
-            template = sync_method + async_method
+    # End result will return a string
+    return template
 
-            f.write(template)
+def generate_apimodule(module: str, methods: dict):
+    # Read the template file
+    api_module_template = ""
+    with open("templates/api_module.txt", "r") as tf:
+        api_module_template = tf.read()
+        tf.close()
 
-    with open("./ampapi_handler.py", "r") as ah:
-        ampapi_handler = ah.read()
-        ampapi_handler = ampapi_handler.replace("from typing import TypeVar\nfrom ampapi import AMPAPI\nimport requests\nimport json\nfrom aiohttp import ClientSession\n", "")
-        f.write(ampapi_handler)
+    # Create a new file called f{module}.java
+    f = open(f"../ampapi/apimodules/{module}.py","w+")
+    f.write(api_module_template.replace("%MODULE_NAME%", module))
+
+    for method in methods.keys():
+        f.write(generate_apimodule_method(module, method, methods[method]))
 
     f.close()
 
-if __name__ == "__main__":
-    res = requests.get("https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/main/APISpec.json")
-    res_json = json.loads(res.content)
+def generate_spec(spec: dict):
+    for module in spec.keys():
+        if module == "CommonCorePlugin": continue
+        generate_apimodule(module, spec[module])
 
-    generate_ampapi(res_json)
+def load_custom_types(spec: dict):
+    for type_index in custom_types.keys():
+        type_module = type_index.split(".")[0]
+        type_method = type_index.split(".")[1]
+
+        # Update the return type
+        spec[type_module][type_method]["ReturnTypeName"] = custom_types[type_index]
+
+if __name__ == "__main__":
+    # Load remote file
+    res = requests.get("https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/main/APISpec.json")
+    spec = json.loads(res.content)
+
+    # Load custom types
+    load_custom_types(spec)
+
+    generate_spec(spec)
+
+    

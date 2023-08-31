@@ -10,7 +10,7 @@ from ampapi.apimodules.LocalFileBackupPlugin import LocalFileBackupPlugin
 
 
 class CommonAPI(AMPAPI):
-    def __init__(self, baseUri: str, username: str, password: str, rememberMeToken: str = "", sessionId: str = ""):
+    def __init__(self, baseUri: str, username: str = "", password: str = "", rememberMeToken: str = "", sessionId: str = ""):
         super().__init__(baseUri, username, password, rememberMeToken, sessionId)
         self.Core = Core(self)
         self.EmailSenderPlugin = EmailSenderPlugin(self)

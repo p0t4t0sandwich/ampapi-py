@@ -8,7 +8,7 @@ from ampapi.modules.CommonAPI import CommonAPI
 
 
 class GenericModule(CommonAPI):
-    def __init__(self, baseUri: str, username: str, password: str, rememberMeToken: str = "", sessionId: str = ""):
+    def __init__(self, baseUri: str, username: str = "", password: str = "", rememberMeToken: str = "", sessionId: str = ""):
         super().__init__(baseUri, username, password, rememberMeToken, sessionId)
         self.RCONPlugin = RCONPlugin(self)
         self.steamcmdplugin = steamcmdplugin(self)

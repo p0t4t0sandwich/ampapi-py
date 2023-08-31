@@ -9,7 +9,7 @@ from ampapi.modules.Minecraft import Minecraft
 
 
 class ADS(CommonAPI):
-    def __init__(self, baseUri: str, username: str, password: str, rememberMeToken: str = "", sessionId: str = ""):
+    def __init__(self, baseUri: str, username: str = "", password: str = "", rememberMeToken: str = "", sessionId: str = ""):
         super().__init__(baseUri, username, password, rememberMeToken, sessionId)
         self.ADSModule = ADSModule(self)
 

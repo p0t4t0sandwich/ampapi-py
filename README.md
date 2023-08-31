@@ -4,6 +4,11 @@ This API allows you to communicate with AMP installations from within Python.
 
 Documentation for available API calls can be found by appending /API to the URL of any existing AMP installation.
 
+Support:
+
+- Ping `@thepotatoking3452` in the `#development` channel of the [AMP Discord](https://discord.gg/cubecoders)
+- My own [development Discord](https://discord.neuralnexus.dev/)
+
 ## Installation
 
 ```bash
@@ -21,6 +26,10 @@ You also need the following packages installed:
 ```bash
 pip install requests aiohttp json
 ```
+
+## Notes
+
+Currently, you can only access API responses as `dict` or `list`, still trying to figure out a good way to generalize turning the JSON responses into objects (might just use class constructors as a cheap workaround).
 
 ## Examples
 
@@ -73,10 +82,10 @@ asyncio.run(main())
 from ampapi.modules.ADS import ADS
 from ampapi.modules.Minecraft import Minecraft
 
-ADS = ADS("http://localhost:8080/", "admin", "myfancypassword123", "", "")
+API = ADS("http://localhost:8080/", "admin", "myfancypassword123")
 
 # Get the available instances
-instancesResult = ADS.ADSModule.GetInstances()
+instancesResult = API.ADSModule.GetInstances()
 
 targets = instancesResult["result"]
 
@@ -95,7 +104,7 @@ for instance in instances:
         break
 
 # Use the instance ID to get the API for the instance
-Hub = ADS.InstanceLogin(hub_instance_id, Minecraft)
+Hub = API.InstanceLogin(hub_instance_id, Minecraft)
 
 # Get the current CPU usage
 currentStatus = Hub.Core.GetStatus()
@@ -138,3 +147,4 @@ except Exception as err:
 ## TODO
 
 - Add a check to see if it's been 5min since the last API call, and if so, attempt to re-log
+- Figure a good mehtod to turn the JSON responses into objects

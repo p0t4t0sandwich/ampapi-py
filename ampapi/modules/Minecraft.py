@@ -6,7 +6,7 @@ from ampapi.apimodules.MinecraftModule import MinecraftModule
 from ampapi.modules.CommonAPI import CommonAPI
 
 class Minecraft(CommonAPI):
-    def __init__(self, baseUri: str, username: str, password: str, rememberMeToken: str = "", sessionId: str = ""):
+    def __init__(self, baseUri: str, username: str = "", password: str = "", rememberMeToken: str = "", sessionId: str = ""):
         super().__init__(baseUri, username, password, rememberMeToken, sessionId)
         self.MinecraftModule = MinecraftModule(self)
 

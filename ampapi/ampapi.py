@@ -12,7 +12,7 @@ from aiohttp import ClientSession
 
 class AMPAPI():
     """Class for interacting with the AMP API"""
-    def __init__(self, baseUri: str, username: str, password: str, rememberMeToken: str = "", sessionId: str = "") -> None:
+    def __init__(self, baseUri: str, username: str = "", password: str = "", rememberMeToken: str = "", sessionId: str = "") -> None:
         """Initializes the AMP API class
         :param baseUri: The base URI of the AMP instance
         :type baseUri: str

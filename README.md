@@ -1,6 +1,18 @@
-# ampapi-python
+# ampapi-py
 
-This API allows you to communicate with AMP installations from within Python.
+[![License](https://img.shields.io/github/license/p0t4t0sandwich/ampapi-py?color=blue)](https://img.shields.io/github/downloads/p0t4t0sandwich/ampapi-py/LICENSE)
+[![Github](https://img.shields.io/github/stars/p0t4t0sandwich/ampapi-py)](https://github.com/p0t4t0sandwich/ampapi-py)
+[![Github Issues](https://img.shields.io/github/issues/p0t4t0sandwich/ampapi-py?label=Issues)](https://github.com/p0t4t0sandwich/ampapi-py/issues)
+[![Discord](https://img.shields.io/discord/1067482396246683708?color=7289da&logo=discord&logoColor=white)](https://discord.neuralnexus.dev)
+[![wakatime](https://wakatime.com/badge/github/p0t4t0sandwich/ampapi-py.svg)](https://wakatime.com/badge/github/p0t4t0sandwich/ampapi-py)
+
+[![Github Releases](https://img.shields.io/github/downloads/p0t4t0sandwich/ampapi-py/total?label=Github&logo=github&color=181717)](https://github.com/p0t4t0sandwich/ampapi-py/releases)
+[![PyPI](https://img.shields.io/pypi/v/ampapi?label=PyPI&logo=pypi&color=3775A9)](https://pypi.org/project/ampapi/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/ampapi?label=PyPI%20Downloads&logo=pypi&color=3775A9)](https://pypi.org/project/ampapi/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ampapi?label=Python&logo=python&color=3775A9)](https://pypi.org/project/ampapi/)
+[![PyPI - Wheel](https://img.shields.io/pypi/wheel/ampapi?label=Wheel&logo=python&color=3775A9)](https://pypi.org/project/ampapi/)
+
+An API that allows you to communicate with AMP installations from within Python.
 
 Documentation for available API calls can be found by appending /API to the URL of any existing AMP installation.
 
@@ -18,7 +30,7 @@ pip install ampapi
 or
 
 ```bash
-pip install 'ampapi @ git+https://github.com/p0t4t0sandwich/ampapi-python.git'
+pip install 'ampapi @ git+https://github.com/p0t4t0sandwich/ampapi-py.git'
 ```
 
 You also need the following packages installed:
@@ -143,8 +155,3 @@ except Exception as err:
     # In reality, you'd handle this exception better
     raise Exception(err)
 ```
-
-## TODO
-
-- Add a check to see if it's been 5min since the last API call, and if so, attempt to re-log
-- Figure a good mehtod to turn the JSON responses into objects

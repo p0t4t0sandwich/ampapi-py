@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 from typing import Any, TypeVar
+import time
 
 import requests
 import json
@@ -18,17 +19,26 @@ class AMPAPI():
         :type baseUri: str
         :returns: None
         """
-        self.baseUri = baseUri
+        self.baseUri: str = baseUri
 
         # Check if the baseUri ends with a slash
         if not self.baseUri[-1] == "/":
             self.baseUri += "/"
-        self.dataSource = self.baseUri + "API"
+        self.dataSource: str = self.baseUri + "API"
 
-        self.username = username
-        self.password = password
-        self.rememberMeToken = rememberMeToken
-        self.sessionId = sessionId
+        self.username: str = username
+        self.password: str = password
+        self.rememberMeToken: str = rememberMeToken
+        self.sessionId: str = sessionId
+
+        self.lastAPICall: int = round(time.time())
+        self.relogInterval: int = 60*5
+
+        self.headers: dict = {
+            'Content-Type': 'application/json',
+            'Accept': 'text/javascript',
+            'User-Agent': 'ampapi-py/1.2.2'
+        }
 
     def api_call(self, endpoint: str, data: dict = {}) -> dict:
         """Method to make AMP API calls
@@ -40,15 +50,20 @@ class AMPAPI():
         :returns: dict with the result of the API call
         :rtype: dict
         """
-        headers = {'Accept': 'text/javascript',}
+        # Check the last API call time, and if it's been more than the relog interval, relog.
+        if round(time.time()) - self.lastAPICall > self.relogInterval:
+            self.lastAPICall = round(time.time())
+            self.Login()
+        else:
+            self.lastAPICall = round(time.time())
         session = {"SESSIONID": self.sessionId}
-        data_added = dict(session, **data)
 
+        data_added = dict(session, **data)
         data_json = json.dumps(data_added)
 
         res = requests.post(
-            url=f"{self.dataSource}/{endpoint}",
-            headers=headers,
+            url=f"{self.dataSource}{endpoint}",
+            headers=self.headers,
             data=data_json
         )
         res_json = json.loads(res.content)
@@ -65,14 +80,19 @@ class AMPAPI():
         :returns: dict with the result of the API call
         :rtype: dict
         """
-        headers = {'accept': 'text/javascript',}
+        # Check the last API call time, and if it's been more than the relog interval, relog.
+        if round(time.time()) - self.lastAPICall > self.relogInterval:
+            self.lastAPICall = round(time.time())
+            self.Login()
+        else:
+            self.lastAPICall = round(time.time())
         session = {"SESSIONID": self.sessionId}
-        data_added = dict(session, **data)
 
+        data_added = dict(session, **data)
         data_json = json.dumps(data_added)
 
         async with ClientSession() as session:
-            async with session.post(url=f'{self.dataSource}/{endpoint}', headers=headers, data=data_json) as post:
+            async with session.post(url=f'{self.dataSource}{endpoint}', headers=self.headers, data=data_json) as post:
                 response = await post.json()
                 post.close()
 
@@ -85,10 +105,15 @@ class AMPAPI():
         """
         data: dict = {
             "username": self.username,
-            "password": self.password,
             "token": self.rememberMeToken,
             "rememberMe": True,
         }
+
+        # If remember me token is empty, use the password.
+        if self.rememberMeToken == "":
+            data["password"] = self.password
+        else:
+            data["password"] = ""
 
         loginResult: dict = self.api_call("Core/Login", data)
 
@@ -105,10 +130,15 @@ class AMPAPI():
         """
         data: dict = {
             "username": self.username,
-            "password": self.password,
             "token": self.rememberMeToken,
             "rememberMe": True,
         }
+
+        # If remember me token is empty, use the password.
+        if self.rememberMeToken == "":
+            data["password"] = self.password
+        else:
+            data["password"] = ""
 
         loginResult: dict = await self.api_call_async("Core/Login", data)
 

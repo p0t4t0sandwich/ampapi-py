@@ -81,11 +81,12 @@ class AMPAPI():
         :rtype: dict
         """
         # Check the last API call time, and if it's been more than the relog interval, relog.
-        if round(time.time()) - self.lastAPICall > self.relogInterval:
-            self.lastAPICall = round(time.time())
+        now: int = round(time.time())
+        if now - self.lastAPICall > self.relogInterval:
+            self.lastAPICall = now
             self.Login()
         else:
-            self.lastAPICall = round(time.time())
+            self.lastAPICall = now
         session = {"SESSIONID": self.sessionId}
 
         data_added = dict(session, **data)
@@ -105,6 +106,7 @@ class AMPAPI():
         """
         data: dict = {
             "username": self.username,
+            "password": "",
             "token": self.rememberMeToken,
             "rememberMe": True,
         }
@@ -112,8 +114,6 @@ class AMPAPI():
         # If remember me token is empty, use the password.
         if self.rememberMeToken == "":
             data["password"] = self.password
-        else:
-            data["password"] = ""
 
         loginResult: dict = self.api_call("Core/Login", data)
 
@@ -130,6 +130,7 @@ class AMPAPI():
         """
         data: dict = {
             "username": self.username,
+            "password": "",
             "token": self.rememberMeToken,
             "rememberMe": True,
         }
@@ -137,8 +138,6 @@ class AMPAPI():
         # If remember me token is empty, use the password.
         if self.rememberMeToken == "":
             data["password"] = self.password
-        else:
-            data["password"] = ""
 
         loginResult: dict = await self.api_call_async("Core/Login", data)
 

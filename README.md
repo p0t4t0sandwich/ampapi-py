@@ -41,13 +41,7 @@ pip install requests aiohttp json
 
 ## Notes
 
-API reponses have been mostly searialized into Python objects, but there are some issues with some of the generic types, these will need to be access like a regular dictionary.
-
-This effects the following return types and their generic implementations:
-
-- ActionResult
-- Result
-- Task
+I've redone the return types, most should work, but if you find any that don't, please let me know.
 
 ## Examples
 
@@ -115,11 +109,11 @@ target = targets[1]
 hub_instance_id = ""
 
 # Get the available instances
-instances = target["AvailableInstances"]
+instances = target.AvailableInstances
 for instance in instances:
     # Find the instance named "Hub"
-    if instance["InstanceName"] == "Hub":
-        hub_instance_id = instance["InstanceID"]
+    if instance.InstanceName == "Hub":
+        hub_instance_id = instance.InstanceID
         break
 
 # Use the instance ID to get the API for the instance
@@ -163,9 +157,3 @@ except Exception as err:
     # In reality, you'd handle this exception better
     raise Exception(err)
 ```
-
-## Release Notes - 1.3.0
-
-- Ported the types over to Python
-- Fixed a dumb url error
-- Added proper return types to most API calls

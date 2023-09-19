@@ -280,8 +280,12 @@ class Instance():
     :type InstanceName: str
     :param FriendlyName: The friendly name
     :type FriendlyName: str
+    :param Description: The description
+    :type Description: str
     :param Module: The module
     :type Module: str
+    :param ModuleDisplayName: The module display name
+    :type ModuleDisplayName: str
     :param AMPVersion: The AMP version
     :type AMPVersion: AMPVersion
     :param IsHTTPS: Whether HTTPS is enabled
@@ -318,6 +322,8 @@ class Instance():
     :type ContainerMemoryPolicy: str
     :param ContainerCPUs: The container CPUs
     :type ContainerCPUs: int
+    :param SpecificDockerImage: The specific Docker image
+    :type SpecificDockerImage: str
     :param Metrics: The metrics
     :type Metrics: dict[str, Metric]
     :param ApplicationEndpoints: The application endpoints
@@ -331,7 +337,9 @@ class Instance():
     TargetID: UUID
     InstanceName: str
     FriendlyName: str
+    Description: str
     Module: str
+    ModuleDisplayName: str
     AMPVersion: AMPVersionAlias
     IsHTTPS: bool
     IP: str
@@ -350,12 +358,13 @@ class Instance():
     ContainerMemoryMB: int
     ContainerMemoryPolicy: str
     ContainerCPUs: int
+    SpecificDockerImage: str
     Metrics: dict[str, Metric]
     ApplicationEndpoints: list[EndpointInfo]
     DeploymentArgs: dict[str, str]
     DisplayImageSource: str
 
-    def __init__(self, InstanceID: UUID, TargetID: UUID, InstanceName: str, FriendlyName: str, Module: str, AMPVersion: AMPVersionAlias, IsHTTPS: bool, IP: str, Port: int, Daemon: bool, DaemonAutostart: bool, ExcludeFromFirewall: bool, Running: bool, AppState: State, Tags: list[str], DiskUsageMB: int, ReleaseStream: str, ManagementMode: str, Suspended: bool, IsContainerInstance: bool, ContainerMemoryMB: int, ContainerMemoryPolicy: str, ContainerCPUs: int, Metrics: dict[str, Metric], ApplicationEndpoints: list[EndpointInfo], DeploymentArgs: dict[str, str], DisplayImageSource: str) -> None:
+    def __init__(self, InstanceID: UUID, TargetID: UUID, InstanceName: str, FriendlyName: str, Module: str, AMPVersion: AMPVersionAlias, IsHTTPS: bool, IP: str, Port: int, Daemon: bool, DaemonAutostart: bool, ExcludeFromFirewall: bool, Running: bool, AppState: State, Tags: list[str], DiskUsageMB: int, ReleaseStream: str, ManagementMode: str, Suspended: bool, IsContainerInstance: bool, ContainerMemoryMB: int, ContainerMemoryPolicy: str, ContainerCPUs: int, Metrics: dict[str, Metric], ApplicationEndpoints: list[EndpointInfo], DeploymentArgs: dict[str, str], DisplayImageSource: str = "", Description: str = "", ModuleDisplayName: str = "", SpecificDockerImage: str = "") -> None:
         """
         Initializes the Instance object
         Author: p0t4t0sandwich
@@ -364,7 +373,9 @@ class Instance():
         self.TargetID = TargetID
         self.InstanceName = InstanceName
         self.FriendlyName = FriendlyName
+        self.Description = Description
         self.Module = Module
+        self.ModuleDisplayName = ModuleDisplayName
         self.AMPVersion = AMPVersion
         self.IsHTTPS = IsHTTPS
         self.IP = IP
@@ -384,7 +395,7 @@ class Instance():
         self.ContainerMemoryPolicy = ContainerMemoryPolicy
         self.ContainerCPUs = ContainerCPUs
         self.Metrics = {i : Metric(**Metrics[i]) for i in Metrics}
-        self.ApplicationEndpoints = [EndpointInfo(**ApplicationEndpoints[i]) for i in ApplicationEndpoints]
+        self.ApplicationEndpoints = [EndpointInfo(**ApplicationEndpoints[i]) for i in range(len(ApplicationEndpoints))]
         self.DeploymentArgs = DeploymentArgs
         self.DisplayImageSource = DisplayImageSource
 
@@ -438,12 +449,14 @@ class IADSInstance():
     :type InstanceId: UUID
     :param FriendlyName: The friendly name
     :type FriendlyName: str
+    :param Description: The description
+    :type Description: str
     :param Disabled: Whether the instance is disabled
     :type Disabled: bool
     :param IsRemote: Whether the instance is remote
     :type IsRemote: bool
-    :param PlatformInfo: The platform information object
-    :type PlatformInfo: PlatformInfo
+    :param Platform: The platform information object
+    :type PlatformInfo: Platform
     :param Datastores: The datastores
     :type Datastores: list[InstanceDatastore]
     :param CreatesInContainers: Whether the instance creates in containers
@@ -464,9 +477,10 @@ class IADSInstance():
     Id: int
     InstanceId: UUID
     FriendlyName: str
+    Description: str
     Disabled: bool
     IsRemote: bool
-    PlatformInfo: PlatformInfoAlias
+    Platform: PlatformInfo
     Datastores: list[InstanceDatastore]
     CreatesInContainers: bool
     State: State
@@ -475,8 +489,11 @@ class IADSInstance():
     LastUpdated: str
     AvailableInstances: list[Instance]
     AvailableIPs: list[str]
+    Tags: list[str]
+    TagsList: list[str]
+    URL: str
 
-    def __init__(self, Id: int, InstanceId: UUID, FriendlyName: str, Disabled: bool, IsRemote: bool, PlatformInfo: PlatformInfoAlias, Datastores: list[InstanceDatastore], CreatesInContainers: bool, State: StateAlias, StateReason: str, CanCreate: bool, LastUpdated: str, AvailableInstances: list[Instance], AvailableIPs: list[str]) -> None:
+    def __init__(self, Id: int, InstanceId: UUID, FriendlyName: str, Disabled: bool, IsRemote: bool, Platform: PlatformInfo, Datastores: list[InstanceDatastore], CreatesInContainers: bool, State: StateAlias, StateReason: str, CanCreate: bool, LastUpdated: str, AvailableInstances: list[Instance], AvailableIPs: list[str], Description: str = "", Tags: list[str] = [], TagsList: list[str] = [], URL: str = "") -> None:
         """
         Initializes the IADSInstance object
         Author: p0t4t0sandwich
@@ -484,17 +501,23 @@ class IADSInstance():
         self.Id = Id
         self.InstanceId = InstanceId
         self.FriendlyName = FriendlyName
+        self.Description = Description
         self.Disabled = Disabled
         self.IsRemote = IsRemote
-        self.PlatformInfo = PlatformInfoAlias(**PlatformInfo)
-        self.Datastores = [InstanceDatastore(**Datastores[i]) for i in Datastores]
+        self.Platform = PlatformInfo(**Platform)
+        self.Datastores = [InstanceDatastore(**Datastores[i]) for i in range(len(Datastores))]
         self.CreatesInContainers = CreatesInContainers
         self.State = State
         self.StateReason = StateReason
         self.CanCreate = CanCreate
         self.LastUpdated = LastUpdated
-        self.AvailableInstances = [Instance(**AvailableInstances[i]) for i in AvailableInstances]
+
+        # for i in AvailableInstances:
+        #     print(i.keys())
+
+        self.AvailableInstances = [Instance(**AvailableInstances[i]) for i in range(len(AvailableInstances))]
         self.AvailableIPs = AvailableIPs
+        self.URL = URL
 
 class UserInfo(NamedTuple):
     """
@@ -689,7 +712,7 @@ class RemoteTargetInfo():
         """
         self.IPAddressList = IPAddressList
         self.PlatformInfo = PlatformInfoAlias(**PlatformInfo)
-        self.Datastores = [InstanceDatastore(**Datastores[i]) for i in Datastores]
+        self.Datastores = [InstanceDatastore(**Datastores[i]) for i in range(len(Datastores))]
         self.DeploysInContainers = DeploysInContainers
 
 class Result(Generic[T]):
@@ -706,7 +729,38 @@ class Result(Generic[T]):
         Initializes the Result object
         Author: p0t4t0sandwich
         """
-        self.result = result
+
+        # TODO: Replace this with a more elegant solution
+
+        if type(result) == list:
+            if len(result) == 0:
+                self.result = []
+                return
+
+            keys = result[0].keys()
+            if "DisplayName" in keys and "Endpoint" in keys and "Uri" in keys:
+                self.result = [EndpointInfo(**result[i]) for i in range(len(result))]
+            elif "Id" in keys and "InstanceId" in keys and "FriendlyName" in keys and "Disabled" in keys and "IsRemote" in keys and "Platform" in keys and "Datastores" in keys and "CreatesInContainers" in keys and "State" in keys and "StateReason" in keys and "CanCreate" in keys and "LastUpdated" in keys and "AvailableInstances" in keys and "AvailableIPs" in keys:
+                self.result = [IADSInstance(**result[i]) for i in range(len(result))]
+            elif "IsPrimaryTask" in keys and "StartTime" in keys and "Id" in keys and "Name" in keys and "Description" in keys and "HideFromUI" in keys and "FastDismiss" in keys and "LastUpdatePushed" in keys and "ProgressPercent" in keys and "IsCancellable" in keys and "Origin" in keys and "IsIndeterminate" in keys and "State" in keys and "Status" in keys:
+                self.result = [RunningTask(**result[i]) for i in range(len(result))]
+            else:
+                self.result = result
+
+        elif type(result) == dict:
+            keys = result.keys()
+            if "IsPrimaryTask" in keys and "StartTime" in keys and "Id" in keys and "Name" in keys and "Description" in keys and "HideFromUI" in keys and "FastDismiss" in keys and "LastUpdatePushed" in keys and "ProgressPercent" in keys and "IsCancellable" in keys and "Origin" in keys and "IsIndeterminate" in keys and "State" in keys and "Status" in keys:
+                self.result = RunningTask(**result)
+            elif "Id" in keys and "InstanceId" in keys and "FriendlyName" in keys and "Disabled" in keys and "IsRemote" in keys and "Platform" in keys and "Datastores" in keys and "CreatesInContainers" in keys and "State" in keys and "StateReason" in keys and "CanCreate" in keys and "LastUpdated" in keys and "AvailableInstances" in keys and "AvailableIPs" in keys:
+                self.result = IADSInstance(**result)
+            elif "Name" in keys and "Author" in keys and "AppName" in keys and "SupportsSleep" in keys and "LoadedPlugins" in keys and "AMPVersion" in keys and "AMPBuild" in keys and "ToolsVersion" in keys and "APIVersion" in keys and "VersionCodename" in keys and "Timestamp" in keys and "BuildSpec" in keys and "Branding" in keys and "Analytics" in keys and "FeatureSet" in keys and "InstanceId" in keys and "InstanceName" in keys and "FriendlyName" in keys and "EndpointURI" in keys and "PrimaryEndpoint" in keys and "ModuleName" in keys and "IsRemoteInstance" in keys and "DisplayBaseURI" in keys and "RequiresFullLoad" in keys and "AllowRememberMe" in keys:
+                self.result = ModuleInfo(**result)
+            elif "UpdateAvailable" in keys and "Version" in keys and "Build" in keys and "ReleaseNotesURL" in keys and "ToolsVersion" in keys and "PatchOnly" in keys:
+                self.result = UpdateInfo(**result)
+            else:
+                self.result = result
+        else:
+            self.result = result
 
 class RunningTask(NamedTuple):
     """
@@ -882,7 +936,27 @@ class Task(Generic[T]):
         Initializes the Task object
         Author: p0t4t0sandwich
         """
-        self.result = result
+        if type(result) == list:
+            if len(result) == 0:
+                self.result = []
+                return
+
+            keys = result[0].keys()
+            if "ID" in keys and "Username" in keys and "EmailAddress" in keys and "IsTwoFactorEnabled" in keys and "Disabled" in keys and "LastLogin" in keys and "GravatarHash" in keys and "IsLDAPUser" in keys:
+                self.result = [UserInfo(**result[i]) for i in range(len(result))]
+            else:
+                self.result = result
+
+        elif type(result) == dict:
+            keys = result.keys()
+            if "IsPrimaryTask" in keys and "StartTime" in keys and "Id" in keys and "Name" in keys and "Description" in keys and "HideFromUI" in keys and "FastDismiss" in keys and "LastUpdatePushed" in keys and "ProgressPercent" in keys and "IsCancellable" in keys and "Origin" in keys and "IsIndeterminate" in keys and "State" in keys and "Status" in keys:
+                self.result = RunningTask(**result)
+            elif "ID" in keys and "Username" in keys and "EmailAddress" in keys and "IsTwoFactorEnabled" in keys and "Disabled" in keys and "LastLogin" in keys and "GravatarHash" in keys and "IsLDAPUser" in keys:
+                self.result = UserInfo(**result)
+            else:
+                self.result = result
+        else:
+            self.result = result
 
 class UpdateInfo(NamedTuple):
     """
@@ -935,8 +1009,8 @@ class Updates():
         Author: p0t4t0sandwich
         """
         self.Status = Status
-        self.ConsoleEntries = [ConsoleEntry(**ConsoleEntries[i]) for i in ConsoleEntries]
-        self.Messages = [Message(**Messages[i]) for i in Messages]
+        self.ConsoleEntries = [ConsoleEntry(**ConsoleEntries[i]) for i in range(len(ConsoleEntries))]
+        self.Messages = [Message(**Messages[i]) for i in range(len(Messages))]
         self.Tasks = Tasks
         self.Ports = Ports
 

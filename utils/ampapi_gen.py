@@ -7,7 +7,7 @@ import json
 
 type_dict = {
     "InstanceDatastore": "InstanceDatastore",
-    "ActionResult": "ActionResult[Any]",
+    "ActionResult": "ActionResult",
     "Int32": "int",
     "IEnumerable<InstanceDatastore>": "list[InstanceDatastore]",
     "RunningTask": "Result[RunningTask]",

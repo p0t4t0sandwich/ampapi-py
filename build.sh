@@ -3,6 +3,8 @@
     cd ./utils && python3 ampapi_gen.py
 )
 
+rm -rf dist
+
 python3 -m pip install --upgrade pip
 python3 -m pip install --upgrade build
 python3 -m build

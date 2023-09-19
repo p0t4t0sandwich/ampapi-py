@@ -5,6 +5,7 @@
 from ampapi.apimodules.RCONPlugin import RCONPlugin
 from ampapi.apimodules.steamcmdplugin import steamcmdplugin
 from ampapi.modules.CommonAPI import CommonAPI
+from ampapi.types import LoginResult
 
 
 class GenericModule(CommonAPI):
@@ -13,15 +14,16 @@ class GenericModule(CommonAPI):
         self.RCONPlugin = RCONPlugin(self)
         self.steamcmdplugin = steamcmdplugin(self)
 
-    def Login(self) -> dict:
+    def Login(self) -> LoginResult:
         """
         Simplified login function
-        :returns: dict with the result of the login
+        :returns: The result of the login
+        :rtype: LoginResult
         """
-        loginResult: dict = super().Login()
-        if "success" in loginResult.keys() and loginResult["success"] == True:
-            self.rememberMeToken = loginResult["rememberMeToken"]
-            self.sessionId = loginResult["sessionID"]
+        loginResult: LoginResult = super().Login()
+        if loginResult.success == True:
+            self.rememberMeToken = loginResult.rememberMeToken
+            self.sessionId = loginResult.sessionID
 
             # Update the session ID and remember me token of submodules
             self.RCONPlugin.sessionId = self.sessionId
@@ -31,15 +33,16 @@ class GenericModule(CommonAPI):
 
         return loginResult
 
-    async def LoginAsync(self) -> dict:
+    async def LoginAsync(self) -> LoginResult:
         """
         Simplified login function
-        :returns: dict with the result of the login
+        :returns: The result of the login
+        :rtype: LoginResult
         """
-        loginResult: dict = await super().LoginAsync()
-        if "success" in loginResult.keys() and loginResult["success"] == True:
-            self.rememberMeToken = loginResult["rememberMeToken"]
-            self.sessionId = loginResult["sessionID"]
+        loginResult: LoginResult = await super().LoginAsync()
+        if loginResult.success == True:
+            self.rememberMeToken = loginResult.rememberMeToken
+            self.sessionId = loginResult.sessionID
 
             # Update the session ID and remember me token of submodules
             self.RCONPlugin.sessionId = self.sessionId

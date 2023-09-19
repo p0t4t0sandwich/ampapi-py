@@ -6,6 +6,7 @@ from ampapi.apimodules.ADSModule import ADSModule
 from ampapi.modules.CommonAPI import CommonAPI
 from ampapi.modules.GenericModule import GenericModule
 from ampapi.modules.Minecraft import Minecraft
+from ampapi.types import LoginResult
 
 
 class ADS(CommonAPI):
@@ -13,15 +14,16 @@ class ADS(CommonAPI):
         super().__init__(baseUri, username, password, rememberMeToken, sessionId)
         self.ADSModule = ADSModule(self)
 
-    def Login(self) -> dict:
+    def Login(self) -> LoginResult:
         """
         Simplified login function
-        :returns: dict with the result of the login
+        :returns: The result of the login
+        :rtype: LoginResult
         """
-        loginResult: dict = super().Login()
-        if "success" in loginResult.keys() and loginResult["success"] == True:
-            self.rememberMeToken = loginResult["rememberMeToken"]
-            self.sessionId = loginResult["sessionID"]
+        loginResult: LoginResult = super().Login()
+        if loginResult.success == True:
+            self.rememberMeToken = loginResult.rememberMeToken
+            self.sessionId = loginResult.sessionID
 
             # Update the session ID and remember me token of submodules
             self.ADSModule.sessionId = self.sessionId
@@ -29,15 +31,16 @@ class ADS(CommonAPI):
 
         return loginResult
 
-    async def LoginAsync(self) -> dict:
+    async def LoginAsync(self) -> LoginResult:
         """
         Simplified login function
-        :returns: dict with the result of the login
+        :returns: The result of the login
+        :rtype: LoginResult
         """
-        loginResult: dict = await super().LoginAsync()
-        if "success" in loginResult.keys() and loginResult["success"] == True:
-            self.rememberMeToken = loginResult["rememberMeToken"]
-            self.sessionId = loginResult["sessionID"]
+        loginResult: LoginResult = await super().LoginAsync()
+        if loginResult.success == True:
+            self.rememberMeToken = loginResult.rememberMeToken
+            self.sessionId = loginResult.sessionID
 
             # Update the session ID and remember me token of submodules
             self.ADSModule.sessionId = self.sessionId
@@ -59,12 +62,12 @@ class ADS(CommonAPI):
             "rememberMe": True,
         }
 
-        loginResult: dict = self.api_call("ADSModule/Servers/" + instance_id + "/API/Core/Login", data)
+        loginResult: LoginResult = LoginResult(**(self.api_call("ADSModule/Servers/" + instance_id + "/API/Core/Login", data)))
 
-        if "success" in loginResult.keys() and loginResult["success"] == True:
+        if loginResult.success == True:
             newBaseUri = self.baseUri + "API/ADSModule/Servers/" + instance_id
-            rememberMeToken: str = loginResult["rememberMeToken"]
-            sessionId: str = loginResult["sessionID"]
+            rememberMeToken: str = loginResult.rememberMeToken
+            sessionId: str = loginResult.sessionID
 
             # Return the correct module
             newInstance: CommonAPI = None
@@ -97,12 +100,12 @@ class ADS(CommonAPI):
             "rememberMe": True,
         }
 
-        loginResult: dict = await self.api_call_async("ADSModule/Servers/" + instance_id + "/API/Core/Login", data)
+        loginResult: LoginResult = LoginResult(**(await self.api_call_async("ADSModule/Servers/" + instance_id + "/API/Core/Login", data)))
 
-        if "success" in loginResult.keys() and loginResult["success"] == True:
+        if loginResult.success == True:
             newBaseUri = self.baseUri + "API/ADSModule/Servers/" + instance_id
-            rememberMeToken: str = loginResult["rememberMeToken"]
-            sessionId: str = loginResult["sessionID"]
+            rememberMeToken: str = loginResult.rememberMeToken
+            sessionId: str = loginResult.sessionID
 
             # Return the correct module
             newInstance: CommonAPI = None

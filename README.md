@@ -41,7 +41,13 @@ pip install requests aiohttp json
 
 ## Notes
 
-Currently, you can only access API responses as `dict` or `list`, still trying to figure out a good way to generalize turning the JSON responses into objects (might just use class constructors as a cheap workaround).
+API reponses have been mostly searialized into Python objects, but there are some issues with some of the generic types, these will need to be access like a regular dictionary.
+
+This effects the following return types and their generic implementations:
+
+- ActionResult
+- Result
+- Task
 
 ## Examples
 
@@ -59,9 +65,9 @@ def main():
     API.Core.SendConsoleMessage("say Hello Everyone, this message was sent from the Python API!")
 
     currentStatus = API.Core.GetStatus()
-    CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
+    CPUUsagePercent = currentStatus.Metrics["CPU Usage"].Percent
 
-    print("Current CPU usage is: " + str(CPUUsagePercent) + "%")
+    print(f"Current CPU usage is: {CPUUsagePercent}%")
 
 main()
 ```
@@ -81,9 +87,9 @@ async def main():
     await API.Core.SendConsoleMessageAsync("say Hello Everyone, this message was sent from the Python API!")
 
     currentStatus = await API.Core.GetStatusAsync()
-    CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
+    CPUUsagePercent = currentStatus.Metrics["CPU Usage"].Percent
 
-    print("Current CPU usage is: " + str(CPUUsagePercent) + "%")
+    print(f"Current CPU usage is: {CPUUsagePercent}%")
 
 asyncio.run(main())
 ```
@@ -95,6 +101,7 @@ from ampapi.modules.ADS import ADS
 from ampapi.modules.Minecraft import Minecraft
 
 API = ADS("http://localhost:8080/", "admin", "myfancypassword123")
+API.Login()
 
 # Get the available instances
 instancesResult = API.ADSModule.GetInstances()
@@ -116,35 +123,36 @@ for instance in instances:
         break
 
 # Use the instance ID to get the API for the instance
-Hub = API.InstanceLogin(hub_instance_id, Minecraft)
+Hub = API.InstanceLogin(hub_instance_id, "Minecraft")
 
 # Get the current CPU usage
 currentStatus = Hub.Core.GetStatus()
-CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
+CPUUsagePercent = currentStatus.Metrics["CPU Usage"].Percent
 
 # Send a message to the console
-Hub.Core.SendConsoleMessage("say Current CPU usage is: " + CPUUsagePercent + "%")
+Hub.Core.SendConsoleMessage(f"say Current CPU usage is{CPUUsagePercent}%")
 ```
 
 ### CommonAPI Example, handling the sessionId and rememberMeToken manually (not recommended)
 
 ```python
-from ampapi.ampapi import AMPAPI
+from ampapi.modules.CommonAPI import CommonAPI
 
 try:
-    API = AMPAPI("http://localhost:8080/")
+    API = CommonAPI("http://localhost:8080/")
 
     # The third parameter is either used for 2FA logins, or if no password is specified to use a remembered token from a previous login, or a service login token.
     loginResult = API.Core.Login("admin", "myfancypassword123", "", False)
 
-    if "success" in loginResult.keys() and loginResult["success"]:
+    if loginResult.success:
         print("Login successful")
-        API.sessionId = loginResult["sessionID"]
+        API.sessionId = loginResult.sessionID
+        API.Core.sessionId = loginResult.sessionID
 
         # API call parameters are simply in the same order as shown in the documentation.
         API.Core.SendConsoleMessage("say Hello Everyone, this message was sent from the Python API!")
         currentStatus = API.Core.GetStatus()
-        CPUUsagePercent = currentStatus["Metrics"]["CPU Usage"]["Percent"]
+        CPUUsagePercent = currentStatus.Metrics["CPU Usage"].Percent
         print(f"Current CPU usage is: {CPUUsagePercent}%")
 
     else:
@@ -155,3 +163,9 @@ except Exception as err:
     # In reality, you'd handle this exception better
     raise Exception(err)
 ```
+
+## Release Notes - 1.3.0
+
+- Ported the types over to Python
+- Fixed a dumb url error
+- Added proper return types to most API calls

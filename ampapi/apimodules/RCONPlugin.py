@@ -1,9 +1,9 @@
-#!/bin/python3
-# author: p0t4t0sandich
-# description: An API that allows you to communicate with AMP installations from within Python
+# An API that allows you to communicate with AMP installations from within Python
+# Author: p0t4t0sandich
 
 from typing import Any
 from ampapi.ampapi import AMPAPI
+from ampapi.types import *
 
 
 class RCONPlugin(AMPAPI):
@@ -14,19 +14,25 @@ class RCONPlugin(AMPAPI):
         """
         super().__init__(ampapi.baseUri, ampapi.username, ampapi.password, ampapi.rememberMeToken, ampapi.sessionId)
 
-    def Dummy(self, ) -> None:
+    def Dummy(self, ) -> Void:
         """
         Name Description Optional
-        :returns: None
+        :returns: Void
         """
-        return self.api_call("RCONPlugin/Dummy", { 
+        response: dict = self.api_call("RCONPlugin/Dummy", { 
         })
+        if response == None:
+            response = {}
+        return Void(**response)
 
-    async def DummyAsync(self, ) -> None:
+    async def DummyAsync(self, ) -> Void:
         """
         Name Description Optional
-        :returns: None
+        :returns: Void
         """
-        return await self.api_call_async("RCONPlugin/Dummy", { 
+        response: dict = await self.api_call_async("RCONPlugin/Dummy", { 
         })
+        if response == None:
+            response = {}
+        return Void(**response)
 

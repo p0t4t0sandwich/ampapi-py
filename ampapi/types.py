@@ -1,13 +1,12 @@
-#!/bin/python3
-# author: p0t4t0sandich
-# description: An API that allows you to communicate with AMP installations from within Python
+# An API that allows you to communicate with AMP installations from within Python
+# Author: p0t4t0sandich
 
 from typing import Any, Generic, NamedTuple, TypeVar
 from enum import Enum
 
 T = TypeVar('T')
 
-class ActionResult(NamedTuple, Generic[T]):
+class ActionResult(Generic[T]):
     """
     Generic response type for calls that return a result and a reason for failure
     Author: p0t4t0sandich
@@ -21,6 +20,15 @@ class ActionResult(NamedTuple, Generic[T]):
     Status: bool
     Reason: str
     Result: T
+
+    def __init__(self, Status: bool, Reason: str, Result: T) -> None:
+        """
+        Initializes the ActionResult object
+        Author: p0t4t0sandwich
+        """
+        self.Status = Status
+        self.Reason = Reason
+        self.Result = Result
 
 class AMPVersion(NamedTuple):
     """
@@ -45,6 +53,10 @@ class AMPVersion(NamedTuple):
     Revision: int
     MajorRevision: int
     MinorRevision: int
+
+# Type alias for AMPVersion
+# Author: p0t4t0sandwich
+AMPVersionAlias = AMPVersion
 
 class Branding(NamedTuple):
     """
@@ -142,6 +154,10 @@ class CPUInfo(NamedTuple):
     TotalCores: int
     TotalThreads: int
 
+# Type alias for CPUInfo
+# Author: p0t4t0sandwich
+CPUInfoAlias = CPUInfo
+
 class EndpointInfo(NamedTuple):
     """
     An application endpoint object
@@ -197,6 +213,10 @@ class State(Enum):
     Maintainence = 250
     Indeterminate = 999 # The state is unknown, or doesn't apply (for modules that don't start an external process)
 
+# Type alias for State
+# Author: p0t4t0sandwich
+StateAlias = State
+
 def StateMapReverse(state: State) -> str:
     """
     A map of integer values to their states
@@ -208,7 +228,7 @@ def StateMapReverse(state: State) -> str:
     """
     return state.name
 
-class Metric(NamedTuple):
+class Metric():
     """
     A metric object
     Author: p0t4t0sandwich
@@ -235,7 +255,20 @@ class Metric(NamedTuple):
     Color2: str
     Color3: str
 
-class Instance(NamedTuple):
+    def __init__(self, RawValue: int, MaxValue: int, Percent: float, Units: str, Color: str = "", Color2: str = "", Color3: str = "") -> None:
+        """
+        Initializes the Metric object
+        Author: p0t4t0sandwich
+        """
+        self.RawValue = RawValue
+        self.MaxValue = MaxValue
+        self.Percent = Percent
+        self.Units = Units
+        self.Color = Color
+        self.Color2 = Color2
+        self.Color3 = Color3
+
+class Instance():
     """
     An instance object
     Author: p0t4t0sandwich
@@ -299,7 +332,7 @@ class Instance(NamedTuple):
     InstanceName: str
     FriendlyName: str
     Module: str
-    AMPVersion: AMPVersion
+    AMPVersion: AMPVersionAlias
     IsHTTPS: bool
     IP: str
     Port: int
@@ -322,7 +355,80 @@ class Instance(NamedTuple):
     DeploymentArgs: dict[str, str]
     DisplayImageSource: str
 
-class IADSInstance(NamedTuple):
+    def __init__(self, InstanceID: UUID, TargetID: UUID, InstanceName: str, FriendlyName: str, Module: str, AMPVersion: AMPVersionAlias, IsHTTPS: bool, IP: str, Port: int, Daemon: bool, DaemonAutostart: bool, ExcludeFromFirewall: bool, Running: bool, AppState: State, Tags: list[str], DiskUsageMB: int, ReleaseStream: str, ManagementMode: str, Suspended: bool, IsContainerInstance: bool, ContainerMemoryMB: int, ContainerMemoryPolicy: str, ContainerCPUs: int, Metrics: dict[str, Metric], ApplicationEndpoints: list[EndpointInfo], DeploymentArgs: dict[str, str], DisplayImageSource: str) -> None:
+        """
+        Initializes the Instance object
+        Author: p0t4t0sandwich
+        """
+        self.InstanceID = InstanceID
+        self.TargetID = TargetID
+        self.InstanceName = InstanceName
+        self.FriendlyName = FriendlyName
+        self.Module = Module
+        self.AMPVersion = AMPVersion
+        self.IsHTTPS = IsHTTPS
+        self.IP = IP
+        self.Port = Port
+        self.Daemon = Daemon
+        self.DaemonAutostart = DaemonAutostart
+        self.ExcludeFromFirewall = ExcludeFromFirewall
+        self.Running = Running
+        self.AppState = AppState
+        self.Tags = Tags
+        self.DiskUsageMB = DiskUsageMB
+        self.ReleaseStream = ReleaseStream
+        self.ManagementMode = ManagementMode
+        self.Suspended = Suspended
+        self.IsContainerInstance = IsContainerInstance
+        self.ContainerMemoryMB = ContainerMemoryMB
+        self.ContainerMemoryPolicy = ContainerMemoryPolicy
+        self.ContainerCPUs = ContainerCPUs
+        self.Metrics = {i : Metric(**Metrics[i]) for i in Metrics}
+        self.ApplicationEndpoints = [EndpointInfo(**ApplicationEndpoints[i]) for i in ApplicationEndpoints]
+        self.DeploymentArgs = DeploymentArgs
+        self.DisplayImageSource = DisplayImageSource
+
+class PlatformInfo():
+    """
+    Platform information object
+    Author: p0t4t0sandwich
+    :param CPUInfo: The CPU information object
+    :type CPUInfo: CPUInfo
+    :param InstalledRAMMB: The installed RAM in MB
+    :type InstalledRAMMB: int
+    :param OS: The OS
+    :type OS: int
+    :param PlatformName: The platform name
+    :type PlatformName: str
+    :param SystemType: The system type
+    :type SystemType: int
+    :param Virtualization: The virtualization
+    :type Virtualization: int
+    """
+    CPUInfo: CPUInfoAlias
+    InstalledRAMMB: int
+    OS: int
+    PlatformName: str
+    SystemType: int
+    Virtualization: int
+
+    def __init__(self, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, SystemType: int, Virtualization: int) -> None:
+        """
+        Initializes the PlatformInfo object
+        Author: p0t4t0sandwich
+        """
+        self.CPUInfo = CPUInfoAlias(**CPUInfo)
+        self.InstalledRAMMB = InstalledRAMMB
+        self.OS = OS
+        self.PlatformName = PlatformName
+        self.SystemType = SystemType
+        self.Virtualization = Virtualization
+
+# Type alias for PlatformInfo
+# Author: p0t4t0sandwich
+PlatformInfoAlias = PlatformInfo
+
+class IADSInstance():
     """
     An ADS instance object
     Author: p0t4t0sandwich
@@ -360,7 +466,7 @@ class IADSInstance(NamedTuple):
     FriendlyName: str
     Disabled: bool
     IsRemote: bool
-    PlatformInfo: PlatformInfo
+    PlatformInfo: PlatformInfoAlias
     Datastores: list[InstanceDatastore]
     CreatesInContainers: bool
     State: State
@@ -370,6 +476,26 @@ class IADSInstance(NamedTuple):
     AvailableInstances: list[Instance]
     AvailableIPs: list[str]
 
+    def __init__(self, Id: int, InstanceId: UUID, FriendlyName: str, Disabled: bool, IsRemote: bool, PlatformInfo: PlatformInfoAlias, Datastores: list[InstanceDatastore], CreatesInContainers: bool, State: StateAlias, StateReason: str, CanCreate: bool, LastUpdated: str, AvailableInstances: list[Instance], AvailableIPs: list[str]) -> None:
+        """
+        Initializes the IADSInstance object
+        Author: p0t4t0sandwich
+        """
+        self.Id = Id
+        self.InstanceId = InstanceId
+        self.FriendlyName = FriendlyName
+        self.Disabled = Disabled
+        self.IsRemote = IsRemote
+        self.PlatformInfo = PlatformInfoAlias(**PlatformInfo)
+        self.Datastores = [InstanceDatastore(**Datastores[i]) for i in Datastores]
+        self.CreatesInContainers = CreatesInContainers
+        self.State = State
+        self.StateReason = StateReason
+        self.CanCreate = CanCreate
+        self.LastUpdated = LastUpdated
+        self.AvailableInstances = [Instance(**AvailableInstances[i]) for i in AvailableInstances]
+        self.AvailableIPs = AvailableIPs
+
 class UserInfo(NamedTuple):
     """
     Information about the user
@@ -378,6 +504,8 @@ class UserInfo(NamedTuple):
     :type ID: UUID
     :param Username: The username
     :type Username: str
+    :param EmailAddress: The email address
+    :type EmailAddress: str
     :param IsTwoFactorEnabled: Whether 2FA is enabled
     :type IsTwoFactorEnabled: bool
     :param Disabled: Whether the user is disabled
@@ -391,13 +519,14 @@ class UserInfo(NamedTuple):
     """
     ID: UUID
     Username: str
+    EmailAddress: str
     IsTwoFactorEnabled: bool
     Disabled: bool
     LastLogin: str
     GravatarHash: str
     IsLDAPUser: bool
 
-class LoginResult(NamedTuple):
+class LoginResult():
     """
     Response type for API.Core.Login
     Author: p0t4t0sandwich
@@ -421,6 +550,18 @@ class LoginResult(NamedTuple):
     userInfo: UserInfo
     result: float
 
+    def __init__(self, success: bool, permissions: list[str], sessionID: str, rememberMeToken: str, userInfo: UserInfo, result: float) -> None:
+        """
+        Initializes the LoginResult object
+        Author: p0t4t0sandwich
+        """
+        self.success = success
+        self.permissions = permissions
+        self.sessionID = sessionID
+        self.rememberMeToken = rememberMeToken
+        self.userInfo = UserInfo(**userInfo)
+        self.result = result
+
 class Message(NamedTuple):
     """
     Message type for API.Core.GetUpdates status messages (along with WS keep alive)
@@ -441,10 +582,6 @@ class Message(NamedTuple):
     Source: str
     Message: str
     AgeMinutes: int
-
-# Type alias for AMPVersion
-# Author: p0t4t0sandwich
-AMPVersionAlias = AMPVersion
 
 class ModuleInfo(NamedTuple):
     """
@@ -527,31 +664,7 @@ class ModuleInfo(NamedTuple):
     RequiresFullLoad: bool
     AllowRememberMe: bool
 
-class PlatformInfo(NamedTuple):
-    """
-    Platform information object
-    Author: p0t4t0sandwich
-    :param CPUInfo: The CPU information object
-    :type CPUInfo: CPUInfo
-    :param InstalledRAMMB: The installed RAM in MB
-    :type InstalledRAMMB: int
-    :param OS: The OS
-    :type OS: int
-    :param PlatformName: The platform name
-    :type PlatformName: str
-    :param SystemType: The system type
-    :type SystemType: int
-    :param Virtualization: The virtualization
-    :type Virtualization: int
-    """
-    CPUInfo: CPUInfo
-    InstalledRAMMB: int
-    OS: int
-    PlatformName: str
-    SystemType: int
-    Virtualization: int
-
-class RemoteTargetInfo(NamedTuple):
+class RemoteTargetInfo():
     """
     A struct to represent the object returned by the ADSModule#GetTargetInfo() method
     Author: p0t4t0sandwich
@@ -565,11 +678,21 @@ class RemoteTargetInfo(NamedTuple):
     :type DeploysInContainers: bool
     """
     IPAddressList: list[str]
-    PlatformInfo: PlatformInfo
+    PlatformInfo: PlatformInfoAlias
     Datastores: list[InstanceDatastore]
     DeploysInContainers: bool
 
-class Result(NamedTuple, Generic[T]):
+    def __init__(self, IPAddressList: list[str], PlatformInfo: PlatformInfoAlias, Datastores: list[InstanceDatastore], DeploysInContainers: bool) -> None:
+        """
+        Initializes the RemoteTargetInfo object
+        Author: p0t4t0sandwich
+        """
+        self.IPAddressList = IPAddressList
+        self.PlatformInfo = PlatformInfoAlias(**PlatformInfo)
+        self.Datastores = [InstanceDatastore(**Datastores[i]) for i in Datastores]
+        self.DeploysInContainers = DeploysInContainers
+
+class Result(Generic[T]):
     """
     Generic response type for calls that return a result
     Author: p0t4t0sandwich
@@ -577,6 +700,13 @@ class Result(NamedTuple, Generic[T]):
     :type result: T
     """
     result: T
+
+    def __init__(self, result: T) -> None:
+        """
+        Initializes the Result object
+        Author: p0t4t0sandwich
+        """
+        self.result = result
 
 class RunningTask(NamedTuple):
     """
@@ -698,7 +828,7 @@ class Spec(NamedTuple):
     Meta: str
     RequiresRestart: bool
 
-class SettingsSpec(NamedTuple):
+class SettingsSpec():
     """
     Response object for Core.GetSettingsSpec()
     Author: p0t4t0sandwich
@@ -707,7 +837,14 @@ class SettingsSpec(NamedTuple):
     """
     result: dict[str, Spec]
 
-class Status(NamedTuple):
+    def __init__(self, result: dict[str, Spec]) -> None:
+        """
+        Initializes the SettingsSpec object
+        Author: p0t4t0sandwich
+        """
+        self.result = {i : Spec(**result[i]) for i in result}
+
+class Status():
     """
     Struct for the result of API.Core.GetStatus
     Author: p0t4t0sandwich
@@ -718,11 +855,20 @@ class Status(NamedTuple):
     :param Metrics: The metrics
     :type Metrics: dict[str, Metric]
     """
-    State: State
+    State: StateAlias
     Uptime: str
     Metrics: dict[str, Metric]
 
-class Task(NamedTuple, Generic[T]):
+    def __init__(self, State: StateAlias, Uptime: str, Metrics: dict[str, Metric]) -> None:
+        """
+        Initializes the Status struct
+        Author: p0t4t0sandwich
+        """
+        self.State = State
+        self.Uptime = Uptime
+        self.Metrics = {i : Metric(**Metrics[i]) for i in Metrics}
+
+class Task(Generic[T]):
     """
     Generic response type for calls that return a result
     Author: p0t4t0sandwich
@@ -730,6 +876,13 @@ class Task(NamedTuple, Generic[T]):
     :type result: T
     """
     result: T
+
+    def __init__(self, result: T) -> None:
+        """
+        Initializes the Task object
+        Author: p0t4t0sandwich
+        """
+        self.result = result
 
 class UpdateInfo(NamedTuple):
     """
@@ -755,7 +908,7 @@ class UpdateInfo(NamedTuple):
     ToolsVersion: str
     PatchOnly: bool
 
-class Updates(NamedTuple):
+class Updates():
     """
     Response type for API.Core.GetUpdates
     Author: p0t4t0sandwich
@@ -776,6 +929,29 @@ class Updates(NamedTuple):
     Tasks: list[str]
     Ports: list[str]
 
+    def __init__(self, Status: Status, ConsoleEntries: list[ConsoleEntry], Messages: list[Message], Tasks: list[str], Ports: list[str]) -> None:
+        """
+        Initializes the Updates object
+        Author: p0t4t0sandwich
+        """
+        self.Status = Status
+        self.ConsoleEntries = [ConsoleEntry(**ConsoleEntries[i]) for i in ConsoleEntries]
+        self.Messages = [Message(**Messages[i]) for i in Messages]
+        self.Tasks = Tasks
+        self.Ports = Ports
+
 # A URL is a string that represents a URL
 # Author: p0t4t0sandwich
 URL = str
+
+class Void():
+    """
+    Workaround for the lack of a void type in Python
+    Author: p0t4t0sandwich
+    """
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """
+        Initializes the Void object
+        Author: p0t4t0sandwich
+        """
+        pass

@@ -4,34 +4,35 @@ from __future__ import annotations
 import requests
 import json
 
+
 type_dict = {
-    "InstanceDatastore": "Any",
-    "ActionResult": "Any",
+    "InstanceDatastore": "InstanceDatastore",
+    "ActionResult": "ActionResult[Any]",
     "Int32": "int",
-    "IEnumerable<InstanceDatastore>": "list",
-    "RunningTask": "Any",
+    "IEnumerable<InstanceDatastore>": "list[InstanceDatastore]",
+    "RunningTask": "Result[RunningTask]",
+    "Task<RunningTask>": "Task[RunningTask]",
     "IEnumerable<JObject>": "list[dict]",
-    "Guid": "str", # UUID
-    "Task<RunningTask>": "Any",
-    "IEnumerable<DeploymentTemplate>": "list",
+    "Guid": "UUID",
+    "IEnumerable<DeploymentTemplate>": "Result[list]",
     "String": "str",
     "DeploymentTemplate": "Any",
     "Boolean": "bool",
     "List<String>": "list[str]",
     "PostCreateActions": "Any",
     "Dictionary<String, String>": "dict[str, str]",
-    "RemoteTargetInfo": "Any",
-    "IEnumerable<ApplicationSpec>": "list",
-    "Void": "None",
-    "IEnumerable<EndpointInfo>": "list",
-    "IEnumerable<IADSInstance>": "list",
+    "RemoteTargetInfo": "RemoteTargetInfo",
+    "IEnumerable<ApplicationSpec>": "Result[list]",
+    "Void": "Void",
+    "IEnumerable<EndpointInfo>": "Result[list[EndpointInfo]]",
+    "IEnumerable<IADSInstance>": "Result[list[IADSInstance]]",
     "JObject": "dict",
-    "PortProtocol": "str",
-    "Task<ActionResult>": "Any",
-    "ActionResult<String>": "Any",
-    "IADSInstance": "bool",
-    "Uri": "str",
-    "IEnumerable<PortUsage>": "list",
+    "PortProtocol": "Any",
+    "Task<ActionResult>": "Task[ActionResult]",
+    "ActionResult<String>": "ActionResult[str]",
+    "IADSInstance": "Result[IADSInstance]",
+    "Uri": "URL",
+    "IEnumerable<PortUsage>": "Result[list]",
     "Dictionary<String, Int32>": "dict[str, int]",
     "LocalAMPInstance": "Any",
     "ContainerMemoryPolicy": "Any",
@@ -39,63 +40,64 @@ type_dict = {
     "Task<JObject>": "Any",
     "Int64": "int",
     "FileChunkData": "Any",
-    "IEnumerable<BackupManifest>": "list[dict]",
-    "Nullable<DateTime>": "Any",
-    "IEnumerable<IAuditLogEntry>": "dict",
+    "IEnumerable<BackupManifest>": "Result[list[dict]]",
+    "Nullable<DateTime>": "Any | None",
+    "IEnumerable<IAuditLogEntry>": "Result[dict]",
     "Dictionary<String, IEnumerable<JObject>>": "dict[str, list[dict]]",
     "IDictionary<String, String>": "dict[str, str]",
     "List<JObject>": "list[dict]",
     "String[]": "list[str]",
-    "Task<IEnumerable<AuthRoleSummary>>": "Any",
-    "Task<IDictionary<Guid, String>>": "Any",
-    "Task<AuthRoleSummary>": "Any",
-    "Task<ActionResult<Guid>>": "Any",
+    "Task<IEnumerable<AuthRoleSummary>>": "Task[list]",
+    "Task<IDictionary<Guid, String>>": "Task[dict[UUID, str]]",
+    "Task<AuthRoleSummary>": "Task[Any]",
+    "Task<ActionResult<Guid>>": "Task[ActionResult[UUID]]",
     "Nullable<Boolean>": "bool | None",
-    "Task<IEnumerable<String>>": "Any",
+    "Task<IEnumerable<String>>": "Task[list[str]]",
     "ScheduleInfo": "Any",
     "Int32[]": "list[int]",
     "TimeIntervalTrigger": "Any",
-    "IEnumerable<WebSessionSummary>": "list",
-    "Task<IEnumerable<UserInfoSummary>>": "Any",
-    "Task<UserInfo>": "Any",
-    "Task<IEnumerable<UserInfo>>": "Any",
+    "IEnumerable<WebSessionSummary>": "Result[list]",
+    "Task<IEnumerable<UserInfoSummary>>": "Task[list]",
+    "Task<UserInfo>": "Task[UserInfo]",
+    "Task<IEnumerable<UserInfo>>": "Task[list[UserInfo]]",
     "IList<IPermissionsTreeNode>": "list",
     "WebauthnLoginInfo": "Any",
     "IEnumerable<WebauthnCredentialSummary>": "list",
-    "Task<ActionResult<TwoFactorSetupInfo>>": "Any",
-    "IEnumerable<RunningTask>": "Any", "ModuleInfo": "Any",
+    "Task<ActionResult<TwoFactorSetupInfo>>": "Task[ActionResult[Any]]",
+    "IEnumerable<RunningTask>": "Result[list[RunningTask]]",
+    "ModuleInfo": "Result[ModuleInfo]",
     "Dictionary<String, Dictionary<String, MethodInfoSummary>>": "dict[str, dict]",
     "Object": "Any",
-    "Task<String>": "Any",
-    "UpdateInfo": "Any",
-    "IEnumerable<ListeningPortSummary>": "list",
+    "Task<String>": "Task[str]",
+    "UpdateInfo": "Result[UpdateInfo]",
+    "IEnumerable<ListeningPortSummary>": "Result[list]",
 
     ## Custom types
-    # "Result<Instance>": "Result<Instance>",
-    # "Result<RemoteTargetInfo>": "Result<RemoteTargetInfo>",
-    # "SettingsSpec": "SettingsSpec",
-    # "Status": "Status",
-    # "Updates": "Updates",
-    # "Result<Map<String, String>>": "Result<Map<String, String>>",
-    # "LoginResult": "LoginResult"
+    "Result[Instance]": "Result[Instance]",
+    "Result[RemoteTargetInfo]": "Result[RemoteTargetInfo]",
+    "SettingsSpec": "SettingsSpec",
+    "Status": "Status",
+    "Updates": "Updates",
+    "Result[dict[str, str]]": "Result[dict[str, str]]",
+    "LoginResult": "LoginResult"
 }
 
 custom_types = {
-    # # API.ADSModule.GetInstance
-    # "ADSModule.GetInstance": "Result<Instance>",
-    # # API.ADSModule.GetTargetInfo
-    # "ADSModule.GetTargetInfo": "Result<RemoteTargetInfo>",
+    # API.ADSModule.GetInstance
+    "ADSModule.GetInstance": "Result[Instance]",
+    # API.ADSModule.GetTargetInfo
+    "ADSModule.GetTargetInfo": "Result[RemoteTargetInfo]",
 
-    # # API.Core.GetSettingsSpec
-    # "Core.GetSettingsSpec": "SettingsSpec",
-    # # API.Core.GetStatus
-    # "Core.GetStatus": "Status",
-    # # API.Core.GetUpdates
-    # "Core.GetUpdates": "Updates",
-    # # API.Core.GetUserList
-    # "Core.GetUserList": "Result<Map<String, String>>",
-    # # API.Core.Login
-    # "Core.Login": "LoginResult",
+    # API.Core.GetSettingsSpec
+    "Core.GetSettingsSpec": "SettingsSpec",
+    # API.Core.GetStatus
+    "Core.GetStatus": "Status",
+    # API.Core.GetUpdates
+    "Core.GetUpdates": "Updates",
+    # API.Core.GetUserList
+    "Core.GetUserList": "Result[dict[str, str]]",
+    # API.Core.Login
+    "Core.Login": "LoginResult",
 }
 
 def generate_apimodule_method(module: str, method: str, method_spec: dict):
@@ -184,7 +186,8 @@ def generate_apimodule_method(module: str, method: str, method_spec: dict):
         .replace("%METHOD_PARAMETER_MAP%", map_string)
 
     # End result will return a string
-    return template
+    # TODO: Simple replace is here to fix a bug with the Void return type
+    return template.replace("return Void(**response)", "if response == None:\n            response = {}\n        return Void(**response)")
 
 def generate_apimodule(module: str, methods: dict):
     # Read the template file

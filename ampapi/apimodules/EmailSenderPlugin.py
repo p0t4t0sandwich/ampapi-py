@@ -1,9 +1,9 @@
-#!/bin/python3
-# author: p0t4t0sandich
-# description: An API that allows you to communicate with AMP installations from within Python
+# An API that allows you to communicate with AMP installations from within Python
+# Author: p0t4t0sandich
 
 from typing import Any
 from ampapi.ampapi import AMPAPI
+from ampapi.types import *
 
 
 class EmailSenderPlugin(AMPAPI):
@@ -14,19 +14,21 @@ class EmailSenderPlugin(AMPAPI):
         """
         super().__init__(ampapi.baseUri, ampapi.username, ampapi.password, ampapi.rememberMeToken, ampapi.sessionId)
 
-    def TestSMTPSettings(self, ) -> Any:
+    def TestSMTPSettings(self, ) -> Task[ActionResult]:
         """
         Name Description Optional
-        :returns: Any
+        :returns: Task[ActionResult]
         """
-        return self.api_call("EmailSenderPlugin/TestSMTPSettings", { 
+        response: dict = self.api_call("EmailSenderPlugin/TestSMTPSettings", { 
         })
+        return Task[ActionResult](**response)
 
-    async def TestSMTPSettingsAsync(self, ) -> Any:
+    async def TestSMTPSettingsAsync(self, ) -> Task[ActionResult]:
         """
         Name Description Optional
-        :returns: Any
+        :returns: Task[ActionResult]
         """
-        return await self.api_call_async("EmailSenderPlugin/TestSMTPSettings", { 
+        response: dict = await self.api_call_async("EmailSenderPlugin/TestSMTPSettings", { 
         })
+        return Task[ActionResult](**response)
 

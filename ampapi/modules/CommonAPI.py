@@ -7,6 +7,7 @@ from ampapi.apimodules.Core import Core
 from ampapi.apimodules.EmailSenderPlugin import EmailSenderPlugin
 from ampapi.apimodules.FileManagerPlugin import FileManagerPlugin
 from ampapi.apimodules.LocalFileBackupPlugin import LocalFileBackupPlugin
+from ampapi.types import LoginResult
 
 
 class CommonAPI(AMPAPI):
@@ -17,15 +18,16 @@ class CommonAPI(AMPAPI):
         self.FileManagerPlugin = FileManagerPlugin(self)
         self.LocalFileBackupPlugin = LocalFileBackupPlugin(self)
 
-    def Login(self) -> dict:
+    def Login(self) -> LoginResult:
         """
         Simplified login function
-        :returns: dict with the result of the login
+        :returns: The result of the login
+        :rtype: LoginResult
         """
-        loginResult: dict = super().Login()
-        if "success" in loginResult.keys() and loginResult["success"] == True:
-            self.rememberMeToken = loginResult["rememberMeToken"]
-            self.sessionId = loginResult["sessionID"]
+        loginResult: LoginResult = super().Login()
+        if loginResult.success == True:
+            self.rememberMeToken = loginResult.rememberMeToken
+            self.sessionId = loginResult.sessionID
 
             # Update the session ID and remember me token of submodules
             self.Core.sessionId = self.sessionId
@@ -39,15 +41,16 @@ class CommonAPI(AMPAPI):
 
         return loginResult
 
-    async def LoginAsync(self) -> dict:
+    async def LoginAsync(self) -> LoginResult:
         """
         Simplified login function
-        :returns: dict with the result of the login
+        :returns: The result of the login
+        :rtype: LoginResult
         """
-        loginResult: dict = await super().LoginAsync()
-        if "success" in loginResult.keys() and loginResult["success"] == True:
-            self.rememberMeToken = loginResult["rememberMeToken"]
-            self.sessionId = loginResult["sessionID"]
+        loginResult: LoginResult = await super().LoginAsync()
+        if loginResult.success == True:
+            self.rememberMeToken = loginResult.rememberMeToken
+            self.sessionId = loginResult.sessionID
 
             # Update the session ID and remember me token of submodules
             self.Core.sessionId = self.sessionId

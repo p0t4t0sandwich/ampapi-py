@@ -4,21 +4,23 @@
 
 from ampapi.apimodules.MinecraftModule import MinecraftModule
 from ampapi.modules.CommonAPI import CommonAPI
+from ampapi.types import LoginResult
 
 class Minecraft(CommonAPI):
     def __init__(self, baseUri: str, username: str = "", password: str = "", rememberMeToken: str = "", sessionId: str = ""):
         super().__init__(baseUri, username, password, rememberMeToken, sessionId)
         self.MinecraftModule = MinecraftModule(self)
 
-    def Login(self) -> dict:
+    def Login(self) -> LoginResult:
         """
         Simplified login function
-        :returns: dict with the result of the login
+        :returns: The result of the login
+        :rtype: LoginResult
         """
-        loginResult: dict = super().Login()
-        if "success" in loginResult.keys() and loginResult["success"] == True:
-            self.rememberMeToken = loginResult["rememberMeToken"]
-            self.sessionId = loginResult["sessionID"]
+        loginResult: LoginResult = super().Login()
+        if loginResult.success == True:
+            self.rememberMeToken = loginResult.rememberMeToken
+            self.sessionId = loginResult.sessionID
 
             # Update the session ID and remember me token of submodules
             self.MinecraftModule.sessionId = self.sessionId
@@ -26,15 +28,16 @@ class Minecraft(CommonAPI):
 
         return loginResult
 
-    async def LoginAsync(self) -> dict:
+    async def LoginAsync(self) -> LoginResult:
         """
         Simplified login function
-        :returns: dict with the result of the login
+        :returns: The result of the login
+        :rtype: LoginResult
         """
-        loginResult: dict = await super().LoginAsync()
-        if "success" in loginResult.keys() and loginResult["success"] == True:
-            self.rememberMeToken = loginResult["rememberMeToken"]
-            self.sessionId = loginResult["sessionID"]
+        loginResult: LoginResult = await super().LoginAsync()
+        if loginResult.success == True:
+            self.rememberMeToken = loginResult.rememberMeToken
+            self.sessionId = loginResult.sessionID
 
             # Update the session ID and remember me token of submodules
             self.MinecraftModule.sessionId = self.sessionId

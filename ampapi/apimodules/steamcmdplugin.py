@@ -1,9 +1,9 @@
-#!/bin/python3
-# author: p0t4t0sandich
-# description: An API that allows you to communicate with AMP installations from within Python
+# An API that allows you to communicate with AMP installations from within Python
+# Author: p0t4t0sandich
 
 from typing import Any
 from ampapi.ampapi import AMPAPI
+from ampapi.types import *
 
 
 class steamcmdplugin(AMPAPI):
@@ -14,63 +14,81 @@ class steamcmdplugin(AMPAPI):
         """
         super().__init__(ampapi.baseUri, ampapi.username, ampapi.password, ampapi.rememberMeToken, ampapi.sessionId)
 
-    def CancelSteamGuard(self, ) -> None:
+    def CancelSteamGuard(self, ) -> Void:
         """
         Name Description Optional
-        :returns: None
+        :returns: Void
         """
-        return self.api_call("steamcmdplugin/CancelSteamGuard", { 
+        response: dict = self.api_call("steamcmdplugin/CancelSteamGuard", { 
         })
+        if response == None:
+            response = {}
+        return Void(**response)
 
-    async def CancelSteamGuardAsync(self, ) -> None:
+    async def CancelSteamGuardAsync(self, ) -> Void:
         """
         Name Description Optional
-        :returns: None
+        :returns: Void
         """
-        return await self.api_call_async("steamcmdplugin/CancelSteamGuard", { 
+        response: dict = await self.api_call_async("steamcmdplugin/CancelSteamGuard", { 
         })
+        if response == None:
+            response = {}
+        return Void(**response)
 
-    def SteamGuardCode(self, code: str) -> None:
-        """
-        Name Description Optional
-        :param code: {str}  False
-        :returns: None
-        """
-        return self.api_call("steamcmdplugin/SteamGuardCode", { 
-            "code": code,
-        })
-
-    async def SteamGuardCodeAsync(self, code: str) -> None:
+    def SteamGuardCode(self, code: str) -> Void:
         """
         Name Description Optional
         :param code: {str}  False
-        :returns: None
+        :returns: Void
         """
-        return await self.api_call_async("steamcmdplugin/SteamGuardCode", { 
+        response: dict = self.api_call("steamcmdplugin/SteamGuardCode", { 
             "code": code,
         })
+        if response == None:
+            response = {}
+        return Void(**response)
 
-    def SteamUsernamePassword(self, username: str, password: str) -> None:
+    async def SteamGuardCodeAsync(self, code: str) -> Void:
+        """
+        Name Description Optional
+        :param code: {str}  False
+        :returns: Void
+        """
+        response: dict = await self.api_call_async("steamcmdplugin/SteamGuardCode", { 
+            "code": code,
+        })
+        if response == None:
+            response = {}
+        return Void(**response)
+
+    def SteamUsernamePassword(self, username: str, password: str) -> Void:
         """
         Name Description Optional
         :param username: {str}  False
         :param password: {str}  False
-        :returns: None
+        :returns: Void
         """
-        return self.api_call("steamcmdplugin/SteamUsernamePassword", { 
+        response: dict = self.api_call("steamcmdplugin/SteamUsernamePassword", { 
             "username": username,
             "password": password,
         })
+        if response == None:
+            response = {}
+        return Void(**response)
 
-    async def SteamUsernamePasswordAsync(self, username: str, password: str) -> None:
+    async def SteamUsernamePasswordAsync(self, username: str, password: str) -> Void:
         """
         Name Description Optional
         :param username: {str}  False
         :param password: {str}  False
-        :returns: None
+        :returns: Void
         """
-        return await self.api_call_async("steamcmdplugin/SteamUsernamePassword", { 
+        response: dict = await self.api_call_async("steamcmdplugin/SteamUsernamePassword", { 
             "username": username,
             "password": password,
         })
+        if response == None:
+            response = {}
+        return Void(**response)
 

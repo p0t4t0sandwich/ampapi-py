@@ -1,6 +1,5 @@
-#!/bin/python3
-# author: p0t4t0sandich
-# description: A Python library for the AMP API
+# An API that allows you to communicate with AMP installations from within Python
+# Author: p0t4t0sandich
 
 from __future__ import annotations
 from typing import Any, TypeVar
@@ -10,6 +9,7 @@ import requests
 import json
 
 from aiohttp import ClientSession
+from ampapi.types import LoginResult
 
 class AMPAPI():
     """Class for interacting with the AMP API"""
@@ -24,7 +24,7 @@ class AMPAPI():
         # Check if the baseUri ends with a slash
         if not self.baseUri[-1] == "/":
             self.baseUri += "/"
-        self.dataSource: str = self.baseUri + "API"
+        self.dataSource: str = self.baseUri + "API/"
 
         self.username: str = username
         self.password: str = password
@@ -66,6 +66,7 @@ class AMPAPI():
             headers=self.headers,
             data=data_json
         )
+
         res_json = json.loads(res.content)
 
         return res_json
@@ -99,7 +100,7 @@ class AMPAPI():
 
         return response
 
-    def Login(self) -> dict:
+    def Login(self) -> LoginResult:
         """
         Simplified login function
         :returns: dict with the result of the login
@@ -115,15 +116,15 @@ class AMPAPI():
         if self.rememberMeToken == "":
             data["password"] = self.password
 
-        loginResult: dict = self.api_call("Core/Login", data)
+        loginResult: LoginResult = LoginResult(**(self.api_call("Core/Login", data)))
 
-        if "success" in loginResult.keys() and loginResult["success"] == True:
-            self.rememberMeToken = loginResult["rememberMeToken"]
-            self.sessionId = loginResult["sessionID"]
+        if loginResult.success == True:
+            self.rememberMeToken = loginResult.rememberMeToken
+            self.sessionId = loginResult.sessionID
 
         return loginResult
 
-    async def LoginAsync(self) -> dict:
+    async def LoginAsync(self) -> LoginResult:
         """
         Simplified login function
         :returns: dict with the result of the login
@@ -139,10 +140,10 @@ class AMPAPI():
         if self.rememberMeToken == "":
             data["password"] = self.password
 
-        loginResult: dict = await self.api_call_async("Core/Login", data)
+        loginResult: LoginResult = LoginResult(**(self.api_call("Core/Login", data)))
 
-        if "success" in loginResult.keys() and loginResult["success"] == True:
-            self.rememberMeToken = loginResult["rememberMeToken"]
-            self.sessionId = loginResult["sessionID"]
+        if loginResult.success == True:
+            self.rememberMeToken = loginResult.rememberMeToken
+            self.sessionId = loginResult.sessionID
 
         return loginResult

@@ -36,29 +36,29 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
-    def AddEventTrigger(self, triggerId: UUID) -> ActionResult[Any]:
+    def AddEventTrigger(self, triggerId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param triggerId: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/AddEventTrigger", { 
             "triggerId": triggerId,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def AddEventTriggerAsync(self, triggerId: UUID) -> ActionResult[Any]:
+    async def AddEventTriggerAsync(self, triggerId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param triggerId: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/AddEventTrigger", { 
             "triggerId": triggerId,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def AddIntervalTrigger(self, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str) -> ActionResult[Any]:
+    def AddIntervalTrigger(self, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str) -> ActionResult:
         """
         Name Description Optional
         :param months: {list[int]}  False
@@ -67,7 +67,7 @@ class Core(AMPAPI):
         :param minutes: {list[int]}  False
         :param daysOfMonth: {list[int]}  False
         :param description: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/AddIntervalTrigger", { 
             "months": months,
@@ -77,9 +77,9 @@ class Core(AMPAPI):
             "daysOfMonth": daysOfMonth,
             "description": description,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def AddIntervalTriggerAsync(self, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str) -> ActionResult[Any]:
+    async def AddIntervalTriggerAsync(self, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str) -> ActionResult:
         """
         Name Description Optional
         :param months: {list[int]}  False
@@ -88,7 +88,7 @@ class Core(AMPAPI):
         :param minutes: {list[int]}  False
         :param daysOfMonth: {list[int]}  False
         :param description: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/AddIntervalTrigger", { 
             "months": months,
@@ -98,37 +98,37 @@ class Core(AMPAPI):
             "daysOfMonth": daysOfMonth,
             "description": description,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def AddTask(self, TriggerID: UUID, MethodID: str, ParameterMapping: dict[str, str]) -> ActionResult[Any]:
+    def AddTask(self, TriggerID: UUID, MethodID: str, ParameterMapping: dict[str, str]) -> ActionResult:
         """
         Name Description Optional
         :param TriggerID: {UUID}  False
         :param MethodID: {str}  False
         :param ParameterMapping: {dict[str, str]}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/AddTask", { 
             "TriggerID": TriggerID,
             "MethodID": MethodID,
             "ParameterMapping": ParameterMapping,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def AddTaskAsync(self, TriggerID: UUID, MethodID: str, ParameterMapping: dict[str, str]) -> ActionResult[Any]:
+    async def AddTaskAsync(self, TriggerID: UUID, MethodID: str, ParameterMapping: dict[str, str]) -> ActionResult:
         """
         Name Description Optional
         :param TriggerID: {UUID}  False
         :param MethodID: {str}  False
         :param ParameterMapping: {dict[str, str]}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/AddTask", { 
             "TriggerID": TriggerID,
             "MethodID": MethodID,
             "ParameterMapping": ParameterMapping,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def AsyncTest(self, ) -> Task[str]:
         """
@@ -150,57 +150,57 @@ class Core(AMPAPI):
         })
         return Task[str](**response)
 
-    def CancelTask(self, TaskId: UUID) -> ActionResult[Any]:
+    def CancelTask(self, TaskId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param TaskId: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/CancelTask", { 
             "TaskId": TaskId,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def CancelTaskAsync(self, TaskId: UUID) -> ActionResult[Any]:
+    async def CancelTaskAsync(self, TaskId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param TaskId: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/CancelTask", { 
             "TaskId": TaskId,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def ChangeTaskOrder(self, TriggerID: UUID, TaskID: UUID, NewOrder: int) -> ActionResult[Any]:
+    def ChangeTaskOrder(self, TriggerID: UUID, TaskID: UUID, NewOrder: int) -> ActionResult:
         """
         Name Description Optional
         :param TriggerID: {UUID}  False
         :param TaskID: {UUID}  False
         :param NewOrder: {int}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/ChangeTaskOrder", { 
             "TriggerID": TriggerID,
             "TaskID": TaskID,
             "NewOrder": NewOrder,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def ChangeTaskOrderAsync(self, TriggerID: UUID, TaskID: UUID, NewOrder: int) -> ActionResult[Any]:
+    async def ChangeTaskOrderAsync(self, TriggerID: UUID, TaskID: UUID, NewOrder: int) -> ActionResult:
         """
         Name Description Optional
         :param TriggerID: {UUID}  False
         :param TaskID: {UUID}  False
         :param NewOrder: {int}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/ChangeTaskOrder", { 
             "TriggerID": TriggerID,
             "TaskID": TaskID,
             "NewOrder": NewOrder,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def ChangeUserPassword(self, Username: str, OldPassword: str, NewPassword: str, TwoFactorPIN: str) -> Task[ActionResult]:
         """
@@ -400,53 +400,53 @@ class Core(AMPAPI):
         })
         return Task[ActionResult](**response)
 
-    def DeleteTask(self, TriggerID: UUID, TaskID: UUID) -> ActionResult[Any]:
+    def DeleteTask(self, TriggerID: UUID, TaskID: UUID) -> ActionResult:
         """
         Name Description Optional
         :param TriggerID: {UUID}  False
         :param TaskID: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/DeleteTask", { 
             "TriggerID": TriggerID,
             "TaskID": TaskID,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def DeleteTaskAsync(self, TriggerID: UUID, TaskID: UUID) -> ActionResult[Any]:
+    async def DeleteTaskAsync(self, TriggerID: UUID, TaskID: UUID) -> ActionResult:
         """
         Name Description Optional
         :param TriggerID: {UUID}  False
         :param TaskID: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/DeleteTask", { 
             "TriggerID": TriggerID,
             "TaskID": TaskID,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def DeleteTrigger(self, TriggerID: UUID) -> ActionResult[Any]:
+    def DeleteTrigger(self, TriggerID: UUID) -> ActionResult:
         """
         Name Description Optional
         :param TriggerID: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/DeleteTrigger", { 
             "TriggerID": TriggerID,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def DeleteTriggerAsync(self, TriggerID: UUID) -> ActionResult[Any]:
+    async def DeleteTriggerAsync(self, TriggerID: UUID) -> ActionResult:
         """
         Name Description Optional
         :param TriggerID: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/DeleteTrigger", { 
             "TriggerID": TriggerID,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def DeleteUser(self, Username: str) -> Task[ActionResult]:
         """
@@ -496,47 +496,47 @@ class Core(AMPAPI):
         })
         return Task[ActionResult](**response)
 
-    def DismissAllTasks(self, ) -> ActionResult[Any]:
+    def DismissAllTasks(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/DismissAllTasks", { 
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def DismissAllTasksAsync(self, ) -> ActionResult[Any]:
+    async def DismissAllTasksAsync(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/DismissAllTasks", { 
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def DismissTask(self, TaskId: UUID) -> ActionResult[Any]:
+    def DismissTask(self, TaskId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param TaskId: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/DismissTask", { 
             "TaskId": TaskId,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def DismissTaskAsync(self, TaskId: UUID) -> ActionResult[Any]:
+    async def DismissTaskAsync(self, TaskId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param TaskId: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/DismissTask", { 
             "TaskId": TaskId,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def EditIntervalTrigger(self, Id: UUID, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str) -> ActionResult[Any]:
+    def EditIntervalTrigger(self, Id: UUID, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str) -> ActionResult:
         """
         Name Description Optional
         :param Id: {UUID}  False
@@ -546,7 +546,7 @@ class Core(AMPAPI):
         :param minutes: {list[int]}  False
         :param daysOfMonth: {list[int]}  False
         :param description: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/EditIntervalTrigger", { 
             "Id": Id,
@@ -557,9 +557,9 @@ class Core(AMPAPI):
             "daysOfMonth": daysOfMonth,
             "description": description,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def EditIntervalTriggerAsync(self, Id: UUID, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str) -> ActionResult[Any]:
+    async def EditIntervalTriggerAsync(self, Id: UUID, months: list[int], days: list[int], hours: list[int], minutes: list[int], daysOfMonth: list[int], description: str) -> ActionResult:
         """
         Name Description Optional
         :param Id: {UUID}  False
@@ -569,7 +569,7 @@ class Core(AMPAPI):
         :param minutes: {list[int]}  False
         :param daysOfMonth: {list[int]}  False
         :param description: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/EditIntervalTrigger", { 
             "Id": Id,
@@ -580,37 +580,37 @@ class Core(AMPAPI):
             "daysOfMonth": daysOfMonth,
             "description": description,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def EditTask(self, TriggerID: UUID, TaskID: UUID, ParameterMapping: dict[str, str]) -> ActionResult[Any]:
+    def EditTask(self, TriggerID: UUID, TaskID: UUID, ParameterMapping: dict[str, str]) -> ActionResult:
         """
         Name Description Optional
         :param TriggerID: {UUID}  False
         :param TaskID: {UUID}  False
         :param ParameterMapping: {dict[str, str]}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/EditTask", { 
             "TriggerID": TriggerID,
             "TaskID": TaskID,
             "ParameterMapping": ParameterMapping,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def EditTaskAsync(self, TriggerID: UUID, TaskID: UUID, ParameterMapping: dict[str, str]) -> ActionResult[Any]:
+    async def EditTaskAsync(self, TriggerID: UUID, TaskID: UUID, ParameterMapping: dict[str, str]) -> ActionResult:
         """
         Name Description Optional
         :param TriggerID: {UUID}  False
         :param TaskID: {UUID}  False
         :param ParameterMapping: {dict[str, str]}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/EditTask", { 
             "TriggerID": TriggerID,
             "TaskID": TaskID,
             "ParameterMapping": ParameterMapping,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def EnableTwoFactor(self, Username: str, Password: str) -> Task[ActionResult[Any]]:
         """
@@ -1414,27 +1414,27 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
-    def RefreshSettingValueList(self, Node: str) -> ActionResult[Any]:
+    def RefreshSettingValueList(self, Node: str) -> ActionResult:
         """
         Name Description Optional
         :param Node: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/RefreshSettingValueList", { 
             "Node": Node,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def RefreshSettingValueListAsync(self, Node: str) -> ActionResult[Any]:
+    async def RefreshSettingValueListAsync(self, Node: str) -> ActionResult:
         """
         Name Description Optional
         :param Node: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/RefreshSettingValueList", { 
             "Node": Node,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def RefreshSettingsSourceCache(self, ) -> Void:
         """
@@ -1510,23 +1510,23 @@ class Core(AMPAPI):
         })
         return Task[ActionResult](**response)
 
-    def Restart(self, ) -> ActionResult[Any]:
+    def Restart(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/Restart", { 
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def RestartAsync(self, ) -> ActionResult[Any]:
+    async def RestartAsync(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/Restart", { 
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def RestartAMP(self, ) -> Void:
         """
@@ -1574,49 +1574,49 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
-    def RevokeWebauthnCredential(self, ID: int) -> ActionResult[Any]:
+    def RevokeWebauthnCredential(self, ID: int) -> ActionResult:
         """
         Name Description Optional
         :param ID: {int}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/RevokeWebauthnCredential", { 
             "ID": ID,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def RevokeWebauthnCredentialAsync(self, ID: int) -> ActionResult[Any]:
+    async def RevokeWebauthnCredentialAsync(self, ID: int) -> ActionResult:
         """
         Name Description Optional
         :param ID: {int}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/RevokeWebauthnCredential", { 
             "ID": ID,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def RunEventTriggerImmediately(self, triggerId: UUID) -> ActionResult[Any]:
+    def RunEventTriggerImmediately(self, triggerId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param triggerId: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/RunEventTriggerImmediately", { 
             "triggerId": triggerId,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def RunEventTriggerImmediatelyAsync(self, triggerId: UUID) -> ActionResult[Any]:
+    async def RunEventTriggerImmediatelyAsync(self, triggerId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param triggerId: {UUID}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/RunEventTriggerImmediately", { 
             "triggerId": triggerId,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def SendConsoleMessage(self, message: str) -> Void:
         """
@@ -1704,31 +1704,31 @@ class Core(AMPAPI):
         })
         return Task[ActionResult](**response)
 
-    def SetConfig(self, node: str, value: str) -> ActionResult[Any]:
+    def SetConfig(self, node: str, value: str) -> ActionResult:
         """
         Name Description Optional
         :param node: {str}  False
         :param value: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/SetConfig", { 
             "node": node,
             "value": value,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def SetConfigAsync(self, node: str, value: str) -> ActionResult[Any]:
+    async def SetConfigAsync(self, node: str, value: str) -> ActionResult:
         """
         Name Description Optional
         :param node: {str}  False
         :param value: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/SetConfig", { 
             "node": node,
             "value": value,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def SetConfigs(self, data: dict[str, str]) -> bool:
         """
@@ -1752,67 +1752,67 @@ class Core(AMPAPI):
         })
         return bool(**response)
 
-    def SetTriggerEnabled(self, Id: UUID, Enabled: bool) -> ActionResult[Any]:
+    def SetTriggerEnabled(self, Id: UUID, Enabled: bool) -> ActionResult:
         """
         Name Description Optional
         :param Id: {UUID}  False
         :param Enabled: {bool}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/SetTriggerEnabled", { 
             "Id": Id,
             "Enabled": Enabled,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def SetTriggerEnabledAsync(self, Id: UUID, Enabled: bool) -> ActionResult[Any]:
+    async def SetTriggerEnabledAsync(self, Id: UUID, Enabled: bool) -> ActionResult:
         """
         Name Description Optional
         :param Id: {UUID}  False
         :param Enabled: {bool}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/SetTriggerEnabled", { 
             "Id": Id,
             "Enabled": Enabled,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def Sleep(self, ) -> ActionResult[Any]:
+    def Sleep(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/Sleep", { 
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def SleepAsync(self, ) -> ActionResult[Any]:
+    async def SleepAsync(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/Sleep", { 
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def Start(self, ) -> ActionResult[Any]:
+    def Start(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/Start", { 
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def StartAsync(self, ) -> ActionResult[Any]:
+    async def StartAsync(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/Start", { 
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def Stop(self, ) -> Void:
         """
@@ -1908,23 +1908,23 @@ class Core(AMPAPI):
         })
         return Task[ActionResult](**response)
 
-    def UpdateApplication(self, ) -> ActionResult[Any]:
+    def UpdateApplication(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/UpdateApplication", { 
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def UpdateApplicationAsync(self, ) -> ActionResult[Any]:
+    async def UpdateApplicationAsync(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/UpdateApplication", { 
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def UpdateUserInfo(self, Username: str, Disabled: bool, PasswordExpires: bool, CannotChangePassword: bool, MustChangePassword: bool, EmailAddress: str) -> Task[ActionResult]:
         """
@@ -1990,33 +1990,33 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
-    def WebauthnRegister(self, attestationObject: str, clientDataJSON: str, description: str) -> ActionResult[Any]:
+    def WebauthnRegister(self, attestationObject: str, clientDataJSON: str, description: str) -> ActionResult:
         """
         Name Description Optional
         :param attestationObject: {str}  False
         :param clientDataJSON: {str}  False
         :param description: {str}  True
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/WebauthnRegister", { 
             "attestationObject": attestationObject,
             "clientDataJSON": clientDataJSON,
             "description": description,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def WebauthnRegisterAsync(self, attestationObject: str, clientDataJSON: str, description: str) -> ActionResult[Any]:
+    async def WebauthnRegisterAsync(self, attestationObject: str, clientDataJSON: str, description: str) -> ActionResult:
         """
         Name Description Optional
         :param attestationObject: {str}  False
         :param clientDataJSON: {str}  False
         :param description: {str}  True
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/WebauthnRegister", { 
             "attestationObject": attestationObject,
             "clientDataJSON": clientDataJSON,
             "description": description,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 

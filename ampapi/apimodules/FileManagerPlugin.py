@@ -70,131 +70,131 @@ class FileManagerPlugin(AMPAPI):
         })
         return ActionResult[str](**response)
 
-    def ChangeExclusion(self, ModifyPath: str, AsDirectory: bool, Exclude: bool) -> ActionResult[Any]:
+    def ChangeExclusion(self, ModifyPath: str, AsDirectory: bool, Exclude: bool) -> ActionResult:
         """
         Name Description Optional
         :param ModifyPath: {str}  False
         :param AsDirectory: {bool}  False
         :param Exclude: {bool}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/ChangeExclusion", { 
             "ModifyPath": ModifyPath,
             "AsDirectory": AsDirectory,
             "Exclude": Exclude,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def ChangeExclusionAsync(self, ModifyPath: str, AsDirectory: bool, Exclude: bool) -> ActionResult[Any]:
+    async def ChangeExclusionAsync(self, ModifyPath: str, AsDirectory: bool, Exclude: bool) -> ActionResult:
         """
         Name Description Optional
         :param ModifyPath: {str}  False
         :param AsDirectory: {bool}  False
         :param Exclude: {bool}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/ChangeExclusion", { 
             "ModifyPath": ModifyPath,
             "AsDirectory": AsDirectory,
             "Exclude": Exclude,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def CopyFile(self, Origin: str, TargetDirectory: str) -> ActionResult[Any]:
+    def CopyFile(self, Origin: str, TargetDirectory: str) -> ActionResult:
         """
         Name Description Optional
         :param Origin: {str}  False
         :param TargetDirectory: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/CopyFile", { 
             "Origin": Origin,
             "TargetDirectory": TargetDirectory,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def CopyFileAsync(self, Origin: str, TargetDirectory: str) -> ActionResult[Any]:
+    async def CopyFileAsync(self, Origin: str, TargetDirectory: str) -> ActionResult:
         """
         Name Description Optional
         :param Origin: {str}  False
         :param TargetDirectory: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/CopyFile", { 
             "Origin": Origin,
             "TargetDirectory": TargetDirectory,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def CreateArchive(self, PathToArchive: str) -> ActionResult[Any]:
+    def CreateArchive(self, PathToArchive: str) -> ActionResult:
         """
         Name Description Optional
         :param PathToArchive: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/CreateArchive", { 
             "PathToArchive": PathToArchive,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def CreateArchiveAsync(self, PathToArchive: str) -> ActionResult[Any]:
+    async def CreateArchiveAsync(self, PathToArchive: str) -> ActionResult:
         """
         Name Description Optional
         :param PathToArchive: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/CreateArchive", { 
             "PathToArchive": PathToArchive,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def CreateDirectory(self, NewPath: str) -> ActionResult[Any]:
+    def CreateDirectory(self, NewPath: str) -> ActionResult:
         """
         Name Description Optional
         :param NewPath: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/CreateDirectory", { 
             "NewPath": NewPath,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def CreateDirectoryAsync(self, NewPath: str) -> ActionResult[Any]:
+    async def CreateDirectoryAsync(self, NewPath: str) -> ActionResult:
         """
         Name Description Optional
         :param NewPath: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/CreateDirectory", { 
             "NewPath": NewPath,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def DownloadFileFromURL(self, Source: URL, TargetDirectory: str) -> ActionResult[Any]:
+    def DownloadFileFromURL(self, Source: URL, TargetDirectory: str) -> ActionResult:
         """
         Name Description Optional
         :param Source: {URL}  False
         :param TargetDirectory: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/DownloadFileFromURL", { 
             "Source": Source,
             "TargetDirectory": TargetDirectory,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def DownloadFileFromURLAsync(self, Source: URL, TargetDirectory: str) -> ActionResult[Any]:
+    async def DownloadFileFromURLAsync(self, Source: URL, TargetDirectory: str) -> ActionResult:
         """
         Name Description Optional
         :param Source: {URL}  False
         :param TargetDirectory: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/DownloadFileFromURL", { 
             "Source": Source,
             "TargetDirectory": TargetDirectory,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def Dummy(self, ) -> Void:
         """
@@ -218,53 +218,53 @@ class FileManagerPlugin(AMPAPI):
             response = {}
         return Void(**response)
 
-    def EmptyTrash(self, TrashDirectoryName: str) -> ActionResult[Any]:
+    def EmptyTrash(self, TrashDirectoryName: str) -> ActionResult:
         """
         Name Description Optional
         :param TrashDirectoryName: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/EmptyTrash", { 
             "TrashDirectoryName": TrashDirectoryName,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def EmptyTrashAsync(self, TrashDirectoryName: str) -> ActionResult[Any]:
+    async def EmptyTrashAsync(self, TrashDirectoryName: str) -> ActionResult:
         """
         Name Description Optional
         :param TrashDirectoryName: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/EmptyTrash", { 
             "TrashDirectoryName": TrashDirectoryName,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def ExtractArchive(self, ArchivePath: str, DestinationPath: str) -> ActionResult[Any]:
+    def ExtractArchive(self, ArchivePath: str, DestinationPath: str) -> ActionResult:
         """
         Name Description Optional
         :param ArchivePath: {str}  False
         :param DestinationPath: {str}  True
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/ExtractArchive", { 
             "ArchivePath": ArchivePath,
             "DestinationPath": DestinationPath,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def ExtractArchiveAsync(self, ArchivePath: str, DestinationPath: str) -> ActionResult[Any]:
+    async def ExtractArchiveAsync(self, ArchivePath: str, DestinationPath: str) -> ActionResult:
         """
         Name Description Optional
         :param ArchivePath: {str}  False
         :param DestinationPath: {str}  True
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/ExtractArchive", { 
             "ArchivePath": ArchivePath,
             "DestinationPath": DestinationPath,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def GetDirectoryListing(self, Dir: str) -> list[dict]:
         """
@@ -348,110 +348,110 @@ class FileManagerPlugin(AMPAPI):
         })
         return ActionResult[str](**response)
 
-    def RenameDirectory(self, oldDirectory: str, NewDirectoryName: str) -> ActionResult[Any]:
+    def RenameDirectory(self, oldDirectory: str, NewDirectoryName: str) -> ActionResult:
         """The name component of the new directory (not the full path)
         Name Description Optional
         :param oldDirectory: {str} The full path to the old directory False
         :param NewDirectoryName: {str} The name component of the new directory (not the full path) False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/RenameDirectory", { 
             "oldDirectory": oldDirectory,
             "NewDirectoryName": NewDirectoryName,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def RenameDirectoryAsync(self, oldDirectory: str, NewDirectoryName: str) -> ActionResult[Any]:
+    async def RenameDirectoryAsync(self, oldDirectory: str, NewDirectoryName: str) -> ActionResult:
         """The name component of the new directory (not the full path)
         Name Description Optional
         :param oldDirectory: {str} The full path to the old directory False
         :param NewDirectoryName: {str} The name component of the new directory (not the full path) False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/RenameDirectory", { 
             "oldDirectory": oldDirectory,
             "NewDirectoryName": NewDirectoryName,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def RenameFile(self, Filename: str, NewFilename: str) -> ActionResult[Any]:
+    def RenameFile(self, Filename: str, NewFilename: str) -> ActionResult:
         """
         Name Description Optional
         :param Filename: {str}  False
         :param NewFilename: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/RenameFile", { 
             "Filename": Filename,
             "NewFilename": NewFilename,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def RenameFileAsync(self, Filename: str, NewFilename: str) -> ActionResult[Any]:
+    async def RenameFileAsync(self, Filename: str, NewFilename: str) -> ActionResult:
         """
         Name Description Optional
         :param Filename: {str}  False
         :param NewFilename: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/RenameFile", { 
             "Filename": Filename,
             "NewFilename": NewFilename,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def TrashDirectory(self, DirectoryName: str) -> ActionResult[Any]:
+    def TrashDirectory(self, DirectoryName: str) -> ActionResult:
         """
         Name Description Optional
         :param DirectoryName: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/TrashDirectory", { 
             "DirectoryName": DirectoryName,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def TrashDirectoryAsync(self, DirectoryName: str) -> ActionResult[Any]:
+    async def TrashDirectoryAsync(self, DirectoryName: str) -> ActionResult:
         """
         Name Description Optional
         :param DirectoryName: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/TrashDirectory", { 
             "DirectoryName": DirectoryName,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def TrashFile(self, Filename: str) -> ActionResult[Any]:
+    def TrashFile(self, Filename: str) -> ActionResult:
         """
         Name Description Optional
         :param Filename: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/TrashFile", { 
             "Filename": Filename,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def TrashFileAsync(self, Filename: str) -> ActionResult[Any]:
+    async def TrashFileAsync(self, Filename: str) -> ActionResult:
         """
         Name Description Optional
         :param Filename: {str}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/TrashFile", { 
             "Filename": Filename,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    def WriteFileChunk(self, Filename: str, Data: str, Offset: int, FinalChunk: bool) -> ActionResult[Any]:
+    def WriteFileChunk(self, Filename: str, Data: str, Offset: int, FinalChunk: bool) -> ActionResult:
         """
         Name Description Optional
         :param Filename: {str}  False
         :param Data: {str}  False
         :param Offset: {int}  False
         :param FinalChunk: {bool}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("FileManagerPlugin/WriteFileChunk", { 
             "Filename": Filename,
@@ -459,16 +459,16 @@ class FileManagerPlugin(AMPAPI):
             "Offset": Offset,
             "FinalChunk": FinalChunk,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def WriteFileChunkAsync(self, Filename: str, Data: str, Offset: int, FinalChunk: bool) -> ActionResult[Any]:
+    async def WriteFileChunkAsync(self, Filename: str, Data: str, Offset: int, FinalChunk: bool) -> ActionResult:
         """
         Name Description Optional
         :param Filename: {str}  False
         :param Data: {str}  False
         :param Offset: {int}  False
         :param FinalChunk: {bool}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("FileManagerPlugin/WriteFileChunk", { 
             "Filename": Filename,
@@ -476,5 +476,5 @@ class FileManagerPlugin(AMPAPI):
             "Offset": Offset,
             "FinalChunk": FinalChunk,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 

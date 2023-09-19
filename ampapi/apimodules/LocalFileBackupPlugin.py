@@ -102,31 +102,31 @@ class LocalFileBackupPlugin(AMPAPI):
         })
         return Result[list[dict]](**response)
 
-    def RestoreBackup(self, BackupId: UUID, DeleteExistingData: bool) -> ActionResult[Any]:
+    def RestoreBackup(self, BackupId: UUID, DeleteExistingData: bool) -> ActionResult:
         """
         Name Description Optional
         :param BackupId: {UUID}  False
         :param DeleteExistingData: {bool}  True
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("LocalFileBackupPlugin/RestoreBackup", { 
             "BackupId": BackupId,
             "DeleteExistingData": DeleteExistingData,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def RestoreBackupAsync(self, BackupId: UUID, DeleteExistingData: bool) -> ActionResult[Any]:
+    async def RestoreBackupAsync(self, BackupId: UUID, DeleteExistingData: bool) -> ActionResult:
         """
         Name Description Optional
         :param BackupId: {UUID}  False
         :param DeleteExistingData: {bool}  True
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("LocalFileBackupPlugin/RestoreBackup", { 
             "BackupId": BackupId,
             "DeleteExistingData": DeleteExistingData,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def SetBackupSticky(self, BackupId: UUID, Sticky: bool) -> Void:
         """
@@ -158,35 +158,35 @@ class LocalFileBackupPlugin(AMPAPI):
             response = {}
         return Void(**response)
 
-    def TakeBackup(self, Title: str, Description: str, Sticky: bool) -> ActionResult[Any]:
+    def TakeBackup(self, Title: str, Description: str, Sticky: bool) -> ActionResult:
         """
         Name Description Optional
         :param Title: {str}  False
         :param Description: {str}  False
         :param Sticky: {bool}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = self.api_call("LocalFileBackupPlugin/TakeBackup", { 
             "Title": Title,
             "Description": Description,
             "Sticky": Sticky,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
-    async def TakeBackupAsync(self, Title: str, Description: str, Sticky: bool) -> ActionResult[Any]:
+    async def TakeBackupAsync(self, Title: str, Description: str, Sticky: bool) -> ActionResult:
         """
         Name Description Optional
         :param Title: {str}  False
         :param Description: {str}  False
         :param Sticky: {bool}  False
-        :returns: ActionResult[Any]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("LocalFileBackupPlugin/TakeBackup", { 
             "Title": Title,
             "Description": Description,
             "Sticky": Sticky,
         })
-        return ActionResult[Any](**response)
+        return ActionResult(**response)
 
     def UploadToS3(self, BackupId: UUID) -> Result[RunningTask]:
         """

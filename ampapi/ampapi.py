@@ -107,7 +107,7 @@ class AMPAPI():
         """
         data: dict = {
             "username": self.username,
-            "password": "",
+            "password": self.password,
             "token": self.rememberMeToken,
             "rememberMe": True,
         }
@@ -131,7 +131,7 @@ class AMPAPI():
         """
         data: dict = {
             "username": self.username,
-            "password": "",
+            "password": self.password,
             "token": self.rememberMeToken,
             "rememberMe": True,
         }

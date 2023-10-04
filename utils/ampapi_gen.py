@@ -71,6 +71,7 @@ type_dict = {
     "Task<String>": "Task[str]",
     "UpdateInfo": "Result[UpdateInfo]",
     "IEnumerable<ListeningPortSummary>": "Result[list]",
+    "Task<ActionResult<LicenceInfo>>": "Task[ActionResult[LicenceInfo]]",
 
     ## Custom types
     "Result[Instance]": "Result[Instance]",

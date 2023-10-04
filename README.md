@@ -52,7 +52,7 @@ from ampapi.modules.CommonAPI import CommonAPI
 
 def main():
     # If you know the module that the instance is using, specify it instead of CommonAPI
-    API = CommonAPI("http://localhost:8080/", "admin", "myfancypassword123", "")
+    API = CommonAPI("http://localhost:8080/", "admin", "myfancypassword123")
     API.Login()
 
     # API call parameters are simply in the same order as shown in the documentation.
@@ -74,7 +74,7 @@ from ampapi.modules.CommonAPI import CommonAPI
 
 async def main():
     # If you know the module that the instance is using, specify it instead of CommonAPI
-    API = CommonAPI("http://localhost:8080/", "admin", "myfancypassword123", "")
+    API = CommonAPI("http://localhost:8080/", "admin", "myfancypassword123")
     await API.LoginAsync()
 
     # API call parameters are simply in the same order as shown in the documentation.

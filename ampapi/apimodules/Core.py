@@ -36,6 +36,32 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
+    def ActivateAMPLicence(self, LicenceKey: str, QueryOnly: bool) -> Task[ActionResult[LicenceInfo]]:
+        """
+        Name Description Optional
+        :param LicenceKey: {str}  False
+        :param QueryOnly: {bool}  True
+        :returns: Task[ActionResult[LicenceInfo]]
+        """
+        response: dict = self.api_call("Core/ActivateAMPLicence", { 
+            "LicenceKey": LicenceKey,
+            "QueryOnly": QueryOnly,
+        })
+        return Task[ActionResult[LicenceInfo]](**response)
+
+    async def ActivateAMPLicenceAsync(self, LicenceKey: str, QueryOnly: bool) -> Task[ActionResult[LicenceInfo]]:
+        """
+        Name Description Optional
+        :param LicenceKey: {str}  False
+        :param QueryOnly: {bool}  True
+        :returns: Task[ActionResult[LicenceInfo]]
+        """
+        response: dict = await self.api_call_async("Core/ActivateAMPLicence", { 
+            "LicenceKey": LicenceKey,
+            "QueryOnly": QueryOnly,
+        })
+        return Task[ActionResult[LicenceInfo]](**response)
+
     def AddEventTrigger(self, triggerId: UUID) -> ActionResult:
         """
         Name Description Optional

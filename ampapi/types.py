@@ -21,7 +21,7 @@ class ActionResult(Generic[T]):
     Reason: str
     Result: T
 
-    def __init__(self, Status: bool, Reason: str, Result: T) -> None:
+    def __init__(self, Status: bool, Reason: str = "", Result: T = {}) -> None:
         """
         Initializes the ActionResult object
         Author: p0t4t0sandwich
@@ -29,6 +29,27 @@ class ActionResult(Generic[T]):
         self.Status = Status
         self.Reason = Reason
         self.Result = Result
+
+        
+        if type(Result) == list:
+            if len(Result) == 0:
+                self.Result = []
+                return
+
+            # keys = Result[0].keys()
+            # if "ID" in keys and "Username" in keys and "EmailAddress" in keys and "IsTwoFactorEnabled" in keys and "Disabled" in keys and "LastLogin" in keys and "GravatarHash" in keys and "IsLDAPUser" in keys:
+            #     self.Result = [UserInfo(**Result[i]) for i in range(len(Result))]
+            else:
+                self.Result = Result
+
+        elif type(Result) == dict:
+            keys = Result.keys()
+            if "LicenceKey" in keys and "Grade" in keys and "GradeName" in keys and "Product" in keys and "ProductName" in keys and "Expires" in keys and "Usage" in keys:
+                self.Result = LicenceInfo(**Result)
+            else:
+                self.Result = Result
+        else:
+            self.Result = Result
 
 class AMPVersion(NamedTuple):
     """
@@ -549,6 +570,33 @@ class UserInfo(NamedTuple):
     GravatarHash: str
     IsLDAPUser: bool
 
+class LicenceInfo(NamedTuple):
+    """
+    A struct to represent the object returned by the ADSModule#GetLicenceInfo() method
+    Author: p0t4t0sandwich
+    :param LicenceKey: The licence key
+    :type LicenceKey: UUID
+    :param Grade: The grade
+    :type Grade: UUID
+    :param GradeName: The grade name
+    :type GradeName: str
+    :param Product: The product
+    :type Product: UUID
+    :param ProductName: The product name
+    :type ProductName: str
+    :param Expires: The expiry date
+    :type Expires: str
+    :param Usage: The usage
+    :type Usage: int
+    """
+    LicenceKey: UUID
+    Grade: UUID
+    GradeName: str
+    Product: UUID
+    ProductName: str
+    Expires: str
+    Usage: int
+
 class LoginResult():
     """
     Response type for API.Core.Login
@@ -953,6 +1001,8 @@ class Task(Generic[T]):
                 self.result = RunningTask(**result)
             elif "ID" in keys and "Username" in keys and "EmailAddress" in keys and "IsTwoFactorEnabled" in keys and "Disabled" in keys and "LastLogin" in keys and "GravatarHash" in keys and "IsLDAPUser" in keys:
                 self.result = UserInfo(**result)
+            elif "Status" in keys and ("Result" in keys or "Reason" in keys):
+                self.result = ActionResult(**result)
             else:
                 self.result = result
         else:

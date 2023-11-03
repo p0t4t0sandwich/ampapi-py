@@ -540,7 +540,7 @@ class IADSInstance():
         self.AvailableIPs = AvailableIPs
         self.URL = URL
 
-class UserInfo(NamedTuple):
+class UserInfo():
     """
     Information about the user
     Author: p0t4t0sandwich
@@ -569,6 +569,20 @@ class UserInfo(NamedTuple):
     LastLogin: str
     GravatarHash: str
     IsLDAPUser: bool
+
+    def __init__(self, ID: UUID, Username: str, IsTwoFactorEnabled: bool, Disabled: bool, LastLogin: str, GravatarHash: str, IsLDAPUser: bool, EmailAddress: str = "") -> None:
+        """
+        Initializes the UserInfo object
+        Author: p0t4t0sandwich
+        """
+        self.ID = ID
+        self.Username = Username
+        self.EmailAddress = EmailAddress
+        self.IsTwoFactorEnabled = IsTwoFactorEnabled
+        self.Disabled = Disabled
+        self.LastLogin = LastLogin
+        self.GravatarHash = GravatarHash
+        self.IsLDAPUser = IsLDAPUser
 
 class LicenceInfo(NamedTuple):
     """

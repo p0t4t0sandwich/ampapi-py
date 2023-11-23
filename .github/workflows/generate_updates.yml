@@ -1,0 +1,27 @@
+---
+  name: Build new AMP API Spec
+  
+  on:
+    push:
+      branches:
+        - main
+    schedule:
+      - cron: "0 0/4 * * *"
+
+  jobs:
+    update_spec:
+      name: Update AMP API Spec
+      runs-on: ubuntu-latest
+
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            ref: dev
+
+        - name: Run the Python script
+          run: cd ./utils && python3 ./ampapi_gen.py dev
+
+        - uses: EndBug/add-and-commit@v9
+          with:
+            push: origin HEAD:dev
+            add: '[./ampapi/apimodules/*.py]'

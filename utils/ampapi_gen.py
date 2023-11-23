@@ -4,6 +4,8 @@ from __future__ import annotations
 import requests
 import json
 
+import sys
+
 
 type_dict = {
     "InstanceDatastore": "InstanceDatastore",
@@ -220,13 +222,15 @@ def load_custom_types(spec: dict):
         spec[type_module][type_method]["ReturnTypeName"] = custom_types[type_index]
 
 if __name__ == "__main__":
+    branch = "main"
+    if len(sys.argv) > 1:
+        branch = sys.argv[1]
+
     # Load remote file
-    res = requests.get("https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/main/APISpec.json")
+    res = requests.get(f"https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/{branch}/APISpec.json")
     spec = json.loads(res.content)
 
     # Load custom types
     load_custom_types(spec)
 
     generate_spec(spec)
-
-    

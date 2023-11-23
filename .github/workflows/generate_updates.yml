@@ -1,6 +1,6 @@
 ---
-  name: Build new AMP API Spec
-  
+  name: Generate Library Updates
+
   on:
     push:
       branches:
@@ -9,8 +9,8 @@
       - cron: "0 0/4 * * *"
 
   jobs:
-    update_spec:
-      name: Update AMP API Spec
+    ampapi_gen:
+      name: Generate Library Updates
       runs-on: ubuntu-latest
 
       steps:

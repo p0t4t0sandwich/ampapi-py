@@ -1008,23 +1008,27 @@ class ADSModule(AMPAPI):
         })
         return Task[ActionResult](**response)
 
-    def RefreshRemoteConfigStores(self, ) -> Void:
+    def RefreshRemoteConfigStores(self, force: bool) -> Void:
         """
         Name Description Optional
+        :param force: {bool}  True
         :returns: Void
         """
         response: dict = self.api_call("ADSModule/RefreshRemoteConfigStores", { 
+            "force": force,
         })
         if response == None:
             response = {}
         return Void(**response)
 
-    async def RefreshRemoteConfigStoresAsync(self, ) -> Void:
+    async def RefreshRemoteConfigStoresAsync(self, force: bool) -> Void:
         """
         Name Description Optional
+        :param force: {bool}  True
         :returns: Void
         """
         response: dict = await self.api_call_async("ADSModule/RefreshRemoteConfigStores", { 
+            "force": force,
         })
         if response == None:
             response = {}
@@ -1400,7 +1404,7 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def UpdateInstanceInfo(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy: Any, ContainerMaxCPU: Any, ContainerImage: str) -> Task[ActionResult]:
+    def UpdateInstanceInfo(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy: Any, ContainerMaxCPU: Any, ContainerImage: str) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {str}  False
@@ -1414,7 +1418,7 @@ class ADSModule(AMPAPI):
         :param MemoryPolicy: {Any}  False
         :param ContainerMaxCPU: {Any}  False
         :param ContainerImage: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/UpdateInstanceInfo", { 
             "InstanceId": InstanceId,
@@ -1429,9 +1433,9 @@ class ADSModule(AMPAPI):
             "ContainerMaxCPU": ContainerMaxCPU,
             "ContainerImage": ContainerImage,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def UpdateInstanceInfoAsync(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy: Any, ContainerMaxCPU: Any, ContainerImage: str) -> Task[ActionResult]:
+    async def UpdateInstanceInfoAsync(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy: Any, ContainerMaxCPU: Any, ContainerImage: str) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {str}  False
@@ -1445,7 +1449,7 @@ class ADSModule(AMPAPI):
         :param MemoryPolicy: {Any}  False
         :param ContainerMaxCPU: {Any}  False
         :param ContainerImage: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/UpdateInstanceInfo", { 
             "InstanceId": InstanceId,
@@ -1460,7 +1464,7 @@ class ADSModule(AMPAPI):
             "ContainerMaxCPU": ContainerMaxCPU,
             "ContainerImage": ContainerImage,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def UpdateTarget(self, TargetID: UUID) -> Void:
         """

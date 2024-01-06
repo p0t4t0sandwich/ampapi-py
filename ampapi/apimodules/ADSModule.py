@@ -36,35 +36,35 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def ApplyInstanceConfiguration(self, InstanceID: UUID, Args: dict[str, str], RebuildConfiguration: bool) -> Task[ActionResult]:
+    def ApplyInstanceConfiguration(self, InstanceID: UUID, Args: dict[str, str], RebuildConfiguration: bool) -> ActionResult:
         """
         Name Description Optional
         :param InstanceID: {UUID}  False
         :param Args: {dict[str, str]}  False
         :param RebuildConfiguration: {bool}  True
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/ApplyInstanceConfiguration", { 
             "InstanceID": InstanceID,
             "Args": Args,
             "RebuildConfiguration": RebuildConfiguration,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def ApplyInstanceConfigurationAsync(self, InstanceID: UUID, Args: dict[str, str], RebuildConfiguration: bool) -> Task[ActionResult]:
+    async def ApplyInstanceConfigurationAsync(self, InstanceID: UUID, Args: dict[str, str], RebuildConfiguration: bool) -> ActionResult:
         """
         Name Description Optional
         :param InstanceID: {UUID}  False
         :param Args: {dict[str, str]}  False
         :param RebuildConfiguration: {bool}  True
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/ApplyInstanceConfiguration", { 
             "InstanceID": InstanceID,
             "Args": Args,
             "RebuildConfiguration": RebuildConfiguration,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def ApplyTemplate(self, InstanceID: UUID, TemplateID: int, NewFriendlyName: str, Secret: str, RestartIfPreviouslyRunning: bool) -> ActionResult:
         """
@@ -360,51 +360,51 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def DeleteInstance(self, InstanceName: str) -> Result[RunningTask]:
+    def DeleteInstance(self, InstanceName: str) -> RunningTask:
         """
         Name Description Optional
         :param InstanceName: {str}  False
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = self.api_call("ADSModule/DeleteInstance", { 
             "InstanceName": InstanceName,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
-    async def DeleteInstanceAsync(self, InstanceName: str) -> Result[RunningTask]:
+    async def DeleteInstanceAsync(self, InstanceName: str) -> RunningTask:
         """
         Name Description Optional
         :param InstanceName: {str}  False
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = await self.api_call_async("ADSModule/DeleteInstance", { 
             "InstanceName": InstanceName,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
-    def DeleteInstanceUsers(self, InstanceId: UUID) -> Task[ActionResult]:
+    def DeleteInstanceUsers(self, InstanceId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {UUID}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/DeleteInstanceUsers", { 
             "InstanceId": InstanceId,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def DeleteInstanceUsersAsync(self, InstanceId: UUID) -> Task[ActionResult]:
+    async def DeleteInstanceUsersAsync(self, InstanceId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {UUID}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/DeleteInstanceUsers", { 
             "InstanceId": InstanceId,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def DeployTemplate(self, TemplateID: int, NewUsername: str, NewPassword: str, NewEmail: str, RequiredTags: list[str], Tag: str, FriendlyName: str, Secret: str, PostCreate: Any, ExtraProvisionSettings: dict[str, str]) -> Result[RunningTask]:
+    def DeployTemplate(self, TemplateID: int, NewUsername: str, NewPassword: str, NewEmail: str, RequiredTags: list[str], Tag: str, FriendlyName: str, Secret: str, PostCreate: Any, ExtraProvisionSettings: dict[str, str]) -> RunningTask:
         """A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself.
         Name Description Optional
         :param TemplateID: {int} The ID of the template to be deployed, as per the Template Management UI in AMP itself. False
@@ -417,7 +417,7 @@ class ADSModule(AMPAPI):
         :param Secret: {str} Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request. True
         :param PostCreate: {Any} 0: Do nothing, 1: Start instance only, 2: Start instance and update application, 3: Full application startup. True
         :param ExtraProvisionSettings: {dict[str, str]} A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself. True
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = self.api_call("ADSModule/DeployTemplate", { 
             "TemplateID": TemplateID,
@@ -431,9 +431,9 @@ class ADSModule(AMPAPI):
             "PostCreate": PostCreate,
             "ExtraProvisionSettings": ExtraProvisionSettings,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
-    async def DeployTemplateAsync(self, TemplateID: int, NewUsername: str, NewPassword: str, NewEmail: str, RequiredTags: list[str], Tag: str, FriendlyName: str, Secret: str, PostCreate: Any, ExtraProvisionSettings: dict[str, str]) -> Result[RunningTask]:
+    async def DeployTemplateAsync(self, TemplateID: int, NewUsername: str, NewPassword: str, NewEmail: str, RequiredTags: list[str], Tag: str, FriendlyName: str, Secret: str, PostCreate: Any, ExtraProvisionSettings: dict[str, str]) -> RunningTask:
         """A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself.
         Name Description Optional
         :param TemplateID: {int} The ID of the template to be deployed, as per the Template Management UI in AMP itself. False
@@ -446,7 +446,7 @@ class ADSModule(AMPAPI):
         :param Secret: {str} Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request. True
         :param PostCreate: {Any} 0: Do nothing, 1: Start instance only, 2: Start instance and update application, 3: Full application startup. True
         :param ExtraProvisionSettings: {dict[str, str]} A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself. True
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = await self.api_call_async("ADSModule/DeployTemplate", { 
             "TemplateID": TemplateID,
@@ -460,7 +460,7 @@ class ADSModule(AMPAPI):
             "PostCreate": PostCreate,
             "ExtraProvisionSettings": ExtraProvisionSettings,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
     def DetatchTarget(self, Id: UUID) -> ActionResult:
         """
@@ -484,49 +484,49 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def ExtractEverywhere(self, SourceArchive: str) -> Task[ActionResult]:
+    def ExtractEverywhere(self, SourceArchive: str) -> ActionResult:
         """
         Name Description Optional
         :param SourceArchive: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/ExtractEverywhere", { 
             "SourceArchive": SourceArchive,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def ExtractEverywhereAsync(self, SourceArchive: str) -> Task[ActionResult]:
+    async def ExtractEverywhereAsync(self, SourceArchive: str) -> ActionResult:
         """
         Name Description Optional
         :param SourceArchive: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/ExtractEverywhere", { 
             "SourceArchive": SourceArchive,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def GetApplicationEndpoints(self, instanceId: UUID) -> Result[list[EndpointInfo]]:
+    def GetApplicationEndpoints(self, instanceId: UUID) -> list[EndpointInfo]:
         """
         Name Description Optional
         :param instanceId: {UUID}  False
-        :returns: Result[list[EndpointInfo]]
+        :returns: list[EndpointInfo]
         """
         response: dict = self.api_call("ADSModule/GetApplicationEndpoints", { 
             "instanceId": instanceId,
         })
-        return Result[list[EndpointInfo]](**response)
+        return [EndpointInfo(**x) for x in response]
 
-    async def GetApplicationEndpointsAsync(self, instanceId: UUID) -> Result[list[EndpointInfo]]:
+    async def GetApplicationEndpointsAsync(self, instanceId: UUID) -> list[EndpointInfo]:
         """
         Name Description Optional
         :param instanceId: {UUID}  False
-        :returns: Result[list[EndpointInfo]]
+        :returns: list[EndpointInfo]
         """
         response: dict = await self.api_call_async("ADSModule/GetApplicationEndpoints", { 
             "instanceId": instanceId,
         })
-        return Result[list[EndpointInfo]](**response)
+        return [EndpointInfo(**x) for x in response]
 
     def GetDatastore(self, id: int) -> InstanceDatastore:
         """
@@ -559,7 +559,7 @@ class ADSModule(AMPAPI):
         response: dict = self.api_call("ADSModule/GetDatastoreInstances", { 
             "datastoreId": datastoreId,
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     async def GetDatastoreInstancesAsync(self, datastoreId: int) -> list[dict]:
         """
@@ -570,7 +570,7 @@ class ADSModule(AMPAPI):
         response: dict = await self.api_call_async("ADSModule/GetDatastoreInstances", { 
             "datastoreId": datastoreId,
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     def GetDatastores(self, ) -> list[InstanceDatastore]:
         """
@@ -579,7 +579,7 @@ class ADSModule(AMPAPI):
         """
         response: dict = self.api_call("ADSModule/GetDatastores", { 
         })
-        return list[InstanceDatastore](**response)
+        return [InstanceDatastore(**x) for x in response]
 
     async def GetDatastoresAsync(self, ) -> list[InstanceDatastore]:
         """
@@ -588,91 +588,91 @@ class ADSModule(AMPAPI):
         """
         response: dict = await self.api_call_async("ADSModule/GetDatastores", { 
         })
-        return list[InstanceDatastore](**response)
+        return [InstanceDatastore(**x) for x in response]
 
-    def GetDeploymentTemplates(self, ) -> Result[list]:
+    def GetDeploymentTemplates(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Result[list]
+        :returns: list[Any]
         """
         response: dict = self.api_call("ADSModule/GetDeploymentTemplates", { 
         })
-        return Result[list](**response)
+        return [Any(**x) for x in response]
 
-    async def GetDeploymentTemplatesAsync(self, ) -> Result[list]:
+    async def GetDeploymentTemplatesAsync(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Result[list]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("ADSModule/GetDeploymentTemplates", { 
         })
-        return Result[list](**response)
+        return [Any(**x) for x in response]
 
-    def GetGroup(self, GroupId: UUID) -> Result[IADSInstance]:
+    def GetGroup(self, GroupId: UUID) -> IADSInstance:
         """
         Name Description Optional
         :param GroupId: {UUID}  False
-        :returns: Result[IADSInstance]
+        :returns: IADSInstance
         """
         response: dict = self.api_call("ADSModule/GetGroup", { 
             "GroupId": GroupId,
         })
-        return Result[IADSInstance](**response)
+        return IADSInstance(**response)
 
-    async def GetGroupAsync(self, GroupId: UUID) -> Result[IADSInstance]:
+    async def GetGroupAsync(self, GroupId: UUID) -> IADSInstance:
         """
         Name Description Optional
         :param GroupId: {UUID}  False
-        :returns: Result[IADSInstance]
+        :returns: IADSInstance
         """
         response: dict = await self.api_call_async("ADSModule/GetGroup", { 
             "GroupId": GroupId,
         })
-        return Result[IADSInstance](**response)
+        return IADSInstance(**response)
 
-    def GetInstance(self, InstanceId: UUID) -> Result[Instance]:
+    def GetInstance(self, InstanceId: UUID) -> Instance:
         """
         Name Description Optional
         :param InstanceId: {UUID}  False
-        :returns: Result[Instance]
+        :returns: Instance
         """
         response: dict = self.api_call("ADSModule/GetInstance", { 
             "InstanceId": InstanceId,
         })
-        return Result[Instance](**response)
+        return Instance(**response)
 
-    async def GetInstanceAsync(self, InstanceId: UUID) -> Result[Instance]:
+    async def GetInstanceAsync(self, InstanceId: UUID) -> Instance:
         """
         Name Description Optional
         :param InstanceId: {UUID}  False
-        :returns: Result[Instance]
+        :returns: Instance
         """
         response: dict = await self.api_call_async("ADSModule/GetInstance", { 
             "InstanceId": InstanceId,
         })
-        return Result[Instance](**response)
+        return Instance(**response)
 
-    def GetInstanceNetworkInfo(self, InstanceName: str) -> Result[list]:
+    def GetInstanceNetworkInfo(self, InstanceName: str) -> list[Any]:
         """
         Name Description Optional
         :param InstanceName: {str}  False
-        :returns: Result[list]
+        :returns: list[Any]
         """
         response: dict = self.api_call("ADSModule/GetInstanceNetworkInfo", { 
             "InstanceName": InstanceName,
         })
-        return Result[list](**response)
+        return [Any(**x) for x in response]
 
-    async def GetInstanceNetworkInfoAsync(self, InstanceName: str) -> Result[list]:
+    async def GetInstanceNetworkInfoAsync(self, InstanceName: str) -> list[Any]:
         """
         Name Description Optional
         :param InstanceName: {str}  False
-        :returns: Result[list]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("ADSModule/GetInstanceNetworkInfo", { 
             "InstanceName": InstanceName,
         })
-        return Result[list](**response)
+        return [Any(**x) for x in response]
 
     def GetInstanceStatuses(self, ) -> list[dict]:
         """
@@ -681,7 +681,7 @@ class ADSModule(AMPAPI):
         """
         response: dict = self.api_call("ADSModule/GetInstanceStatuses", { 
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     async def GetInstanceStatusesAsync(self, ) -> list[dict]:
         """
@@ -690,25 +690,25 @@ class ADSModule(AMPAPI):
         """
         response: dict = await self.api_call_async("ADSModule/GetInstanceStatuses", { 
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
-    def GetInstances(self, ) -> Result[list[IADSInstance]]:
+    def GetInstances(self, ) -> list[IADSInstance]:
         """
         Name Description Optional
-        :returns: Result[list[IADSInstance]]
+        :returns: list[IADSInstance]
         """
         response: dict = self.api_call("ADSModule/GetInstances", { 
         })
-        return Result[list[IADSInstance]](**response)
+        return [IADSInstance(**x) for x in response]
 
-    async def GetInstancesAsync(self, ) -> Result[list[IADSInstance]]:
+    async def GetInstancesAsync(self, ) -> list[IADSInstance]:
         """
         Name Description Optional
-        :returns: Result[list[IADSInstance]]
+        :returns: list[IADSInstance]
         """
         response: dict = await self.api_call_async("ADSModule/GetInstances", { 
         })
-        return Result[list[IADSInstance]](**response)
+        return [IADSInstance(**x) for x in response]
 
     def GetLocalInstances(self, ) -> list[dict]:
         """
@@ -717,7 +717,7 @@ class ADSModule(AMPAPI):
         """
         response: dict = self.api_call("ADSModule/GetLocalInstances", { 
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     async def GetLocalInstancesAsync(self, ) -> list[dict]:
         """
@@ -726,7 +726,7 @@ class ADSModule(AMPAPI):
         """
         response: dict = await self.api_call_async("ADSModule/GetLocalInstances", { 
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     def GetProvisionArguments(self, ModuleName: str) -> list[dict]:
         """
@@ -737,7 +737,7 @@ class ADSModule(AMPAPI):
         response: dict = self.api_call("ADSModule/GetProvisionArguments", { 
             "ModuleName": ModuleName,
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     async def GetProvisionArgumentsAsync(self, ModuleName: str) -> list[dict]:
         """
@@ -748,7 +748,7 @@ class ADSModule(AMPAPI):
         response: dict = await self.api_call_async("ADSModule/GetProvisionArguments", { 
             "ModuleName": ModuleName,
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     def GetProvisionFitness(self, ) -> dict:
         """
@@ -768,71 +768,71 @@ class ADSModule(AMPAPI):
         })
         return dict(**response)
 
-    def GetSupportedApplications(self, ) -> Result[list]:
+    def GetSupportedApplications(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Result[list]
+        :returns: list[Any]
         """
         response: dict = self.api_call("ADSModule/GetSupportedApplications", { 
         })
-        return Result[list](**response)
+        return [Any(**x) for x in response]
 
-    async def GetSupportedApplicationsAsync(self, ) -> Result[list]:
+    async def GetSupportedApplicationsAsync(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Result[list]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("ADSModule/GetSupportedApplications", { 
         })
-        return Result[list](**response)
+        return [Any(**x) for x in response]
 
-    def GetTargetInfo(self, ) -> Result[RemoteTargetInfo]:
+    def GetTargetInfo(self, ) -> RemoteTargetInfo:
         """
         Name Description Optional
-        :returns: Result[RemoteTargetInfo]
+        :returns: RemoteTargetInfo
         """
         response: dict = self.api_call("ADSModule/GetTargetInfo", { 
         })
-        return Result[RemoteTargetInfo](**response)
+        return RemoteTargetInfo(**response)
 
-    async def GetTargetInfoAsync(self, ) -> Result[RemoteTargetInfo]:
+    async def GetTargetInfoAsync(self, ) -> RemoteTargetInfo:
         """
         Name Description Optional
-        :returns: Result[RemoteTargetInfo]
+        :returns: RemoteTargetInfo
         """
         response: dict = await self.api_call_async("ADSModule/GetTargetInfo", { 
         })
-        return Result[RemoteTargetInfo](**response)
+        return RemoteTargetInfo(**response)
 
-    def HandoutInstanceConfigs(self, ForModule: str, SettingNode: str, Values: list[str]) -> Task[ActionResult]:
+    def HandoutInstanceConfigs(self, ForModule: str, SettingNode: str, Values: list[str]) -> ActionResult:
         """
         Name Description Optional
         :param ForModule: {str}  False
         :param SettingNode: {str}  False
         :param Values: {list[str]}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/HandoutInstanceConfigs", { 
             "ForModule": ForModule,
             "SettingNode": SettingNode,
             "Values": Values,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def HandoutInstanceConfigsAsync(self, ForModule: str, SettingNode: str, Values: list[str]) -> Task[ActionResult]:
+    async def HandoutInstanceConfigsAsync(self, ForModule: str, SettingNode: str, Values: list[str]) -> ActionResult:
         """
         Name Description Optional
         :param ForModule: {str}  False
         :param SettingNode: {str}  False
         :param Values: {list[str]}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/HandoutInstanceConfigs", { 
             "ForModule": ForModule,
             "SettingNode": SettingNode,
             "Values": Values,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def ManageInstance(self, InstanceId: UUID) -> ActionResult[str]:
         """
@@ -856,7 +856,7 @@ class ADSModule(AMPAPI):
         })
         return ActionResult[str](**response)
 
-    def ModifyCustomFirewallRule(self, instanceId: UUID, PortNumber: int, Range: int, Protocol: Any, Description: str, Open: bool) -> Task[ActionResult]:
+    def ModifyCustomFirewallRule(self, instanceId: UUID, PortNumber: int, Range: int, Protocol: Any, Description: str, Open: bool) -> ActionResult:
         """
         Name Description Optional
         :param instanceId: {UUID}  False
@@ -865,7 +865,7 @@ class ADSModule(AMPAPI):
         :param Protocol: {Any}  False
         :param Description: {str}  False
         :param Open: {bool}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/ModifyCustomFirewallRule", { 
             "instanceId": instanceId,
@@ -875,9 +875,9 @@ class ADSModule(AMPAPI):
             "Description": Description,
             "Open": Open,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def ModifyCustomFirewallRuleAsync(self, instanceId: UUID, PortNumber: int, Range: int, Protocol: Any, Description: str, Open: bool) -> Task[ActionResult]:
+    async def ModifyCustomFirewallRuleAsync(self, instanceId: UUID, PortNumber: int, Range: int, Protocol: Any, Description: str, Open: bool) -> ActionResult:
         """
         Name Description Optional
         :param instanceId: {UUID}  False
@@ -886,7 +886,7 @@ class ADSModule(AMPAPI):
         :param Protocol: {Any}  False
         :param Description: {str}  False
         :param Open: {bool}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/ModifyCustomFirewallRule", { 
             "instanceId": instanceId,
@@ -896,51 +896,51 @@ class ADSModule(AMPAPI):
             "Description": Description,
             "Open": Open,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def MoveInstanceDatastore(self, instanceId: UUID, datastoreId: int) -> Task[RunningTask]:
+    def MoveInstanceDatastore(self, instanceId: UUID, datastoreId: int) -> RunningTask:
         """
         Name Description Optional
         :param instanceId: {UUID}  False
         :param datastoreId: {int}  False
-        :returns: Task[RunningTask]
+        :returns: RunningTask
         """
         response: dict = self.api_call("ADSModule/MoveInstanceDatastore", { 
             "instanceId": instanceId,
             "datastoreId": datastoreId,
         })
-        return Task[RunningTask](**response)
+        return RunningTask(**response)
 
-    async def MoveInstanceDatastoreAsync(self, instanceId: UUID, datastoreId: int) -> Task[RunningTask]:
+    async def MoveInstanceDatastoreAsync(self, instanceId: UUID, datastoreId: int) -> RunningTask:
         """
         Name Description Optional
         :param instanceId: {UUID}  False
         :param datastoreId: {int}  False
-        :returns: Task[RunningTask]
+        :returns: RunningTask
         """
         response: dict = await self.api_call_async("ADSModule/MoveInstanceDatastore", { 
             "instanceId": instanceId,
             "datastoreId": datastoreId,
         })
-        return Task[RunningTask](**response)
+        return RunningTask(**response)
 
-    def ReactivateLocalInstances(self, ) -> Result[RunningTask]:
+    def ReactivateLocalInstances(self, ) -> RunningTask:
         """
         Name Description Optional
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = self.api_call("ADSModule/ReactivateLocalInstances", { 
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
-    async def ReactivateLocalInstancesAsync(self, ) -> Result[RunningTask]:
+    async def ReactivateLocalInstancesAsync(self, ) -> RunningTask:
         """
         Name Description Optional
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = await self.api_call_async("ADSModule/ReactivateLocalInstances", { 
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
     def RefreshAppCache(self, ) -> Void:
         """
@@ -986,27 +986,27 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def RefreshInstanceConfig(self, InstanceId: str) -> Task[ActionResult]:
+    def RefreshInstanceConfig(self, InstanceId: str) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/RefreshInstanceConfig", { 
             "InstanceId": InstanceId,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def RefreshInstanceConfigAsync(self, InstanceId: str) -> Task[ActionResult]:
+    async def RefreshInstanceConfigAsync(self, InstanceId: str) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/RefreshInstanceConfig", { 
             "InstanceId": InstanceId,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def RefreshRemoteConfigStores(self, force: bool) -> Void:
         """
@@ -1034,7 +1034,7 @@ class ADSModule(AMPAPI):
             response = {}
         return Void(**response)
 
-    def RegisterTarget(self, controllerUrl: str, myUrl: str, username: str, password: str, twoFactorToken: str, friendlyName: str) -> Task[ActionResult]:
+    def RegisterTarget(self, controllerUrl: str, myUrl: str, username: str, password: str, twoFactorToken: str, friendlyName: str) -> ActionResult:
         """
         Name Description Optional
         :param controllerUrl: {str}  False
@@ -1043,7 +1043,7 @@ class ADSModule(AMPAPI):
         :param password: {str}  False
         :param twoFactorToken: {str}  False
         :param friendlyName: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/RegisterTarget", { 
             "controllerUrl": controllerUrl,
@@ -1053,9 +1053,9 @@ class ADSModule(AMPAPI):
             "twoFactorToken": twoFactorToken,
             "friendlyName": friendlyName,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def RegisterTargetAsync(self, controllerUrl: str, myUrl: str, username: str, password: str, twoFactorToken: str, friendlyName: str) -> Task[ActionResult]:
+    async def RegisterTargetAsync(self, controllerUrl: str, myUrl: str, username: str, password: str, twoFactorToken: str, friendlyName: str) -> ActionResult:
         """
         Name Description Optional
         :param controllerUrl: {str}  False
@@ -1064,7 +1064,7 @@ class ADSModule(AMPAPI):
         :param password: {str}  False
         :param twoFactorToken: {str}  False
         :param friendlyName: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/RegisterTarget", { 
             "controllerUrl": controllerUrl,
@@ -1074,51 +1074,51 @@ class ADSModule(AMPAPI):
             "twoFactorToken": twoFactorToken,
             "friendlyName": friendlyName,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def RepairDatastore(self, id: int) -> Result[RunningTask]:
+    def RepairDatastore(self, id: int) -> RunningTask:
         """
         Name Description Optional
         :param id: {int}  False
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = self.api_call("ADSModule/RepairDatastore", { 
             "id": id,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
-    async def RepairDatastoreAsync(self, id: int) -> Result[RunningTask]:
+    async def RepairDatastoreAsync(self, id: int) -> RunningTask:
         """
         Name Description Optional
         :param id: {int}  False
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = await self.api_call_async("ADSModule/RepairDatastore", { 
             "id": id,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
-    def RequestDatastoreSizeCalculation(self, datastoreId: int) -> Result[RunningTask]:
+    def RequestDatastoreSizeCalculation(self, datastoreId: int) -> RunningTask:
         """
         Name Description Optional
         :param datastoreId: {int}  False
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = self.api_call("ADSModule/RequestDatastoreSizeCalculation", { 
             "datastoreId": datastoreId,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
-    async def RequestDatastoreSizeCalculationAsync(self, datastoreId: int) -> Result[RunningTask]:
+    async def RequestDatastoreSizeCalculationAsync(self, datastoreId: int) -> RunningTask:
         """
         Name Description Optional
         :param datastoreId: {int}  False
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = await self.api_call_async("ADSModule/RequestDatastoreSizeCalculation", { 
             "datastoreId": datastoreId,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
     def RestartInstance(self, InstanceName: str) -> ActionResult:
         """
@@ -1142,171 +1142,171 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def Servers(self, id: str, REQ_RAWJSON: str) -> Any:
+    def Servers(self, id: str, REQ_RAWJSON: str) -> dict:
         """
         Name Description Optional
         :param id: {str}  False
         :param REQ_RAWJSON: {str}  False
-        :returns: Any
+        :returns: dict
         """
         response: dict = self.api_call("ADSModule/Servers", { 
             "id": id,
             "REQ_RAWJSON": REQ_RAWJSON,
         })
-        return Any(**response)
+        return dict(**response)
 
-    async def ServersAsync(self, id: str, REQ_RAWJSON: str) -> Any:
+    async def ServersAsync(self, id: str, REQ_RAWJSON: str) -> dict:
         """
         Name Description Optional
         :param id: {str}  False
         :param REQ_RAWJSON: {str}  False
-        :returns: Any
+        :returns: dict
         """
         response: dict = await self.api_call_async("ADSModule/Servers", { 
             "id": id,
             "REQ_RAWJSON": REQ_RAWJSON,
         })
-        return Any(**response)
+        return dict(**response)
 
-    def SetInstanceConfig(self, InstanceName: str, SettingNode: str, Value: str) -> Task[ActionResult]:
+    def SetInstanceConfig(self, InstanceName: str, SettingNode: str, Value: str) -> ActionResult:
         """
         Name Description Optional
         :param InstanceName: {str}  False
         :param SettingNode: {str}  False
         :param Value: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/SetInstanceConfig", { 
             "InstanceName": InstanceName,
             "SettingNode": SettingNode,
             "Value": Value,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def SetInstanceConfigAsync(self, InstanceName: str, SettingNode: str, Value: str) -> Task[ActionResult]:
+    async def SetInstanceConfigAsync(self, InstanceName: str, SettingNode: str, Value: str) -> ActionResult:
         """
         Name Description Optional
         :param InstanceName: {str}  False
         :param SettingNode: {str}  False
         :param Value: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/SetInstanceConfig", { 
             "InstanceName": InstanceName,
             "SettingNode": SettingNode,
             "Value": Value,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def SetInstanceNetworkInfo(self, InstanceId: UUID, PortMappings: dict[str, int]) -> Task[ActionResult]:
+    def SetInstanceNetworkInfo(self, InstanceId: UUID, PortMappings: dict[str, int]) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {UUID}  False
         :param PortMappings: {dict[str, int]}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/SetInstanceNetworkInfo", { 
             "InstanceId": InstanceId,
             "PortMappings": PortMappings,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def SetInstanceNetworkInfoAsync(self, InstanceId: UUID, PortMappings: dict[str, int]) -> Task[ActionResult]:
+    async def SetInstanceNetworkInfoAsync(self, InstanceId: UUID, PortMappings: dict[str, int]) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {UUID}  False
         :param PortMappings: {dict[str, int]}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/SetInstanceNetworkInfo", { 
             "InstanceId": InstanceId,
             "PortMappings": PortMappings,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def SetInstanceSuspended(self, InstanceName: str, Suspended: bool) -> Task[ActionResult]:
+    def SetInstanceSuspended(self, InstanceName: str, Suspended: bool) -> ActionResult:
         """
         Name Description Optional
         :param InstanceName: {str}  False
         :param Suspended: {bool}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/SetInstanceSuspended", { 
             "InstanceName": InstanceName,
             "Suspended": Suspended,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def SetInstanceSuspendedAsync(self, InstanceName: str, Suspended: bool) -> Task[ActionResult]:
+    async def SetInstanceSuspendedAsync(self, InstanceName: str, Suspended: bool) -> ActionResult:
         """
         Name Description Optional
         :param InstanceName: {str}  False
         :param Suspended: {bool}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/SetInstanceSuspended", { 
             "InstanceName": InstanceName,
             "Suspended": Suspended,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def StartAllInstances(self, ) -> Task[ActionResult]:
+    def StartAllInstances(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/StartAllInstances", { 
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def StartAllInstancesAsync(self, ) -> Task[ActionResult]:
+    async def StartAllInstancesAsync(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/StartAllInstances", { 
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def StartInstance(self, InstanceName: str) -> Task[ActionResult]:
+    def StartInstance(self, InstanceName: str) -> ActionResult:
         """
         Name Description Optional
         :param InstanceName: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/StartInstance", { 
             "InstanceName": InstanceName,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def StartInstanceAsync(self, InstanceName: str) -> Task[ActionResult]:
+    async def StartInstanceAsync(self, InstanceName: str) -> ActionResult:
         """
         Name Description Optional
         :param InstanceName: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/StartInstance", { 
             "InstanceName": InstanceName,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def StopAllInstances(self, ) -> Task[ActionResult]:
+    def StopAllInstances(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/StopAllInstances", { 
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def StopAllInstancesAsync(self, ) -> Task[ActionResult]:
+    async def StopAllInstancesAsync(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/StopAllInstances", { 
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def StopInstance(self, InstanceName: str) -> ActionResult:
         """
@@ -1330,35 +1330,35 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def TestADSLoginDetails(self, url: str, username: str, password: str) -> Task[ActionResult]:
+    def TestADSLoginDetails(self, url: str, username: str, password: str) -> ActionResult:
         """
         Name Description Optional
         :param url: {str}  False
         :param username: {str}  False
         :param password: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/TestADSLoginDetails", { 
             "url": url,
             "username": username,
             "password": password,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def TestADSLoginDetailsAsync(self, url: str, username: str, password: str) -> Task[ActionResult]:
+    async def TestADSLoginDetailsAsync(self, url: str, username: str, password: str) -> ActionResult:
         """
         Name Description Optional
         :param url: {str}  False
         :param username: {str}  False
         :param password: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/TestADSLoginDetails", { 
             "url": url,
             "username": username,
             "password": password,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def UpdateDatastore(self, updatedDatastore: InstanceDatastore) -> ActionResult:
         """
@@ -1530,27 +1530,27 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def UpgradeAllInstances(self, RestartRunning: bool) -> Task[ActionResult]:
+    def UpgradeAllInstances(self, RestartRunning: bool) -> ActionResult:
         """
         Name Description Optional
         :param RestartRunning: {bool}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/UpgradeAllInstances", { 
             "RestartRunning": RestartRunning,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def UpgradeAllInstancesAsync(self, RestartRunning: bool) -> Task[ActionResult]:
+    async def UpgradeAllInstancesAsync(self, RestartRunning: bool) -> ActionResult:
         """
         Name Description Optional
         :param RestartRunning: {bool}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/UpgradeAllInstances", { 
             "RestartRunning": RestartRunning,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def UpgradeInstance(self, InstanceName: str) -> ActionResult:
         """

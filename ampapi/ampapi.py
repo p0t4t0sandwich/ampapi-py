@@ -37,7 +37,7 @@ class AMPAPI():
         self.headers: dict = {
             'Content-Type': 'application/json',
             'Accept': 'text/javascript',
-            'User-Agent': 'ampapi-py/1.2.2'
+            'User-Agent': 'ampapi-py/1.3.6'
         }
 
     def api_call(self, endpoint: str, data: dict = {}) -> dict:
@@ -67,9 +67,13 @@ class AMPAPI():
             data=data_json
         )
 
-        res_json = json.loads(res.content)
+        response = json.loads(res.content)
 
-        return res_json
+        # Raise an exception if the API call failed
+        if isinstance(response, dict) and "Title" in response.keys() and "Message" in response.keys() and "StackTrace" in response.keys():
+            raise Exception(f"{response['Title']}: {response['Message']}\n{response['StackTrace']}")
+
+        return response
 
     async def api_call_async(self, endpoint: str, data: dict = {}) -> dict:
         """Method to make AMP API calls
@@ -93,10 +97,15 @@ class AMPAPI():
         data_added = dict(session, **data)
         data_json = json.dumps(data_added)
 
+        response: dict = {}
         async with ClientSession() as session:
             async with session.post(url=f'{self.dataSource}{endpoint}', headers=self.headers, data=data_json) as post:
                 response = await post.json()
                 post.close()
+
+        # Raise an exception if the API call failed
+        if isinstance(response, dict) and "Title" in response.keys() and "Message" in response.keys() and "StackTrace" in response.keys():
+            raise Exception(f"{response['Title']}: {response['Message']}\n{response['StackTrace']}")
 
         return response
 

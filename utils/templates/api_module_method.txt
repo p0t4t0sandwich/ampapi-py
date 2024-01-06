@@ -5,7 +5,7 @@
         """
         response: dict = self.api_call("%MODULE_NAME%/%METHOD_NAME%", { %METHOD_PARAMETER_MAP%
         })
-        return %METHOD_RETURN_TYPE%(**response)
+        return %METHOD_RETURN_SERIALIZER%
 
     async def %METHOD_NAME%Async(self, %METHOD_PARAMETERS%) -> %METHOD_RETURN_TYPE%:
         """%METHOD_DESCRIPTION%
@@ -14,5 +14,5 @@
         """
         response: dict = await self.api_call_async("%MODULE_NAME%/%METHOD_NAME%", { %METHOD_PARAMETER_MAP%
         })
-        return %METHOD_RETURN_TYPE%(**response)
+        return %METHOD_RETURN_SERIALIZER%
 

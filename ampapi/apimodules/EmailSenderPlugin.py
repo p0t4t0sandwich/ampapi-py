@@ -14,21 +14,21 @@ class EmailSenderPlugin(AMPAPI):
         """
         super().__init__(ampapi.baseUri, ampapi.username, ampapi.password, ampapi.rememberMeToken, ampapi.sessionId)
 
-    def TestSMTPSettings(self, ) -> Task[ActionResult]:
+    def TestSMTPSettings(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("EmailSenderPlugin/TestSMTPSettings", { 
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def TestSMTPSettingsAsync(self, ) -> Task[ActionResult]:
+    async def TestSMTPSettingsAsync(self, ) -> ActionResult:
         """
         Name Description Optional
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("EmailSenderPlugin/TestSMTPSettings", { 
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 

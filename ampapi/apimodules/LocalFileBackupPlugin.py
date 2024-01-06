@@ -14,27 +14,27 @@ class LocalFileBackupPlugin(AMPAPI):
         """
         super().__init__(ampapi.baseUri, ampapi.username, ampapi.password, ampapi.rememberMeToken, ampapi.sessionId)
 
-    def DeleteFromS3(self, BackupId: UUID) -> Task[ActionResult]:
+    def DeleteFromS3(self, BackupId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param BackupId: {UUID}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("LocalFileBackupPlugin/DeleteFromS3", { 
             "BackupId": BackupId,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def DeleteFromS3Async(self, BackupId: UUID) -> Task[ActionResult]:
+    async def DeleteFromS3Async(self, BackupId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param BackupId: {UUID}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("LocalFileBackupPlugin/DeleteFromS3", { 
             "BackupId": BackupId,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def DeleteLocalBackup(self, BackupId: UUID) -> Void:
         """
@@ -62,45 +62,45 @@ class LocalFileBackupPlugin(AMPAPI):
             response = {}
         return Void(**response)
 
-    def DownloadFromS3(self, BackupId: UUID) -> Result[RunningTask]:
+    def DownloadFromS3(self, BackupId: UUID) -> RunningTask:
         """
         Name Description Optional
         :param BackupId: {UUID}  False
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = self.api_call("LocalFileBackupPlugin/DownloadFromS3", { 
             "BackupId": BackupId,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
-    async def DownloadFromS3Async(self, BackupId: UUID) -> Result[RunningTask]:
+    async def DownloadFromS3Async(self, BackupId: UUID) -> RunningTask:
         """
         Name Description Optional
         :param BackupId: {UUID}  False
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = await self.api_call_async("LocalFileBackupPlugin/DownloadFromS3", { 
             "BackupId": BackupId,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
-    def GetBackups(self, ) -> Result[list[dict]]:
+    def GetBackups(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Result[list[dict]]
+        :returns: list[Any]
         """
         response: dict = self.api_call("LocalFileBackupPlugin/GetBackups", { 
         })
-        return Result[list[dict]](**response)
+        return [Any(**x) for x in response]
 
-    async def GetBackupsAsync(self, ) -> Result[list[dict]]:
+    async def GetBackupsAsync(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Result[list[dict]]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("LocalFileBackupPlugin/GetBackups", { 
         })
-        return Result[list[dict]](**response)
+        return [Any(**x) for x in response]
 
     def RestoreBackup(self, BackupId: UUID, DeleteExistingData: bool) -> ActionResult:
         """
@@ -188,25 +188,25 @@ class LocalFileBackupPlugin(AMPAPI):
         })
         return ActionResult(**response)
 
-    def UploadToS3(self, BackupId: UUID) -> Result[RunningTask]:
+    def UploadToS3(self, BackupId: UUID) -> RunningTask:
         """
         Name Description Optional
         :param BackupId: {UUID}  False
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = self.api_call("LocalFileBackupPlugin/UploadToS3", { 
             "BackupId": BackupId,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 
-    async def UploadToS3Async(self, BackupId: UUID) -> Result[RunningTask]:
+    async def UploadToS3Async(self, BackupId: UUID) -> RunningTask:
         """
         Name Description Optional
         :param BackupId: {UUID}  False
-        :returns: Result[RunningTask]
+        :returns: RunningTask
         """
         response: dict = await self.api_call_async("LocalFileBackupPlugin/UploadToS3", { 
             "BackupId": BackupId,
         })
-        return Result[RunningTask](**response)
+        return RunningTask(**response)
 

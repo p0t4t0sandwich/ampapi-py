@@ -759,7 +759,7 @@ class Core(AMPAPI):
         """
         response: dict = self.api_call("Core/GetAPISpec", { 
         })
-        return dict(**response)
+        return response
 
     async def GetAPISpecAsync(self, ) -> dict[str, dict[str, Any]]:
         """
@@ -768,7 +768,7 @@ class Core(AMPAPI):
         """
         response: dict = await self.api_call_async("Core/GetAPISpec", { 
         })
-        return dict(**response)
+        return response
 
     def GetActiveAMPSessions(self, ) -> list[Any]:
         """
@@ -883,7 +883,7 @@ class Core(AMPAPI):
         """
         response: dict = self.api_call("Core/GetDiagnosticsInfo", { 
         })
-        return dict(**response)
+        return response
 
     async def GetDiagnosticsInfoAsync(self, ) -> dict[str, str]:
         """
@@ -892,7 +892,7 @@ class Core(AMPAPI):
         """
         response: dict = await self.api_call_async("Core/GetDiagnosticsInfo", { 
         })
-        return dict(**response)
+        return response
 
     def GetModuleInfo(self, ) -> ModuleInfo:
         """
@@ -1057,7 +1057,7 @@ class Core(AMPAPI):
         """
         response: dict = self.api_call("Core/GetRoleIds", { 
         })
-        return dict(**response)
+        return response
 
     async def GetRoleIdsAsync(self, ) -> dict[UUID, str]:
         """
@@ -1066,7 +1066,7 @@ class Core(AMPAPI):
         """
         response: dict = await self.api_call_async("Core/GetRoleIds", { 
         })
-        return dict(**response)
+        return response
 
     def GetScheduleData(self, ) -> Any:
         """
@@ -1097,7 +1097,7 @@ class Core(AMPAPI):
             "SettingNode": SettingNode,
             "WithRefresh": WithRefresh,
         })
-        return dict(**response)
+        return response
 
     async def GetSettingValuesAsync(self, SettingNode: str, WithRefresh: bool) -> dict[str, str]:
         """
@@ -1110,7 +1110,7 @@ class Core(AMPAPI):
             "SettingNode": SettingNode,
             "WithRefresh": WithRefresh,
         })
-        return dict(**response)
+        return response
 
     def GetSettingsSpec(self, ) -> dict[str, SettingSpec]:
         """
@@ -1119,7 +1119,7 @@ class Core(AMPAPI):
         """
         response: dict = self.api_call("Core/GetSettingsSpec", { 
         })
-        return dict(**response)
+        return response
 
     async def GetSettingsSpecAsync(self, ) -> dict[str, SettingSpec]:
         """
@@ -1128,7 +1128,7 @@ class Core(AMPAPI):
         """
         response: dict = await self.api_call_async("Core/GetSettingsSpec", { 
         })
-        return dict(**response)
+        return response
 
     def GetStatus(self, ) -> Status:
         """
@@ -1274,7 +1274,7 @@ class Core(AMPAPI):
         """
         response: dict = self.api_call("Core/GetUserList", { 
         })
-        return dict(**response)
+        return response
 
     async def GetUserListAsync(self, ) -> dict[str, str]:
         """
@@ -1284,7 +1284,7 @@ class Core(AMPAPI):
         """
         response: dict = await self.api_call_async("Core/GetUserList", { 
         })
-        return dict(**response)
+        return response
 
     def GetWebauthnChallenge(self, ) -> ActionResult[str]:
         """

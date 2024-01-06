@@ -48,6 +48,7 @@ type_dict = {
     "IEnumerable<JObject>": "list[dict]",
     "IEnumerable<ListeningPortSummary>": "list[Any]",
     "IEnumerable<PortUsage>": "list[Any]",
+    "IEnumerable<ProvisionSettingInfo>": "list[Any]",
     "IEnumerable<String>": "list[str]",
     "IEnumerable<UserInfo>": "list[UserInfo]",
     "IEnumerable<UserInfoSummary>": "list[Any]",
@@ -174,7 +175,7 @@ def generate_apimodule_method(module: str, method: str, method_spec: dict):
             return_type_serializer = f"[{inner}(**x) for x in response]"
 
     elif return_type.startswith("dict["):
-        return_type_serializer = f"dict(**response)"
+        return_type_serializer = f"response"
 
     # Replace placeholders
     template = api_module_method_template\

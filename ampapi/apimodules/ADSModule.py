@@ -728,27 +728,27 @@ class ADSModule(AMPAPI):
         })
         return [dict(**x) for x in response]
 
-    def GetProvisionArguments(self, ModuleName: str) -> list[dict]:
+    def GetProvisionArguments(self, ModuleName: str) -> list[Any]:
         """
         Name Description Optional
         :param ModuleName: {str}  False
-        :returns: list[dict]
+        :returns: list[Any]
         """
         response: dict = self.api_call("ADSModule/GetProvisionArguments", { 
             "ModuleName": ModuleName,
         })
-        return [dict(**x) for x in response]
+        return [Any(**x) for x in response]
 
-    async def GetProvisionArgumentsAsync(self, ModuleName: str) -> list[dict]:
+    async def GetProvisionArgumentsAsync(self, ModuleName: str) -> list[Any]:
         """
         Name Description Optional
         :param ModuleName: {str}  False
-        :returns: list[dict]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("ADSModule/GetProvisionArguments", { 
             "ModuleName": ModuleName,
         })
-        return [dict(**x) for x in response]
+        return [Any(**x) for x in response]
 
     def GetProvisionFitness(self, ) -> dict:
         """

@@ -23,7 +23,7 @@ class GenericModule(AMPAPI):
         response: dict = self.api_call("GenericModule/ImportConfig", { 
             "filename": filename,
         })
-        return dict(**response)
+        return response
 
     async def ImportConfigAsync(self, filename: str) -> dict[str, str]:
         """
@@ -34,5 +34,5 @@ class GenericModule(AMPAPI):
         response: dict = await self.api_call_async("GenericModule/ImportConfig", { 
             "filename": filename,
         })
-        return dict(**response)
+        return response
 

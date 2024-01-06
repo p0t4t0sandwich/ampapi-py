@@ -8,99 +8,85 @@ import sys
 
 
 type_dict = {
-    "InstanceDatastore": "InstanceDatastore",
+    # Generic types
     "ActionResult": "ActionResult",
-    "Int32": "int",
-    "IEnumerable<InstanceDatastore>": "list[InstanceDatastore]",
-    "RunningTask": "Result[RunningTask]",
-    "Task<RunningTask>": "Task[RunningTask]",
-    "IEnumerable<JObject>": "list[dict]",
-    "Guid": "UUID",
-    "IEnumerable<DeploymentTemplate>": "Result[list]",
-    "String": "str",
-    "DeploymentTemplate": "Any",
-    "Boolean": "bool",
-    "List<String>": "list[str]",
-    "PostCreateActions": "Any",
-    "Dictionary<String, String>": "dict[str, str]",
-    "RemoteTargetInfo": "RemoteTargetInfo",
-    "IEnumerable<ApplicationSpec>": "Result[list]",
-    "Void": "Void",
-    "IEnumerable<EndpointInfo>": "Result[list[EndpointInfo]]",
-    "IEnumerable<IADSInstance>": "Result[list[IADSInstance]]",
-    "JObject": "dict",
-    "PortProtocol": "Any",
-    "Task<ActionResult>": "Task[ActionResult]",
+    "ActionResult<Guid>": "ActionResult[UUID]",
+    "ActionResult<LicenceInfo>": "ActionResult[LicenceInfo]",
     "ActionResult<String>": "ActionResult[str]",
-    "IADSInstance": "Result[IADSInstance]",
-    "Uri": "URL",
-    "IEnumerable<PortUsage>": "Result[list]",
-    "Dictionary<String, Int32>": "dict[str, int]",
-    "LocalAMPInstance": "Any",
-    "ContainerMemoryPolicy": "Any",
-    "Single": "Any",
-    "Task<JObject>": "Any",
-    "Int64": "int",
-    "FileChunkData": "Any",
-    "IEnumerable<BackupManifest>": "Result[list[dict]]",
-    "Nullable<DateTime>": "Any | None",
-    "IEnumerable<IAuditLogEntry>": "Result[dict]",
-    "Dictionary<String, IEnumerable<JObject>>": "dict[str, list[dict]]",
-    "IDictionary<String, String>": "dict[str, str]",
-    "List<JObject>": "list[dict]",
-    "String[]": "list[str]",
-    "Task<IEnumerable<AuthRoleSummary>>": "Task[list]",
-    "Task<IDictionary<Guid, String>>": "Task[dict[UUID, str]]",
-    "Task<AuthRoleSummary>": "Task[Any]",
-    "Task<ActionResult<Guid>>": "Task[ActionResult[UUID]]",
-    "Nullable<Boolean>": "bool | None",
-    "Task<IEnumerable<String>>": "Task[list[str]]",
-    "ScheduleInfo": "Any",
-    "Int32[]": "list[int]",
-    "TimeIntervalTrigger": "Any",
-    "IEnumerable<WebSessionSummary>": "Result[list]",
-    "Task<IEnumerable<UserInfoSummary>>": "Task[list]",
-    "Task<UserInfo>": "Task[UserInfo]",
-    "Task<IEnumerable<UserInfo>>": "Task[list[UserInfo]]",
-    "IList<IPermissionsTreeNode>": "list",
-    "WebauthnLoginInfo": "Any",
-    "IEnumerable<WebauthnCredentialSummary>": "list",
-    "Task<ActionResult<TwoFactorSetupInfo>>": "Task[ActionResult[Any]]",
-    "IEnumerable<RunningTask>": "Result[list[RunningTask]]",
-    "ModuleInfo": "Result[ModuleInfo]",
-    "Dictionary<String, Dictionary<String, MethodInfoSummary>>": "dict[str, dict]",
-    "Object": "Any",
-    "Task<String>": "Task[str]",
-    "UpdateInfo": "Result[UpdateInfo]",
-    "IEnumerable<ListeningPortSummary>": "Result[list]",
-    "Task<ActionResult<LicenceInfo>>": "Task[ActionResult[LicenceInfo]]",
+    "ActionResult<TwoFactorSetupInfo>": "ActionResult[Any]",
+    "RunningTask": "RunningTask",
+    "IEnumerable<RunningTask>": "list[RunningTask]",
 
-    ## Custom types
-    "Result[Instance]": "Result[Instance]",
-    "Result[RemoteTargetInfo]": "Result[RemoteTargetInfo]",
-    "SettingsSpec": "SettingsSpec",
+    # Primitive types
+    "Boolean": "bool",
+    "Guid": "UUID",
+    "Int32": "int",
+    "Int32[]": "list[int]",
+    "Int64": "int",
+    "JObject": "dict",
+    "Object": "Any",
+    "String": "str",
+    "String[]": "list[str]",
+    "Uri": "URL",
+    "Void": "Void",
+
+    # Nested types
+    "Dictionary<String, Dictionary<String, MethodInfoSummary>>": "dict[str, dict[str, Any]]",
+    "Dictionary<String, Int32>": "dict[str, int]",
+    "Dictionary<String, SettingSpec>": "dict[str, SettingSpec]",
+    "Dictionary<String, String>": "dict[str, str]",
+    "IDictionary<Guid, String>": "dict[UUID, str]",
+    "IDictionary<String, String>": "dict[str, str]",
+    "IEnumerable<ApplicationSpec>": "list[Any]",
+    "IEnumerable<AuthRoleSummary>": "list[Any]",
+    "IEnumerable<BackupManifest>": "list[Any]",
+    "IEnumerable<DeploymentTemplate>": "list[Any]",
+    "IEnumerable<EndpointInfo>": "list[EndpointInfo]",
+    "IEnumerable<IADSInstance>": "list[IADSInstance]",
+    "IEnumerable<IAuditLogEntry>": "list[Any]",
+    "IEnumerable<InstanceDatastore>": "list[InstanceDatastore]",
+    "IEnumerable<JObject>": "list[dict]",
+    "IEnumerable<ListeningPortSummary>": "list[Any]",
+    "IEnumerable<PortUsage>": "list[Any]",
+    "IEnumerable<String>": "list[str]",
+    "IEnumerable<UserInfo>": "list[UserInfo]",
+    "IEnumerable<UserInfoSummary>": "list[Any]",
+    "IEnumerable<WebauthnCredentialSummary>": "list[Any]",
+    "IEnumerable<WebSessionSummary>": "list[Any]",
+    "IList<IPermissionsTreeNode>": "list[Any]",
+    "List<JObject>": "list[dict]",
+    "List<String>": "list[str]",
+    "Nullable<Boolean>": "bool",
+    "Nullable<DateTime>": "Any",
+
+    # Object types
+    "AuthRoleSummary": "Any",
+    "ContainerMemoryPolicy": "Any",
+    "DeploymentTemplate": "Any",
+    "FileChunkData": "Any",
+    "IADSInstance": "IADSInstance",
+    "Instance": "Instance",
+    "InstanceDatastore": "InstanceDatastore",
+    "LocalAMPInstance": "Any",
+    "LoginResult": "LoginResult",
+    "ModuleInfo": "ModuleInfo",
+    "PortProtocol": "Any",
+    "PostCreateActions": "Any",
+    "RemoteTargetInfo": "RemoteTargetInfo",
+    "ScheduleInfo": "Any",
+    "SimpleUser": "Any",
+    "Single": "Any",
     "Status": "Status",
+    "TimeIntervalTrigger": "Any",
+    "UpdateInfo": "UpdateInfo",
     "Updates": "Updates",
-    "Result[dict[str, str]]": "Result[dict[str, str]]",
-    "LoginResult": "LoginResult"
+    "UserInfo": "UserInfo",
+    "WebauthnLoginInfo": "Any",
 }
 
 custom_types = {
     # API.ADSModule.GetInstance
-    "ADSModule.GetInstance": "Result[Instance]",
-    # API.ADSModule.GetTargetInfo
-    "ADSModule.GetTargetInfo": "Result[RemoteTargetInfo]",
-
-    # API.Core.GetSettingsSpec
-    "Core.GetSettingsSpec": "SettingsSpec",
-    # API.Core.GetStatus
-    "Core.GetStatus": "Status",
-    # API.Core.GetUpdates
-    "Core.GetUpdates": "Updates",
-    # API.Core.GetUserList
-    "Core.GetUserList": "Result[dict[str, str]]",
-    # API.Core.Login
-    "Core.Login": "LoginResult",
+    # "ADSModule.GetInstance": "Result[Instance]",
 }
 
 def generate_apimodule_method(module: str, method: str, method_spec: dict):
@@ -178,6 +164,18 @@ def generate_apimodule_method(module: str, method: str, method_spec: dict):
         map_string += api_module_method_parameter_map_template.replace("%METHOD_PARAMETER_NAME%", name)
     map_string = map_string[:-1]
 
+    # Custom mapping for list types
+    return_type_serializer = return_type + "(**response)"
+    if return_type.startswith("list["):
+        inner = return_type[5:-1]
+        if inner.startswith("dict["):
+            return_type_serializer = f"[{inner[5:-1]}(**x) for x in response]"
+        else:
+            return_type_serializer = f"[{inner}(**x) for x in response]"
+
+    elif return_type.startswith("dict["):
+        return_type_serializer = f"dict(**response)"
+
     # Replace placeholders
     template = api_module_method_template\
         .replace("%METHOD_DESCRIPTION%", description)\
@@ -186,6 +184,7 @@ def generate_apimodule_method(module: str, method: str, method_spec: dict):
         .replace("%METHOD_NAME%", method)\
         .replace("%METHOD_PARAMETERS%", parameters)\
         .replace("%METHOD_RETURN_TYPE%", return_type)\
+        .replace("%METHOD_RETURN_SERIALIZER%", return_type_serializer)\
         .replace("%METHOD_PARAMETER_MAP%", map_string)
 
     # End result will return a string
@@ -227,7 +226,7 @@ if __name__ == "__main__":
         branch = sys.argv[1]
 
     # Load remote file
-    res = requests.get(f"https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/{branch}/APISpec.json")
+    res = requests.get(f"https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/{branch}/OldAPISpec.json")
     spec = json.loads(res.content)
 
     # Load custom types

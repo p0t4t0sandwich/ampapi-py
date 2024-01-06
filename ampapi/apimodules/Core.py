@@ -36,31 +36,31 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
-    def ActivateAMPLicence(self, LicenceKey: str, QueryOnly: bool) -> Task[ActionResult[LicenceInfo]]:
+    def ActivateAMPLicence(self, LicenceKey: str, QueryOnly: bool) -> ActionResult[LicenceInfo]:
         """
         Name Description Optional
         :param LicenceKey: {str}  False
         :param QueryOnly: {bool}  True
-        :returns: Task[ActionResult[LicenceInfo]]
+        :returns: ActionResult[LicenceInfo]
         """
         response: dict = self.api_call("Core/ActivateAMPLicence", { 
             "LicenceKey": LicenceKey,
             "QueryOnly": QueryOnly,
         })
-        return Task[ActionResult[LicenceInfo]](**response)
+        return ActionResult[LicenceInfo](**response)
 
-    async def ActivateAMPLicenceAsync(self, LicenceKey: str, QueryOnly: bool) -> Task[ActionResult[LicenceInfo]]:
+    async def ActivateAMPLicenceAsync(self, LicenceKey: str, QueryOnly: bool) -> ActionResult[LicenceInfo]:
         """
         Name Description Optional
         :param LicenceKey: {str}  False
         :param QueryOnly: {bool}  True
-        :returns: Task[ActionResult[LicenceInfo]]
+        :returns: ActionResult[LicenceInfo]
         """
         response: dict = await self.api_call_async("Core/ActivateAMPLicence", { 
             "LicenceKey": LicenceKey,
             "QueryOnly": QueryOnly,
         })
-        return Task[ActionResult[LicenceInfo]](**response)
+        return ActionResult[LicenceInfo](**response)
 
     def AddEventTrigger(self, triggerId: UUID) -> ActionResult:
         """
@@ -156,25 +156,25 @@ class Core(AMPAPI):
         })
         return ActionResult(**response)
 
-    def AsyncTest(self, ) -> Task[str]:
+    def AsyncTest(self, ) -> str:
         """
      * DEV: Async test method
         Name Description Optional
-        :returns: Task[str]
+        :returns: str
         """
         response: dict = self.api_call("Core/AsyncTest", { 
         })
-        return Task[str](**response)
+        return str(**response)
 
-    async def AsyncTestAsync(self, ) -> Task[str]:
+    async def AsyncTestAsync(self, ) -> str:
         """
      * DEV: Async test method
         Name Description Optional
-        :returns: Task[str]
+        :returns: str
         """
         response: dict = await self.api_call_async("Core/AsyncTest", { 
         })
-        return Task[str](**response)
+        return str(**response)
 
     def CancelTask(self, TaskId: UUID) -> ActionResult:
         """
@@ -228,14 +228,14 @@ class Core(AMPAPI):
         })
         return ActionResult(**response)
 
-    def ChangeUserPassword(self, Username: str, OldPassword: str, NewPassword: str, TwoFactorPIN: str) -> Task[ActionResult]:
+    def ChangeUserPassword(self, Username: str, OldPassword: str, NewPassword: str, TwoFactorPIN: str) -> ActionResult:
         """
         Name Description Optional
         :param Username: {str}  False
         :param OldPassword: {str}  False
         :param NewPassword: {str}  False
         :param TwoFactorPIN: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/ChangeUserPassword", { 
             "Username": Username,
@@ -243,16 +243,16 @@ class Core(AMPAPI):
             "NewPassword": NewPassword,
             "TwoFactorPIN": TwoFactorPIN,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def ChangeUserPasswordAsync(self, Username: str, OldPassword: str, NewPassword: str, TwoFactorPIN: str) -> Task[ActionResult]:
+    async def ChangeUserPasswordAsync(self, Username: str, OldPassword: str, NewPassword: str, TwoFactorPIN: str) -> ActionResult:
         """
         Name Description Optional
         :param Username: {str}  False
         :param OldPassword: {str}  False
         :param NewPassword: {str}  False
         :param TwoFactorPIN: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/ChangeUserPassword", { 
             "Username": Username,
@@ -260,59 +260,59 @@ class Core(AMPAPI):
             "NewPassword": NewPassword,
             "TwoFactorPIN": TwoFactorPIN,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def ConfirmTwoFactorSetup(self, Username: str, TwoFactorCode: str) -> Task[ActionResult]:
+    def ConfirmTwoFactorSetup(self, Username: str, TwoFactorCode: str) -> ActionResult:
         """
         Name Description Optional
         :param Username: {str}  False
         :param TwoFactorCode: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/ConfirmTwoFactorSetup", { 
             "Username": Username,
             "TwoFactorCode": TwoFactorCode,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def ConfirmTwoFactorSetupAsync(self, Username: str, TwoFactorCode: str) -> Task[ActionResult]:
+    async def ConfirmTwoFactorSetupAsync(self, Username: str, TwoFactorCode: str) -> ActionResult:
         """
         Name Description Optional
         :param Username: {str}  False
         :param TwoFactorCode: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/ConfirmTwoFactorSetup", { 
             "Username": Username,
             "TwoFactorCode": TwoFactorCode,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def CreateRole(self, Name: str, AsCommonRole: bool) -> Task[ActionResult[UUID]]:
+    def CreateRole(self, Name: str, AsCommonRole: bool) -> ActionResult[UUID]:
         """
         Name Description Optional
         :param Name: {str}  False
         :param AsCommonRole: {bool}  True
-        :returns: Task[ActionResult[UUID]]
+        :returns: ActionResult[UUID]
         """
         response: dict = self.api_call("Core/CreateRole", { 
             "Name": Name,
             "AsCommonRole": AsCommonRole,
         })
-        return Task[ActionResult[UUID]](**response)
+        return ActionResult[UUID](**response)
 
-    async def CreateRoleAsync(self, Name: str, AsCommonRole: bool) -> Task[ActionResult[UUID]]:
+    async def CreateRoleAsync(self, Name: str, AsCommonRole: bool) -> ActionResult[UUID]:
         """
         Name Description Optional
         :param Name: {str}  False
         :param AsCommonRole: {bool}  True
-        :returns: Task[ActionResult[UUID]]
+        :returns: ActionResult[UUID]
         """
         response: dict = await self.api_call_async("Core/CreateRole", { 
             "Name": Name,
             "AsCommonRole": AsCommonRole,
         })
-        return Task[ActionResult[UUID]](**response)
+        return ActionResult[UUID](**response)
 
     def CreateTestTask(self, ) -> Void:
         """
@@ -338,27 +338,27 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
-    def CreateUser(self, Username: str) -> Task[ActionResult[UUID]]:
+    def CreateUser(self, Username: str) -> ActionResult[UUID]:
         """
         Name Description Optional
         :param Username: {str}  False
-        :returns: Task[ActionResult[UUID]]
+        :returns: ActionResult[UUID]
         """
         response: dict = self.api_call("Core/CreateUser", { 
             "Username": Username,
         })
-        return Task[ActionResult[UUID]](**response)
+        return ActionResult[UUID](**response)
 
-    async def CreateUserAsync(self, Username: str) -> Task[ActionResult[UUID]]:
+    async def CreateUserAsync(self, Username: str) -> ActionResult[UUID]:
         """
         Name Description Optional
         :param Username: {str}  False
-        :returns: Task[ActionResult[UUID]]
+        :returns: ActionResult[UUID]
         """
         response: dict = await self.api_call_async("Core/CreateUser", { 
             "Username": Username,
         })
-        return Task[ActionResult[UUID]](**response)
+        return ActionResult[UUID](**response)
 
     def CurrentSessionHasPermission(self, PermissionNode: str) -> bool:
         """
@@ -382,49 +382,49 @@ class Core(AMPAPI):
         })
         return bool(**response)
 
-    def DeleteInstanceUsers(self, InstanceId: UUID) -> Task[ActionResult]:
+    def DeleteInstanceUsers(self, InstanceId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {UUID}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/DeleteInstanceUsers", { 
             "InstanceId": InstanceId,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def DeleteInstanceUsersAsync(self, InstanceId: UUID) -> Task[ActionResult]:
+    async def DeleteInstanceUsersAsync(self, InstanceId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {UUID}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/DeleteInstanceUsers", { 
             "InstanceId": InstanceId,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def DeleteRole(self, RoleId: UUID) -> Task[ActionResult]:
+    def DeleteRole(self, RoleId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param RoleId: {UUID}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/DeleteRole", { 
             "RoleId": RoleId,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def DeleteRoleAsync(self, RoleId: UUID) -> Task[ActionResult]:
+    async def DeleteRoleAsync(self, RoleId: UUID) -> ActionResult:
         """
         Name Description Optional
         :param RoleId: {UUID}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/DeleteRole", { 
             "RoleId": RoleId,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def DeleteTask(self, TriggerID: UUID, TaskID: UUID) -> ActionResult:
         """
@@ -474,53 +474,53 @@ class Core(AMPAPI):
         })
         return ActionResult(**response)
 
-    def DeleteUser(self, Username: str) -> Task[ActionResult]:
+    def DeleteUser(self, Username: str) -> ActionResult:
         """
         Name Description Optional
         :param Username: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/DeleteUser", { 
             "Username": Username,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def DeleteUserAsync(self, Username: str) -> Task[ActionResult]:
+    async def DeleteUserAsync(self, Username: str) -> ActionResult:
         """
         Name Description Optional
         :param Username: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/DeleteUser", { 
             "Username": Username,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def DisableTwoFactor(self, Password: str, TwoFactorCode: str) -> Task[ActionResult]:
+    def DisableTwoFactor(self, Password: str, TwoFactorCode: str) -> ActionResult:
         """
         Name Description Optional
         :param Password: {str}  False
         :param TwoFactorCode: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/DisableTwoFactor", { 
             "Password": Password,
             "TwoFactorCode": TwoFactorCode,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def DisableTwoFactorAsync(self, Password: str, TwoFactorCode: str) -> Task[ActionResult]:
+    async def DisableTwoFactorAsync(self, Password: str, TwoFactorCode: str) -> ActionResult:
         """
         Name Description Optional
         :param Password: {str}  False
         :param TwoFactorCode: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/DisableTwoFactor", { 
             "Password": Password,
             "TwoFactorCode": TwoFactorCode,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def DismissAllTasks(self, ) -> ActionResult:
         """
@@ -638,31 +638,31 @@ class Core(AMPAPI):
         })
         return ActionResult(**response)
 
-    def EnableTwoFactor(self, Username: str, Password: str) -> Task[ActionResult[Any]]:
+    def EnableTwoFactor(self, Username: str, Password: str) -> ActionResult[Any]:
         """
         Name Description Optional
         :param Username: {str}  False
         :param Password: {str}  False
-        :returns: Task[ActionResult[Any]]
+        :returns: ActionResult[Any]
         """
         response: dict = self.api_call("Core/EnableTwoFactor", { 
             "Username": Username,
             "Password": Password,
         })
-        return Task[ActionResult[Any]](**response)
+        return ActionResult[Any](**response)
 
-    async def EnableTwoFactorAsync(self, Username: str, Password: str) -> Task[ActionResult[Any]]:
+    async def EnableTwoFactorAsync(self, Username: str, Password: str) -> ActionResult[Any]:
         """
         Name Description Optional
         :param Username: {str}  False
         :param Password: {str}  False
-        :returns: Task[ActionResult[Any]]
+        :returns: ActionResult[Any]
         """
         response: dict = await self.api_call_async("Core/EnableTwoFactor", { 
             "Username": Username,
             "Password": Password,
         })
-        return Task[ActionResult[Any]](**response)
+        return ActionResult[Any](**response)
 
     def EndUserSession(self, Id: UUID) -> Void:
         """
@@ -690,147 +690,147 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
-    def GetAMPRolePermissions(self, RoleId: UUID) -> Task[list[str]]:
+    def GetAMPRolePermissions(self, RoleId: UUID) -> list[str]:
         """
         Name Description Optional
         :param RoleId: {UUID}  False
-        :returns: Task[list[str]]
+        :returns: list[str]
         """
         response: dict = self.api_call("Core/GetAMPRolePermissions", { 
             "RoleId": RoleId,
         })
-        return Task[list[str]](**response)
+        return [str(**x) for x in response]
 
-    async def GetAMPRolePermissionsAsync(self, RoleId: UUID) -> Task[list[str]]:
+    async def GetAMPRolePermissionsAsync(self, RoleId: UUID) -> list[str]:
         """
         Name Description Optional
         :param RoleId: {UUID}  False
-        :returns: Task[list[str]]
+        :returns: list[str]
         """
         response: dict = await self.api_call_async("Core/GetAMPRolePermissions", { 
             "RoleId": RoleId,
         })
-        return Task[list[str]](**response)
+        return [str(**x) for x in response]
 
-    def GetAMPUserInfo(self, Username: str) -> Task[UserInfo]:
+    def GetAMPUserInfo(self, Username: str) -> UserInfo:
         """
         Name Description Optional
         :param Username: {str}  False
-        :returns: Task[UserInfo]
+        :returns: UserInfo
         """
         response: dict = self.api_call("Core/GetAMPUserInfo", { 
             "Username": Username,
         })
-        return Task[UserInfo](**response)
+        return UserInfo(**response)
 
-    async def GetAMPUserInfoAsync(self, Username: str) -> Task[UserInfo]:
+    async def GetAMPUserInfoAsync(self, Username: str) -> UserInfo:
         """
         Name Description Optional
         :param Username: {str}  False
-        :returns: Task[UserInfo]
+        :returns: UserInfo
         """
         response: dict = await self.api_call_async("Core/GetAMPUserInfo", { 
             "Username": Username,
         })
-        return Task[UserInfo](**response)
+        return UserInfo(**response)
 
-    def GetAMPUsersSummary(self, ) -> Task[list]:
+    def GetAMPUsersSummary(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Task[list]
+        :returns: list[Any]
         """
         response: dict = self.api_call("Core/GetAMPUsersSummary", { 
         })
-        return Task[list](**response)
+        return [Any(**x) for x in response]
 
-    async def GetAMPUsersSummaryAsync(self, ) -> Task[list]:
+    async def GetAMPUsersSummaryAsync(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Task[list]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("Core/GetAMPUsersSummary", { 
         })
-        return Task[list](**response)
+        return [Any(**x) for x in response]
 
-    def GetAPISpec(self, ) -> dict[str, dict]:
+    def GetAPISpec(self, ) -> dict[str, dict[str, Any]]:
         """
         Name Description Optional
-        :returns: dict[str, dict]
+        :returns: dict[str, dict[str, Any]]
         """
         response: dict = self.api_call("Core/GetAPISpec", { 
         })
-        return dict[str, dict](**response)
+        return dict(**response)
 
-    async def GetAPISpecAsync(self, ) -> dict[str, dict]:
+    async def GetAPISpecAsync(self, ) -> dict[str, dict[str, Any]]:
         """
         Name Description Optional
-        :returns: dict[str, dict]
+        :returns: dict[str, dict[str, Any]]
         """
         response: dict = await self.api_call_async("Core/GetAPISpec", { 
         })
-        return dict[str, dict](**response)
+        return dict(**response)
 
-    def GetActiveAMPSessions(self, ) -> Result[list]:
+    def GetActiveAMPSessions(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Result[list]
+        :returns: list[Any]
         """
         response: dict = self.api_call("Core/GetActiveAMPSessions", { 
         })
-        return Result[list](**response)
+        return [Any(**x) for x in response]
 
-    async def GetActiveAMPSessionsAsync(self, ) -> Result[list]:
+    async def GetActiveAMPSessionsAsync(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Result[list]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("Core/GetActiveAMPSessions", { 
         })
-        return Result[list](**response)
+        return [Any(**x) for x in response]
 
-    def GetAllAMPUserInfo(self, ) -> Task[list[UserInfo]]:
+    def GetAllAMPUserInfo(self, ) -> list[UserInfo]:
         """
         Name Description Optional
-        :returns: Task[list[UserInfo]]
+        :returns: list[UserInfo]
         """
         response: dict = self.api_call("Core/GetAllAMPUserInfo", { 
         })
-        return Task[list[UserInfo]](**response)
+        return [UserInfo(**x) for x in response]
 
-    async def GetAllAMPUserInfoAsync(self, ) -> Task[list[UserInfo]]:
+    async def GetAllAMPUserInfoAsync(self, ) -> list[UserInfo]:
         """
         Name Description Optional
-        :returns: Task[list[UserInfo]]
+        :returns: list[UserInfo]
         """
         response: dict = await self.api_call_async("Core/GetAllAMPUserInfo", { 
         })
-        return Task[list[UserInfo]](**response)
+        return [UserInfo(**x) for x in response]
 
-    def GetAuditLogEntries(self, Before: Any | None, Count: int) -> Result[dict]:
+    def GetAuditLogEntries(self, Before: Any, Count: int) -> list[Any]:
         """
         Name Description Optional
-        :param Before: {Any | None}  False
+        :param Before: {Any}  False
         :param Count: {int}  False
-        :returns: Result[dict]
+        :returns: list[Any]
         """
         response: dict = self.api_call("Core/GetAuditLogEntries", { 
             "Before": Before,
             "Count": Count,
         })
-        return Result[dict](**response)
+        return [Any(**x) for x in response]
 
-    async def GetAuditLogEntriesAsync(self, Before: Any | None, Count: int) -> Result[dict]:
+    async def GetAuditLogEntriesAsync(self, Before: Any, Count: int) -> list[Any]:
         """
         Name Description Optional
-        :param Before: {Any | None}  False
+        :param Before: {Any}  False
         :param Count: {int}  False
-        :returns: Result[dict]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("Core/GetAuditLogEntries", { 
             "Before": Before,
             "Count": Count,
         })
-        return Result[dict](**response)
+        return [Any(**x) for x in response]
 
     def GetConfig(self, node: str) -> dict:
         """
@@ -863,7 +863,7 @@ class Core(AMPAPI):
         response: dict = self.api_call("Core/GetConfigs", { 
             "nodes": nodes,
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     async def GetConfigsAsync(self, nodes: list[str]) -> list[dict]:
         """
@@ -874,7 +874,7 @@ class Core(AMPAPI):
         response: dict = await self.api_call_async("Core/GetConfigs", { 
             "nodes": nodes,
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     def GetDiagnosticsInfo(self, ) -> dict[str, str]:
         """
@@ -883,7 +883,7 @@ class Core(AMPAPI):
         """
         response: dict = self.api_call("Core/GetDiagnosticsInfo", { 
         })
-        return dict[str, str](**response)
+        return dict(**response)
 
     async def GetDiagnosticsInfoAsync(self, ) -> dict[str, str]:
         """
@@ -892,25 +892,25 @@ class Core(AMPAPI):
         """
         response: dict = await self.api_call_async("Core/GetDiagnosticsInfo", { 
         })
-        return dict[str, str](**response)
+        return dict(**response)
 
-    def GetModuleInfo(self, ) -> Result[ModuleInfo]:
+    def GetModuleInfo(self, ) -> ModuleInfo:
         """
         Name Description Optional
-        :returns: Result[ModuleInfo]
+        :returns: ModuleInfo
         """
         response: dict = self.api_call("Core/GetModuleInfo", { 
         })
-        return Result[ModuleInfo](**response)
+        return ModuleInfo(**response)
 
-    async def GetModuleInfoAsync(self, ) -> Result[ModuleInfo]:
+    async def GetModuleInfoAsync(self, ) -> ModuleInfo:
         """
         Name Description Optional
-        :returns: Result[ModuleInfo]
+        :returns: ModuleInfo
         """
         response: dict = await self.api_call_async("Core/GetModuleInfo", { 
         })
-        return Result[ModuleInfo](**response)
+        return ModuleInfo(**response)
 
     def GetNewGuid(self, ) -> UUID:
         """
@@ -930,41 +930,41 @@ class Core(AMPAPI):
         })
         return UUID(**response)
 
-    def GetPermissionsSpec(self, ) -> list:
+    def GetPermissionsSpec(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: list
+        :returns: list[Any]
         """
         response: dict = self.api_call("Core/GetPermissionsSpec", { 
         })
-        return list(**response)
+        return [Any(**x) for x in response]
 
-    async def GetPermissionsSpecAsync(self, ) -> list:
+    async def GetPermissionsSpecAsync(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: list
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("Core/GetPermissionsSpec", { 
         })
-        return list(**response)
+        return [Any(**x) for x in response]
 
-    def GetPortSummaries(self, ) -> Result[list]:
+    def GetPortSummaries(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Result[list]
+        :returns: list[Any]
         """
         response: dict = self.api_call("Core/GetPortSummaries", { 
         })
-        return Result[list](**response)
+        return [Any(**x) for x in response]
 
-    async def GetPortSummariesAsync(self, ) -> Result[list]:
+    async def GetPortSummariesAsync(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Result[list]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("Core/GetPortSummaries", { 
         })
-        return Result[list](**response)
+        return [Any(**x) for x in response]
 
     def GetProvisionSpec(self, ) -> list[dict]:
         """
@@ -973,7 +973,7 @@ class Core(AMPAPI):
         """
         response: dict = self.api_call("Core/GetProvisionSpec", { 
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     async def GetProvisionSpecAsync(self, ) -> list[dict]:
         """
@@ -982,91 +982,91 @@ class Core(AMPAPI):
         """
         response: dict = await self.api_call_async("Core/GetProvisionSpec", { 
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
-    def GetRemoteLoginToken(self, Description: str, IsTemporary: bool) -> Task[str]:
+    def GetRemoteLoginToken(self, Description: str, IsTemporary: bool) -> str:
         """
         Name Description Optional
         :param Description: {str}  True
         :param IsTemporary: {bool}  True
-        :returns: Task[str]
+        :returns: str
         """
         response: dict = self.api_call("Core/GetRemoteLoginToken", { 
             "Description": Description,
             "IsTemporary": IsTemporary,
         })
-        return Task[str](**response)
+        return str(**response)
 
-    async def GetRemoteLoginTokenAsync(self, Description: str, IsTemporary: bool) -> Task[str]:
+    async def GetRemoteLoginTokenAsync(self, Description: str, IsTemporary: bool) -> str:
         """
         Name Description Optional
         :param Description: {str}  True
         :param IsTemporary: {bool}  True
-        :returns: Task[str]
+        :returns: str
         """
         response: dict = await self.api_call_async("Core/GetRemoteLoginToken", { 
             "Description": Description,
             "IsTemporary": IsTemporary,
         })
-        return Task[str](**response)
+        return str(**response)
 
-    def GetRole(self, RoleId: UUID) -> Task[Any]:
+    def GetRole(self, RoleId: UUID) -> Any:
         """
         Name Description Optional
         :param RoleId: {UUID}  False
-        :returns: Task[Any]
+        :returns: Any
         """
         response: dict = self.api_call("Core/GetRole", { 
             "RoleId": RoleId,
         })
-        return Task[Any](**response)
+        return Any(**response)
 
-    async def GetRoleAsync(self, RoleId: UUID) -> Task[Any]:
+    async def GetRoleAsync(self, RoleId: UUID) -> Any:
         """
         Name Description Optional
         :param RoleId: {UUID}  False
-        :returns: Task[Any]
+        :returns: Any
         """
         response: dict = await self.api_call_async("Core/GetRole", { 
             "RoleId": RoleId,
         })
-        return Task[Any](**response)
+        return Any(**response)
 
-    def GetRoleData(self, ) -> Task[list]:
+    def GetRoleData(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Task[list]
+        :returns: list[Any]
         """
         response: dict = self.api_call("Core/GetRoleData", { 
         })
-        return Task[list](**response)
+        return [Any(**x) for x in response]
 
-    async def GetRoleDataAsync(self, ) -> Task[list]:
+    async def GetRoleDataAsync(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: Task[list]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("Core/GetRoleData", { 
         })
-        return Task[list](**response)
+        return [Any(**x) for x in response]
 
-    def GetRoleIds(self, ) -> Task[dict[UUID, str]]:
+    def GetRoleIds(self, ) -> dict[UUID, str]:
         """
         Name Description Optional
-        :returns: Task[dict[UUID, str]]
+        :returns: dict[UUID, str]
         """
         response: dict = self.api_call("Core/GetRoleIds", { 
         })
-        return Task[dict[UUID, str]](**response)
+        return dict(**response)
 
-    async def GetRoleIdsAsync(self, ) -> Task[dict[UUID, str]]:
+    async def GetRoleIdsAsync(self, ) -> dict[UUID, str]:
         """
         Name Description Optional
-        :returns: Task[dict[UUID, str]]
+        :returns: dict[UUID, str]
         """
         response: dict = await self.api_call_async("Core/GetRoleIds", { 
         })
-        return Task[dict[UUID, str]](**response)
+        return dict(**response)
 
     def GetScheduleData(self, ) -> Any:
         """
@@ -1097,7 +1097,7 @@ class Core(AMPAPI):
             "SettingNode": SettingNode,
             "WithRefresh": WithRefresh,
         })
-        return dict[str, str](**response)
+        return dict(**response)
 
     async def GetSettingValuesAsync(self, SettingNode: str, WithRefresh: bool) -> dict[str, str]:
         """
@@ -1110,25 +1110,25 @@ class Core(AMPAPI):
             "SettingNode": SettingNode,
             "WithRefresh": WithRefresh,
         })
-        return dict[str, str](**response)
+        return dict(**response)
 
-    def GetSettingsSpec(self, ) -> SettingsSpec:
+    def GetSettingsSpec(self, ) -> dict[str, SettingSpec]:
         """
         Name Description Optional
-        :returns: SettingsSpec
+        :returns: dict[str, SettingSpec]
         """
         response: dict = self.api_call("Core/GetSettingsSpec", { 
         })
-        return SettingsSpec(**response)
+        return dict(**response)
 
-    async def GetSettingsSpecAsync(self, ) -> SettingsSpec:
+    async def GetSettingsSpecAsync(self, ) -> dict[str, SettingSpec]:
         """
         Name Description Optional
-        :returns: SettingsSpec
+        :returns: dict[str, SettingSpec]
         """
         response: dict = await self.api_call_async("Core/GetSettingsSpec", { 
         })
-        return SettingsSpec(**response)
+        return dict(**response)
 
     def GetStatus(self, ) -> Status:
         """
@@ -1148,23 +1148,23 @@ class Core(AMPAPI):
         })
         return Status(**response)
 
-    def GetTasks(self, ) -> Result[list[RunningTask]]:
+    def GetTasks(self, ) -> list[RunningTask]:
         """
         Name Description Optional
-        :returns: Result[list[RunningTask]]
+        :returns: list[RunningTask]
         """
         response: dict = self.api_call("Core/GetTasks", { 
         })
-        return Result[list[RunningTask]](**response)
+        return [RunningTask(**x) for x in response]
 
-    async def GetTasksAsync(self, ) -> Result[list[RunningTask]]:
+    async def GetTasksAsync(self, ) -> list[RunningTask]:
         """
         Name Description Optional
-        :returns: Result[list[RunningTask]]
+        :returns: list[RunningTask]
         """
         response: dict = await self.api_call_async("Core/GetTasks", { 
         })
-        return Result[list[RunningTask]](**response)
+        return [RunningTask(**x) for x in response]
 
     def GetTimeIntervalTrigger(self, Id: UUID) -> Any:
         """
@@ -1188,23 +1188,23 @@ class Core(AMPAPI):
         })
         return Any(**response)
 
-    def GetUpdateInfo(self, ) -> Result[UpdateInfo]:
+    def GetUpdateInfo(self, ) -> UpdateInfo:
         """
         Name Description Optional
-        :returns: Result[UpdateInfo]
+        :returns: UpdateInfo
         """
         response: dict = self.api_call("Core/GetUpdateInfo", { 
         })
-        return Result[UpdateInfo](**response)
+        return UpdateInfo(**response)
 
-    async def GetUpdateInfoAsync(self, ) -> Result[UpdateInfo]:
+    async def GetUpdateInfoAsync(self, ) -> UpdateInfo:
         """
         Name Description Optional
-        :returns: Result[UpdateInfo]
+        :returns: UpdateInfo
         """
         response: dict = await self.api_call_async("Core/GetUpdateInfo", { 
         })
-        return Result[UpdateInfo](**response)
+        return UpdateInfo(**response)
 
     def GetUpdates(self, ) -> Updates:
         """
@@ -1244,47 +1244,47 @@ class Core(AMPAPI):
         })
         return Any(**response)
 
-    def GetUserInfo(self, UID: str) -> dict:
+    def GetUserInfo(self, UID: str) -> Any:
         """
         Name Description Optional
         :param UID: {str}  False
-        :returns: dict
+        :returns: Any
         """
         response: dict = self.api_call("Core/GetUserInfo", { 
             "UID": UID,
         })
-        return dict(**response)
+        return Any(**response)
 
-    async def GetUserInfoAsync(self, UID: str) -> dict:
+    async def GetUserInfoAsync(self, UID: str) -> Any:
         """
         Name Description Optional
         :param UID: {str}  False
-        :returns: dict
+        :returns: Any
         """
         response: dict = await self.api_call_async("Core/GetUserInfo", { 
             "UID": UID,
         })
-        return dict(**response)
+        return Any(**response)
 
-    def GetUserList(self, ) -> Result[dict[str, str]]:
+    def GetUserList(self, ) -> dict[str, str]:
         """
      * Returns a list of in-application users
         Name Description Optional
-        :returns: Result[dict[str, str]]
+        :returns: dict[str, str]
         """
         response: dict = self.api_call("Core/GetUserList", { 
         })
-        return Result[dict[str, str]](**response)
+        return dict(**response)
 
-    async def GetUserListAsync(self, ) -> Result[dict[str, str]]:
+    async def GetUserListAsync(self, ) -> dict[str, str]:
         """
      * Returns a list of in-application users
         Name Description Optional
-        :returns: Result[dict[str, str]]
+        :returns: dict[str, str]
         """
         response: dict = await self.api_call_async("Core/GetUserList", { 
         })
-        return Result[dict[str, str]](**response)
+        return dict(**response)
 
     def GetWebauthnChallenge(self, ) -> ActionResult[str]:
         """
@@ -1326,23 +1326,23 @@ class Core(AMPAPI):
         })
         return Any(**response)
 
-    def GetWebauthnCredentialSummaries(self, ) -> list:
+    def GetWebauthnCredentialSummaries(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: list
+        :returns: list[Any]
         """
         response: dict = self.api_call("Core/GetWebauthnCredentialSummaries", { 
         })
-        return list(**response)
+        return [Any(**x) for x in response]
 
-    async def GetWebauthnCredentialSummariesAsync(self, ) -> list:
+    async def GetWebauthnCredentialSummariesAsync(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: list
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("Core/GetWebauthnCredentialSummaries", { 
         })
-        return list(**response)
+        return [Any(**x) for x in response]
 
     def GetWebserverMetrics(self, ) -> Any:
         """
@@ -1484,57 +1484,57 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
-    def RenameRole(self, RoleId: UUID, NewName: str) -> Task[ActionResult]:
+    def RenameRole(self, RoleId: UUID, NewName: str) -> ActionResult:
         """
         Name Description Optional
         :param RoleId: {UUID}  False
         :param NewName: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/RenameRole", { 
             "RoleId": RoleId,
             "NewName": NewName,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def RenameRoleAsync(self, RoleId: UUID, NewName: str) -> Task[ActionResult]:
+    async def RenameRoleAsync(self, RoleId: UUID, NewName: str) -> ActionResult:
         """
         Name Description Optional
         :param RoleId: {UUID}  False
         :param NewName: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/RenameRole", { 
             "RoleId": RoleId,
             "NewName": NewName,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def ResetUserPassword(self, Username: str, NewPassword: str) -> Task[ActionResult]:
+    def ResetUserPassword(self, Username: str, NewPassword: str) -> ActionResult:
         """
         Name Description Optional
         :param Username: {str}  False
         :param NewPassword: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/ResetUserPassword", { 
             "Username": Username,
             "NewPassword": NewPassword,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def ResetUserPasswordAsync(self, Username: str, NewPassword: str) -> Task[ActionResult]:
+    async def ResetUserPasswordAsync(self, Username: str, NewPassword: str) -> ActionResult:
         """
         Name Description Optional
         :param Username: {str}  False
         :param NewPassword: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/ResetUserPassword", { 
             "Username": Username,
             "NewPassword": NewPassword,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def Restart(self, ) -> ActionResult:
         """
@@ -1670,65 +1670,65 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
-    def SetAMPRolePermission(self, RoleId: UUID, PermissionNode: str, Enabled: bool | None) -> Task[ActionResult]:
+    def SetAMPRolePermission(self, RoleId: UUID, PermissionNode: str, Enabled: bool) -> ActionResult:
         """
         Name Description Optional
         :param RoleId: {UUID}  False
         :param PermissionNode: {str}  False
-        :param Enabled: {bool | None}  False
-        :returns: Task[ActionResult]
+        :param Enabled: {bool}  False
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/SetAMPRolePermission", { 
             "RoleId": RoleId,
             "PermissionNode": PermissionNode,
             "Enabled": Enabled,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def SetAMPRolePermissionAsync(self, RoleId: UUID, PermissionNode: str, Enabled: bool | None) -> Task[ActionResult]:
+    async def SetAMPRolePermissionAsync(self, RoleId: UUID, PermissionNode: str, Enabled: bool) -> ActionResult:
         """
         Name Description Optional
         :param RoleId: {UUID}  False
         :param PermissionNode: {str}  False
-        :param Enabled: {bool | None}  False
-        :returns: Task[ActionResult]
+        :param Enabled: {bool}  False
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/SetAMPRolePermission", { 
             "RoleId": RoleId,
             "PermissionNode": PermissionNode,
             "Enabled": Enabled,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def SetAMPUserRoleMembership(self, UserId: UUID, RoleId: UUID, IsMember: bool) -> Task[ActionResult]:
+    def SetAMPUserRoleMembership(self, UserId: UUID, RoleId: UUID, IsMember: bool) -> ActionResult:
         """
         Name Description Optional
         :param UserId: {UUID}  False
         :param RoleId: {UUID}  False
         :param IsMember: {bool}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/SetAMPUserRoleMembership", { 
             "UserId": UserId,
             "RoleId": RoleId,
             "IsMember": IsMember,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def SetAMPUserRoleMembershipAsync(self, UserId: UUID, RoleId: UUID, IsMember: bool) -> Task[ActionResult]:
+    async def SetAMPUserRoleMembershipAsync(self, UserId: UUID, RoleId: UUID, IsMember: bool) -> ActionResult:
         """
         Name Description Optional
         :param UserId: {UUID}  False
         :param RoleId: {UUID}  False
         :param IsMember: {bool}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/SetAMPUserRoleMembership", { 
             "UserId": UserId,
             "RoleId": RoleId,
             "IsMember": IsMember,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def SetConfig(self, node: str, value: str) -> ActionResult:
         """
@@ -1908,31 +1908,31 @@ class Core(AMPAPI):
             response = {}
         return Void(**response)
 
-    def UpdateAccountInfo(self, EmailAddress: str, TwoFactorPIN: str) -> Task[ActionResult]:
+    def UpdateAccountInfo(self, EmailAddress: str, TwoFactorPIN: str) -> ActionResult:
         """
         Name Description Optional
         :param EmailAddress: {str}  False
         :param TwoFactorPIN: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/UpdateAccountInfo", { 
             "EmailAddress": EmailAddress,
             "TwoFactorPIN": TwoFactorPIN,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def UpdateAccountInfoAsync(self, EmailAddress: str, TwoFactorPIN: str) -> Task[ActionResult]:
+    async def UpdateAccountInfoAsync(self, EmailAddress: str, TwoFactorPIN: str) -> ActionResult:
         """
         Name Description Optional
         :param EmailAddress: {str}  False
         :param TwoFactorPIN: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/UpdateAccountInfo", { 
             "EmailAddress": EmailAddress,
             "TwoFactorPIN": TwoFactorPIN,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def UpdateApplication(self, ) -> ActionResult:
         """
@@ -1952,7 +1952,7 @@ class Core(AMPAPI):
         })
         return ActionResult(**response)
 
-    def UpdateUserInfo(self, Username: str, Disabled: bool, PasswordExpires: bool, CannotChangePassword: bool, MustChangePassword: bool, EmailAddress: str) -> Task[ActionResult]:
+    def UpdateUserInfo(self, Username: str, Disabled: bool, PasswordExpires: bool, CannotChangePassword: bool, MustChangePassword: bool, EmailAddress: str) -> ActionResult:
         """
         Name Description Optional
         :param Username: {str}  False
@@ -1961,7 +1961,7 @@ class Core(AMPAPI):
         :param CannotChangePassword: {bool}  False
         :param MustChangePassword: {bool}  False
         :param EmailAddress: {str}  True
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("Core/UpdateUserInfo", { 
             "Username": Username,
@@ -1971,9 +1971,9 @@ class Core(AMPAPI):
             "MustChangePassword": MustChangePassword,
             "EmailAddress": EmailAddress,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def UpdateUserInfoAsync(self, Username: str, Disabled: bool, PasswordExpires: bool, CannotChangePassword: bool, MustChangePassword: bool, EmailAddress: str) -> Task[ActionResult]:
+    async def UpdateUserInfoAsync(self, Username: str, Disabled: bool, PasswordExpires: bool, CannotChangePassword: bool, MustChangePassword: bool, EmailAddress: str) -> ActionResult:
         """
         Name Description Optional
         :param Username: {str}  False
@@ -1982,7 +1982,7 @@ class Core(AMPAPI):
         :param CannotChangePassword: {bool}  False
         :param MustChangePassword: {bool}  False
         :param EmailAddress: {str}  True
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("Core/UpdateUserInfo", { 
             "Username": Username,
@@ -1992,7 +1992,7 @@ class Core(AMPAPI):
             "MustChangePassword": MustChangePassword,
             "EmailAddress": EmailAddress,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def UpgradeAMP(self, ) -> Void:
         """

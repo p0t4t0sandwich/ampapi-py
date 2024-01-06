@@ -625,6 +625,8 @@ class LoginResult():
     :type rememberMeToken: str
     :param userInfo: The user information
     :type userInfo: UserInfo
+    :param resultReason: The result reason
+    :type resultReason: str
     :param result: The result
     :type result: float
     """
@@ -633,9 +635,10 @@ class LoginResult():
     sessionID: str
     rememberMeToken: str
     userInfo: UserInfo
+    resultReason: str
     result: float
 
-    def __init__(self, success: bool, permissions: list[str], sessionID: str, rememberMeToken: str, userInfo: UserInfo, result: float) -> None:
+    def __init__(self, success: bool, resultReason: str, result: float, permissions: list[str] = [], sessionID: str = "", rememberMeToken: str = "", userInfo: UserInfo = None) -> None:
         """
         Initializes the LoginResult object
         Author: p0t4t0sandwich
@@ -644,7 +647,11 @@ class LoginResult():
         self.permissions = permissions
         self.sessionID = sessionID
         self.rememberMeToken = rememberMeToken
-        self.userInfo = UserInfo(**userInfo)
+        if userInfo != None:
+            self.userInfo = UserInfo(**userInfo)
+        else:
+            self.userInfo = userInfo
+        self.resultReason = resultReason
         self.result = result
 
 class Message(NamedTuple):
@@ -777,53 +784,6 @@ class RemoteTargetInfo():
         self.Datastores = [InstanceDatastore(**Datastores[i]) for i in range(len(Datastores))]
         self.DeploysInContainers = DeploysInContainers
 
-class Result(Generic[T]):
-    """
-    Generic response type for calls that return a result
-    Author: p0t4t0sandwich
-    :param result: The result object
-    :type result: T
-    """
-    result: T
-
-    def __init__(self, result: T) -> None:
-        """
-        Initializes the Result object
-        Author: p0t4t0sandwich
-        """
-
-        # TODO: Replace this with a more elegant solution
-
-        if type(result) == list:
-            if len(result) == 0:
-                self.result = []
-                return
-
-            keys = result[0].keys()
-            if "DisplayName" in keys and "Endpoint" in keys and "Uri" in keys:
-                self.result = [EndpointInfo(**result[i]) for i in range(len(result))]
-            elif "Id" in keys and "InstanceId" in keys and "FriendlyName" in keys and "Disabled" in keys and "IsRemote" in keys and "Platform" in keys and "Datastores" in keys and "CreatesInContainers" in keys and "State" in keys and "StateReason" in keys and "CanCreate" in keys and "LastUpdated" in keys and "AvailableInstances" in keys and "AvailableIPs" in keys:
-                self.result = [IADSInstance(**result[i]) for i in range(len(result))]
-            elif "IsPrimaryTask" in keys and "StartTime" in keys and "Id" in keys and "Name" in keys and "Description" in keys and "HideFromUI" in keys and "FastDismiss" in keys and "LastUpdatePushed" in keys and "ProgressPercent" in keys and "IsCancellable" in keys and "Origin" in keys and "IsIndeterminate" in keys and "State" in keys and "Status" in keys:
-                self.result = [RunningTask(**result[i]) for i in range(len(result))]
-            else:
-                self.result = result
-
-        elif type(result) == dict:
-            keys = result.keys()
-            if "IsPrimaryTask" in keys and "StartTime" in keys and "Id" in keys and "Name" in keys and "Description" in keys and "HideFromUI" in keys and "FastDismiss" in keys and "LastUpdatePushed" in keys and "ProgressPercent" in keys and "IsCancellable" in keys and "Origin" in keys and "IsIndeterminate" in keys and "State" in keys and "Status" in keys:
-                self.result = RunningTask(**result)
-            elif "Id" in keys and "InstanceId" in keys and "FriendlyName" in keys and "Disabled" in keys and "IsRemote" in keys and "Platform" in keys and "Datastores" in keys and "CreatesInContainers" in keys and "State" in keys and "StateReason" in keys and "CanCreate" in keys and "LastUpdated" in keys and "AvailableInstances" in keys and "AvailableIPs" in keys:
-                self.result = IADSInstance(**result)
-            elif "Name" in keys and "Author" in keys and "AppName" in keys and "SupportsSleep" in keys and "LoadedPlugins" in keys and "AMPVersion" in keys and "AMPBuild" in keys and "ToolsVersion" in keys and "APIVersion" in keys and "VersionCodename" in keys and "Timestamp" in keys and "BuildSpec" in keys and "Branding" in keys and "Analytics" in keys and "FeatureSet" in keys and "InstanceId" in keys and "InstanceName" in keys and "FriendlyName" in keys and "EndpointURI" in keys and "PrimaryEndpoint" in keys and "ModuleName" in keys and "IsRemoteInstance" in keys and "DisplayBaseURI" in keys and "RequiresFullLoad" in keys and "AllowRememberMe" in keys:
-                self.result = ModuleInfo(**result)
-            elif "UpdateAvailable" in keys and "Version" in keys and "Build" in keys and "ReleaseNotesURL" in keys and "ToolsVersion" in keys and "PatchOnly" in keys:
-                self.result = UpdateInfo(**result)
-            else:
-                self.result = result
-        else:
-            self.result = result
-
 class RunningTask(NamedTuple):
     """
     A running task object returned by the Core#GetTasks() method
@@ -872,7 +832,7 @@ class RunningTask(NamedTuple):
     State: int
     Status: str
 
-class Spec(NamedTuple):
+class SettingSpec(NamedTuple):
     """
     A setting specification object
     Author: p0t4t0sandwich
@@ -944,22 +904,6 @@ class Spec(NamedTuple):
     Meta: str
     RequiresRestart: bool
 
-class SettingsSpec():
-    """
-    Response object for Core.GetSettingsSpec()
-    Author: p0t4t0sandwich
-    :param result: The result
-    :type result: dict[str, Spec]
-    """
-    result: dict[str, Spec]
-
-    def __init__(self, result: dict[str, Spec]) -> None:
-        """
-        Initializes the SettingsSpec object
-        Author: p0t4t0sandwich
-        """
-        self.result = {i : Spec(**result[i]) for i in result}
-
 class Status():
     """
     Struct for the result of API.Core.GetStatus
@@ -983,44 +927,6 @@ class Status():
         self.State = State
         self.Uptime = Uptime
         self.Metrics = {i : Metric(**Metrics[i]) for i in Metrics}
-
-class Task(Generic[T]):
-    """
-    Generic response type for calls that return a result
-    Author: p0t4t0sandwich
-    :param result: The result object
-    :type result: T
-    """
-    result: T
-
-    def __init__(self, result: T) -> None:
-        """
-        Initializes the Task object
-        Author: p0t4t0sandwich
-        """
-        if type(result) == list:
-            if len(result) == 0:
-                self.result = []
-                return
-
-            keys = result[0].keys()
-            if "ID" in keys and "Username" in keys and "EmailAddress" in keys and "IsTwoFactorEnabled" in keys and "Disabled" in keys and "LastLogin" in keys and "GravatarHash" in keys and "IsLDAPUser" in keys:
-                self.result = [UserInfo(**result[i]) for i in range(len(result))]
-            else:
-                self.result = result
-
-        elif type(result) == dict:
-            keys = result.keys()
-            if "IsPrimaryTask" in keys and "StartTime" in keys and "Id" in keys and "Name" in keys and "Description" in keys and "HideFromUI" in keys and "FastDismiss" in keys and "LastUpdatePushed" in keys and "ProgressPercent" in keys and "IsCancellable" in keys and "Origin" in keys and "IsIndeterminate" in keys and "State" in keys and "Status" in keys:
-                self.result = RunningTask(**result)
-            elif "ID" in keys and "Username" in keys and "EmailAddress" in keys and "IsTwoFactorEnabled" in keys and "Disabled" in keys and "LastLogin" in keys and "GravatarHash" in keys and "IsLDAPUser" in keys:
-                self.result = UserInfo(**result)
-            elif "Status" in keys and ("Result" in keys or "Reason" in keys):
-                self.result = ActionResult(**result)
-            else:
-                self.result = result
-        else:
-            self.result = result
 
 class UpdateInfo(NamedTuple):
     """

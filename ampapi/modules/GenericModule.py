@@ -2,6 +2,7 @@
 # author: p0t4t0sandich
 # description: A Python library for the AMP API
 
+from ampapi.apimodules.GenericModule import GenericModule
 from ampapi.apimodules.RCONPlugin import RCONPlugin
 from ampapi.apimodules.steamcmdplugin import steamcmdplugin
 from ampapi.modules.CommonAPI import CommonAPI
@@ -11,6 +12,7 @@ from ampapi.types import LoginResult
 class GenericModule(CommonAPI):
     def __init__(self, baseUri: str, username: str = "", password: str = "", rememberMeToken: str = "", sessionId: str = ""):
         super().__init__(baseUri, username, password, rememberMeToken, sessionId)
+        self.GenericModule = GenericModule(self)
         self.RCONPlugin = RCONPlugin(self)
         self.steamcmdplugin = steamcmdplugin(self)
 

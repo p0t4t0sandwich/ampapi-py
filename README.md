@@ -92,15 +92,12 @@ asyncio.run(main())
 
 ```python
 from ampapi.modules.ADS import ADS
-from ampapi.modules.Minecraft import Minecraft
 
 API = ADS("http://localhost:8080/", "admin", "myfancypassword123")
 API.Login()
 
 # Get the available instances
-instancesResult = API.ADSModule.GetInstances()
-
-targets = instancesResult["result"]
+targets = API.ADSModule.GetInstances()
 
 # In this example, my Hub server is on the second target
 # If you're running a standalone setup, you can just use targets[1]
@@ -124,7 +121,7 @@ currentStatus = Hub.Core.GetStatus()
 CPUUsagePercent = currentStatus.Metrics["CPU Usage"].Percent
 
 # Send a message to the console
-Hub.Core.SendConsoleMessage(f"say Current CPU usage is{CPUUsagePercent}%")
+Hub.Core.SendConsoleMessage(f"say Current CPU usage is {CPUUsagePercent}%")
 ```
 
 ### CommonAPI Example, handling the sessionId and rememberMeToken manually (not recommended)

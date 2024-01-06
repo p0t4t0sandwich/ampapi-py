@@ -32,49 +32,49 @@ class MinecraftModule(AMPAPI):
         })
         return bool(**response)
 
-    def AddOPEntry(self, UserOrUUID: str) -> Task[ActionResult]:
+    def AddOPEntry(self, UserOrUUID: str) -> ActionResult:
         """
         Name Description Optional
         :param UserOrUUID: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("MinecraftModule/AddOPEntry", { 
             "UserOrUUID": UserOrUUID,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def AddOPEntryAsync(self, UserOrUUID: str) -> Task[ActionResult]:
+    async def AddOPEntryAsync(self, UserOrUUID: str) -> ActionResult:
         """
         Name Description Optional
         :param UserOrUUID: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("MinecraftModule/AddOPEntry", { 
             "UserOrUUID": UserOrUUID,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    def AddToWhitelist(self, UserOrUUID: str) -> Task[ActionResult]:
+    def AddToWhitelist(self, UserOrUUID: str) -> ActionResult:
         """
         Name Description Optional
         :param UserOrUUID: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = self.api_call("MinecraftModule/AddToWhitelist", { 
             "UserOrUUID": UserOrUUID,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
-    async def AddToWhitelistAsync(self, UserOrUUID: str) -> Task[ActionResult]:
+    async def AddToWhitelistAsync(self, UserOrUUID: str) -> ActionResult:
         """
         Name Description Optional
         :param UserOrUUID: {str}  False
-        :returns: Task[ActionResult]
+        :returns: ActionResult
         """
         response: dict = await self.api_call_async("MinecraftModule/AddToWhitelist", { 
             "UserOrUUID": UserOrUUID,
         })
-        return Task[ActionResult](**response)
+        return ActionResult(**response)
 
     def BanUserByID(self, ID: str) -> Void:
         """
@@ -120,27 +120,27 @@ class MinecraftModule(AMPAPI):
         })
         return dict(**response)
 
-    def BukGetInstallUpdatePlugin(self, pluginId: int) -> Task[RunningTask]:
+    def BukGetInstallUpdatePlugin(self, pluginId: int) -> RunningTask:
         """
         Name Description Optional
         :param pluginId: {int}  False
-        :returns: Task[RunningTask]
+        :returns: RunningTask
         """
         response: dict = self.api_call("MinecraftModule/BukGetInstallUpdatePlugin", { 
             "pluginId": pluginId,
         })
-        return Task[RunningTask](**response)
+        return RunningTask(**response)
 
-    async def BukGetInstallUpdatePluginAsync(self, pluginId: int) -> Task[RunningTask]:
+    async def BukGetInstallUpdatePluginAsync(self, pluginId: int) -> RunningTask:
         """
         Name Description Optional
         :param pluginId: {int}  False
-        :returns: Task[RunningTask]
+        :returns: RunningTask
         """
         response: dict = await self.api_call_async("MinecraftModule/BukGetInstallUpdatePlugin", { 
             "pluginId": pluginId,
         })
-        return Task[RunningTask](**response)
+        return RunningTask(**response)
 
     def BukGetInstalledPlugins(self, ) -> dict:
         """
@@ -377,7 +377,7 @@ class MinecraftModule(AMPAPI):
         """
         response: dict = self.api_call("MinecraftModule/GetWhitelist", { 
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     async def GetWhitelistAsync(self, ) -> list[dict]:
         """
@@ -386,7 +386,7 @@ class MinecraftModule(AMPAPI):
         """
         response: dict = await self.api_call_async("MinecraftModule/GetWhitelist", { 
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     def KickUserByID(self, ID: str) -> Void:
         """
@@ -447,7 +447,7 @@ class MinecraftModule(AMPAPI):
         """
         response: dict = self.api_call("MinecraftModule/LoadOPList", { 
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     async def LoadOPListAsync(self, ) -> list[dict]:
         """
@@ -456,7 +456,7 @@ class MinecraftModule(AMPAPI):
         """
         response: dict = await self.api_call_async("MinecraftModule/LoadOPList", { 
         })
-        return list[dict](**response)
+        return [dict(**x) for x in response]
 
     def RemoveOPEntry(self, UserOrUUID: str) -> Void:
         """

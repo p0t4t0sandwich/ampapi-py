@@ -385,7 +385,7 @@ class Instance():
     DeploymentArgs: dict[str, str]
     DisplayImageSource: str
 
-    def __init__(self, InstanceID: UUID, TargetID: UUID, InstanceName: str, FriendlyName: str, Module: str, AMPVersion: AMPVersionAlias, IsHTTPS: bool, IP: str, Port: int, Daemon: bool, DaemonAutostart: bool, ExcludeFromFirewall: bool, Running: bool, AppState: State, Tags: list[str], DiskUsageMB: int, ReleaseStream: str, ManagementMode: str, Suspended: bool, IsContainerInstance: bool, ContainerMemoryMB: int, ContainerMemoryPolicy: str, ContainerCPUs: int, Metrics: dict[str, Metric], ApplicationEndpoints: list[EndpointInfo], DeploymentArgs: dict[str, str], DisplayImageSource: str = "", Description: str = "", ModuleDisplayName: str = "", SpecificDockerImage: str = "") -> None:
+    def __init__(self, InstanceID: UUID, TargetID: UUID, InstanceName: str, FriendlyName: str, Module: str, AMPVersion: AMPVersionAlias, IsHTTPS: bool, IP: str, Port: int, Daemon: bool, DaemonAutostart: bool, ExcludeFromFirewall: bool, Running: bool, AppState: State, Tags: list[str], DiskUsageMB: int, ReleaseStream: str, ManagementMode: str, Suspended: bool, IsContainerInstance: bool, ContainerMemoryMB: int, ContainerMemoryPolicy: str, ContainerCPUs: int, ApplicationEndpoints: list[EndpointInfo], DeploymentArgs: dict[str, str], Metrics: dict[str, Metric] = {}, DisplayImageSource: str = "", Description: str = "", ModuleDisplayName: str = "", SpecificDockerImage: str = "") -> None:
         """
         Initializes the Instance object
         Author: p0t4t0sandwich
@@ -420,10 +420,42 @@ class Instance():
         self.DeploymentArgs = DeploymentArgs
         self.DisplayImageSource = DisplayImageSource
 
+class GlibcInfo():
+    """
+    Glibc information object
+    Author: Kei
+    """
+    Major : int
+    Minor : int
+    Build : int
+    Revision : int
+    MajorRevision : int
+    MinorRevision : int
+
+    def __init__(self, Major: int, Minor: int, Build: int, Revision: int, MajorRevision: int, MinorRevision: int) -> None:
+        """
+        Initializes the GlibcInfo object
+        Author: Kei
+        """
+        self.Major = Major
+        self.Minor = Minor
+        self.Build = Build
+        self.Revision = Revision
+        self.MajorRevision = MajorRevision
+        self.MinorRevision = MinorRevision
+
+# Type alias for State
+# Author: Kei
+GlibcInfoAlias = GlibcInfo
+
 class PlatformInfo():
     """
     Platform information object
     Author: p0t4t0sandwich
+    :param IsSharedSetup: If the setup is shared
+    :type IsSharedSetup: bool
+    :param AdminRights: Admin right status
+    :type AdminRights: int
     :param CPUInfo: The CPU information object
     :type CPUInfo: CPUInfo
     :param InstalledRAMMB: The installed RAM in MB
@@ -432,33 +464,96 @@ class PlatformInfo():
     :type OS: int
     :param PlatformName: The platform name
     :type PlatformName: str
+    :param HardwarePlatformName: The hardware platform name
+    :type HardwarePlatformName: str
     :param SystemType: The system type
     :type SystemType: int
     :param Virtualization: The virtualization
     :type Virtualization: int
+    :param InstalledGlibcVersion: Version of Glibc installed
+    :type InstalledGlibcVersion: GlibcInfo
     """
+    IsSharedSetup: bool
+    AdminRights: int
     CPUInfo: CPUInfoAlias
     InstalledRAMMB: int
     OS: int
     PlatformName: str
+    HardwarePlatformName: str
     SystemType: int
     Virtualization: int
+    InstalledGlibcVersion: GlibcInfo
 
-    def __init__(self, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, SystemType: int, Virtualization: int) -> None:
+    def __init__(self, IsSharedSetup : bool, AdminRights : int, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, HardwarePlatformName : str, SystemType: int, Virtualization: int, InstalledGlibcVersion : GlibcInfoAlias) -> None:
         """
         Initializes the PlatformInfo object
         Author: p0t4t0sandwich
         """
+        self.IsSharedSetup = IsSharedSetup
+        self.AdminRights = AdminRights
         self.CPUInfo = CPUInfoAlias(**CPUInfo)
         self.InstalledRAMMB = InstalledRAMMB
         self.OS = OS
         self.PlatformName = PlatformName
+        self.HardwarePlatformName = HardwarePlatformName
         self.SystemType = SystemType
         self.Virtualization = Virtualization
+        self.InstalledGlibcVersion = GlibcInfoAlias(**InstalledGlibcVersion)
 
 # Type alias for PlatformInfo
 # Author: p0t4t0sandwich
 PlatformInfoAlias = PlatformInfo
+
+class FitnessInfo():
+    """
+    Fitness information object
+    Author: Kei
+    :param Available: Availability
+    :type Available: bool
+    :param TotalServices: Service count.
+    :type TotalServices: int
+    :param FreeRAMMB: Unallocated RAM in MB.
+    :type FreeRAMMB: int
+    :param FreeDiskMB: Unallocated disk space in MB.
+    :type FreeDiskMB: int
+    :param CPUServiceRatio: CPU service ratio.
+    :type CPUServiceRatio: float
+    :param ThreadQueueLength: Thread queue length.
+    :type ThreadQueueLength: int
+    :param LoadAvg: Load average.
+    :type LoadAvg: float
+    :param ReminaingInstanceSlots: Remaining instance slots.
+    :type ReminaingInstanceSlots: int
+    :param Score: Fitness score.
+    :type Score: float
+    """
+    Available: bool
+    TotalServices: int
+    FreeRAMMB: int
+    FreeDiskMB: int
+    CPUServiceRatio: float
+    ThreadQueueLength: int
+    LoadAvg: float
+    ReminaingInstanceSlots: int
+    Score: float
+
+    def __init__(self, Available: bool, TotalServices: int, FreeRAMMB: int, FreeDiskMB: int, CPUServiceRatio: float, ThreadQueueLength: int, LoadAvg: float, ReminaingInstanceSlots: int, Score: float) -> None:
+        """
+        Initializes the FitnessInfo object
+        """
+        self.Available = Available
+        self.TotalServices = TotalServices
+        self.FreeRAMMB = FreeRAMMB
+        self.FreeDiskMB = FreeDiskMB
+        self.CPUServiceRatio = CPUServiceRatio
+        self.ThreadQueueLength = ThreadQueueLength
+        self.LoadAvg = LoadAvg
+        self.ReminaingInstanceSlots = ReminaingInstanceSlots
+        self.Score = Score
+
+# Type alias for FitnessInfo
+# Author: Kei        
+FitnessInfoAlias = FitnessInfo
 
 class IADSInstance():
     """
@@ -474,6 +569,8 @@ class IADSInstance():
     :type Description: str
     :param Disabled: Whether the instance is disabled
     :type Disabled: bool
+    :param Fitness: Fitness of the instance.
+    :type Fitness: FitnessInfo
     :param IsRemote: Whether the instance is remote
     :type IsRemote: bool
     :param Platform: The platform information object
@@ -484,8 +581,6 @@ class IADSInstance():
     :type CreatesInContainers: bool
     :param State: The state
     :type State: State
-    :param StateReason: The state reason
-    :type StateReason: str
     :param CanCreate: Whether the instance can create
     :type CanCreate: bool
     :param LastUpdated: The last updated
@@ -500,12 +595,12 @@ class IADSInstance():
     FriendlyName: str
     Description: str
     Disabled: bool
+    Fitness: FitnessInfo
     IsRemote: bool
     Platform: PlatformInfo
     Datastores: list[InstanceDatastore]
     CreatesInContainers: bool
     State: State
-    StateReason: str
     CanCreate: bool
     LastUpdated: str
     AvailableInstances: list[Instance]
@@ -514,7 +609,7 @@ class IADSInstance():
     TagsList: list[str]
     URL: str
 
-    def __init__(self, Id: int, InstanceId: UUID, FriendlyName: str, Disabled: bool, IsRemote: bool, Datastores: list[InstanceDatastore], CreatesInContainers: bool, State: StateAlias, StateReason: str, CanCreate: bool, LastUpdated: str, AvailableInstances: list[Instance], AvailableIPs: list[str], Platform: PlatformInfo = None, Description: str = "", Tags: list[str] = [], TagsList: list[str] = [], URL: str = "") -> None:
+    def __init__(self, Id: int, InstanceId: UUID, FriendlyName: str, Disabled: bool, Fitness:FitnessInfo, IsRemote: bool, Datastores: list[InstanceDatastore], CreatesInContainers: bool, State: StateAlias, CanCreate: bool, LastUpdated: str, AvailableInstances: list[Instance], AvailableIPs: list[str], Platform: PlatformInfo = None, Description: str = "", Tags: list[str] = [], TagsList: list[str] = [], URL: str = "") -> None:
         """
         Initializes the IADSInstance object
         Author: p0t4t0sandwich
@@ -524,6 +619,7 @@ class IADSInstance():
         self.FriendlyName = FriendlyName
         self.Description = Description
         self.Disabled = Disabled
+        self.Fitness = Fitness
         self.IsRemote = IsRemote
         if Platform != None:
             self.Platform = PlatformInfo(**Platform)
@@ -532,13 +628,8 @@ class IADSInstance():
         self.Datastores = [InstanceDatastore(**Datastores[i]) for i in range(len(Datastores))]
         self.CreatesInContainers = CreatesInContainers
         self.State = State
-        self.StateReason = StateReason
         self.CanCreate = CanCreate
         self.LastUpdated = LastUpdated
-
-        # for i in AvailableInstances:
-        #     print(i.keys())
-
         self.AvailableInstances = [Instance(**AvailableInstances[i]) for i in range(len(AvailableInstances))]
         self.AvailableIPs = AvailableIPs
         self.URL = URL

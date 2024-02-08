@@ -581,6 +581,8 @@ class IADSInstance():
     :type CreatesInContainers: bool
     :param State: The state
     :type State: State
+    :param StateReason: The state reason
+    :type StateReason: str
     :param CanCreate: Whether the instance can create
     :type CanCreate: bool
     :param LastUpdated: The last updated
@@ -600,7 +602,8 @@ class IADSInstance():
     Platform: PlatformInfo
     Datastores: list[InstanceDatastore]
     CreatesInContainers: bool
-    State: State
+    State: StateAlias
+    StateReason: str
     CanCreate: bool
     LastUpdated: str
     AvailableInstances: list[Instance]
@@ -609,7 +612,7 @@ class IADSInstance():
     TagsList: list[str]
     URL: str
 
-    def __init__(self, Id: int, InstanceId: UUID, FriendlyName: str, Disabled: bool, Fitness:FitnessInfo, IsRemote: bool, Datastores: list[InstanceDatastore], CreatesInContainers: bool, State: StateAlias, CanCreate: bool, LastUpdated: str, AvailableInstances: list[Instance], AvailableIPs: list[str], Platform: PlatformInfo = None, Description: str = "", Tags: list[str] = [], TagsList: list[str] = [], URL: str = "") -> None:
+    def __init__(self, Id: int, InstanceId: UUID, FriendlyName: str, Disabled: bool, Fitness:FitnessInfo, IsRemote: bool, Datastores: list[InstanceDatastore], CreatesInContainers: bool, State: StateAlias, CanCreate: bool, LastUpdated: str, AvailableInstances: list[Instance], AvailableIPs: list[str], Platform: PlatformInfo = None, Description: str = "", Tags: list[str] = [], TagsList: list[str] = [], URL: str = "", StateReason: str = "") -> None:
         """
         Initializes the IADSInstance object
         Author: p0t4t0sandwich
@@ -628,6 +631,7 @@ class IADSInstance():
         self.Datastores = [InstanceDatastore(**Datastores[i]) for i in range(len(Datastores))]
         self.CreatesInContainers = CreatesInContainers
         self.State = State
+        self.StateReason = StateReason
         self.CanCreate = CanCreate
         self.LastUpdated = LastUpdated
         self.AvailableInstances = [Instance(**AvailableInstances[i]) for i in range(len(AvailableInstances))]

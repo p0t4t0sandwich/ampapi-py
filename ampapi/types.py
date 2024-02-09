@@ -612,7 +612,7 @@ class IADSInstance():
     TagsList: list[str]
     URL: str
 
-    def __init__(self, Id: int, InstanceId: UUID, FriendlyName: str, Disabled: bool, Fitness:FitnessInfo, IsRemote: bool, Datastores: list[InstanceDatastore], CreatesInContainers: bool, State: StateAlias, CanCreate: bool, LastUpdated: str, AvailableInstances: list[Instance], AvailableIPs: list[str], Platform: PlatformInfo = None, Description: str = "", Tags: list[str] = [], TagsList: list[str] = [], URL: str = "", StateReason: str = "") -> None:
+    def __init__(self, Id: int, InstanceId: UUID, FriendlyName: str, Disabled: bool, IsRemote: bool, Datastores: list[InstanceDatastore], CreatesInContainers: bool, State: StateAlias, CanCreate: bool, LastUpdated: str, AvailableInstances: list[Instance], AvailableIPs: list[str], Platform: PlatformInfo = None, Description: str = "", Tags: list[str] = [], TagsList: list[str] = [], URL: str = "", StateReason: str = "", Fitness: FitnessInfo = None) -> None:
         """
         Initializes the IADSInstance object
         Author: p0t4t0sandwich
@@ -622,7 +622,8 @@ class IADSInstance():
         self.FriendlyName = FriendlyName
         self.Description = Description
         self.Disabled = Disabled
-        self.Fitness = Fitness
+        if Fitness != None:
+            self.Fitness = Fitness
         self.IsRemote = IsRemote
         if Platform != None:
             self.Platform = PlatformInfo(**Platform)

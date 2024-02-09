@@ -484,7 +484,7 @@ class PlatformInfo():
     Virtualization: int
     InstalledGlibcVersion: GlibcInfo
 
-    def __init__(self, IsSharedSetup : bool, AdminRights : int, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, HardwarePlatformName : str, SystemType: int, Virtualization: int, InstalledGlibcVersion : GlibcInfoAlias) -> None:
+    def __init__(self, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, SystemType: int, Virtualization: int, InstalledGlibcVersion: GlibcInfoAlias = None, IsSharedSetup: bool = False, AdminRights: int = -1, HardwarePlatformName: str = "") -> None:
         """
         Initializes the PlatformInfo object
         Author: p0t4t0sandwich
@@ -498,7 +498,8 @@ class PlatformInfo():
         self.HardwarePlatformName = HardwarePlatformName
         self.SystemType = SystemType
         self.Virtualization = Virtualization
-        self.InstalledGlibcVersion = GlibcInfoAlias(**InstalledGlibcVersion)
+        if InstalledGlibcVersion != None:
+            self.InstalledGlibcVersion = GlibcInfoAlias(**InstalledGlibcVersion)
 
 # Type alias for PlatformInfo
 # Author: p0t4t0sandwich

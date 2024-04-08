@@ -674,23 +674,23 @@ class ADSModule(AMPAPI):
         })
         return [Any(**x) for x in response]
 
-    def GetInstanceStatuses(self, ) -> list[dict]:
+    def GetInstanceStatuses(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: list[dict]
+        :returns: list[Any]
         """
         response: dict = self.api_call("ADSModule/GetInstanceStatuses", { 
         })
-        return [dict(**x) for x in response]
+        return [Any(**x) for x in response]
 
-    async def GetInstanceStatusesAsync(self, ) -> list[dict]:
+    async def GetInstanceStatusesAsync(self, ) -> list[Any]:
         """
         Name Description Optional
-        :returns: list[dict]
+        :returns: list[Any]
         """
         response: dict = await self.api_call_async("ADSModule/GetInstanceStatuses", { 
         })
-        return [dict(**x) for x in response]
+        return [Any(**x) for x in response]
 
     def GetInstances(self, ) -> list[IADSInstance]:
         """

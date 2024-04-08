@@ -46,7 +46,7 @@ type_dict = {
     "IEnumerable<IADSInstance>": "list[IADSInstance]",
     "IEnumerable<IAuditLogEntry>": "list[Any]",
     "IEnumerable<InstanceDatastore>": "list[InstanceDatastore]",
-    "IEnumerable<InstanceStatus>": "list[Any]", #
+    "IEnumerable<InstanceStatus>": "list[InstanceStatus]",
     "IEnumerable<JObject>": "list[dict]",
     "IEnumerable<ListeningPortSummary>": "list[Any]",
     "IEnumerable<PortUsage>": "list[Any]",

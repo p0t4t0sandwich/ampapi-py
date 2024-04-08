@@ -210,6 +210,18 @@ class InstanceDatastore(NamedTuple):
     Id: int
     FriendlyName: str
 
+class InstanceStatus(NamedTuple):
+    """
+    An instance status object -- see ADSModule#GetInstanceStatuses()
+    Author: p0t4t0sandwich
+    :param InstanceID: The instance ID
+    :type InstanceID: UUID
+    :param Running: Whether the instance is running
+    :type Running: bool
+    """
+    InstanceID: UUID
+    Running: bool
+
 class State(Enum):
     """
     Represents the state of an instance
@@ -507,7 +519,7 @@ PlatformInfoAlias = PlatformInfo
 
 class FileDirectory(NamedTuple):
     """
-    A file directory object
+    A file directory object -- see FileManagerPlugin#GetDirectoryListing(str)
     Author: p0t4t0sandwich
     :param IsDirectory: Whether the file is a directory
     :type IsDirectory: bool
@@ -540,21 +552,6 @@ class FileDirectory(NamedTuple):
     IsEditable: bool
     IsArchive: bool
     IsExcludedFromBackups: bool
-
-    def __init__(self, IsDirectory: bool, IsVirtualDirectory: bool, Filename: str, SizeBytes: float, Created: str, Modified: str, IsDownloadable: bool, IsEditable: bool, IsArchive: bool, IsExcludedFromBackups: bool) -> None:
-        """
-        Initializes the FileDirectory object
-        """
-        self.IsDirectory = IsDirectory
-        self.IsVirtualDirectory = IsVirtualDirectory
-        self.Filename = Filename
-        self.SizeBytes = SizeBytes
-        self.Created = Created
-        self.Modified = Modified
-        self.IsDownloadable = IsDownloadable
-        self.IsEditable = IsEditable
-        self.IsArchive = IsArchive
-        self.IsExcludedFromBackups = IsExcludedFromBackups
 
 class FitnessInfo():
     """

@@ -365,6 +365,8 @@ class Instance():
     :type DeploymentArgs: dict[str, str]
     :param DisplayImageSource: The display image source
     :type DisplayImageSource: str
+    :param ContainerSwapMB: The container swap in MB
+    :type ContainerSwapMB: int
     """
     InstanceID: UUID
     TargetID: UUID
@@ -396,8 +398,9 @@ class Instance():
     ApplicationEndpoints: list[EndpointInfo]
     DeploymentArgs: dict[str, str]
     DisplayImageSource: str
+    ContainerSwapMB: int
 
-    def __init__(self, InstanceID: UUID, TargetID: UUID, InstanceName: str, FriendlyName: str, Module: str, AMPVersion: AMPVersionAlias, IsHTTPS: bool, IP: str, Port: int, Daemon: bool, DaemonAutostart: bool, ExcludeFromFirewall: bool, Running: bool, AppState: State, Tags: list[str], DiskUsageMB: int, ReleaseStream: str, ManagementMode: str, Suspended: bool, IsContainerInstance: bool, ContainerMemoryMB: int, ContainerMemoryPolicy: str, ContainerCPUs: int, ApplicationEndpoints: list[EndpointInfo], DeploymentArgs: dict[str, str], Metrics: dict[str, Metric] = {}, DisplayImageSource: str = "", Description: str = "", ModuleDisplayName: str = "", SpecificDockerImage: str = "") -> None:
+    def __init__(self, InstanceID: UUID, TargetID: UUID, InstanceName: str, FriendlyName: str, Module: str, AMPVersion: AMPVersionAlias, IsHTTPS: bool, IP: str, Port: int, Daemon: bool, DaemonAutostart: bool, ExcludeFromFirewall: bool, Running: bool, AppState: State, Tags: list[str], DiskUsageMB: int, ReleaseStream: str, ManagementMode: str, Suspended: bool, IsContainerInstance: bool, ContainerMemoryMB: int, ContainerMemoryPolicy: str, ContainerCPUs: int, ApplicationEndpoints: list[EndpointInfo], DeploymentArgs: dict[str, str], Metrics: dict[str, Metric] = {}, DisplayImageSource: str = "", Description: str = "", ModuleDisplayName: str = "", SpecificDockerImage: str = "", ContainerSwapMB: int = 0) -> None:
         """
         Initializes the Instance object
         Author: p0t4t0sandwich
@@ -431,6 +434,8 @@ class Instance():
         self.ApplicationEndpoints = [EndpointInfo(**ApplicationEndpoints[i]) for i in range(len(ApplicationEndpoints))]
         self.DeploymentArgs = DeploymentArgs
         self.DisplayImageSource = DisplayImageSource
+        self.SpecificDockerImage = SpecificDockerImage
+        self.ContainerSwapMB = ContainerSwapMB
 
 class GlibcInfo():
     """
@@ -486,8 +491,6 @@ class PlatformInfo():
     :type InstalledGlibcVersion: GlibcInfo
     :param MaxSwapMB: The maximum swap in MB
     :type MaxSwapMB: int
-    :param ContainerSwapMB: The container swap in MB
-    :type ContainerSwapMB: int
     """
     IsSharedSetup: bool
     AdminRights: int
@@ -500,9 +503,8 @@ class PlatformInfo():
     Virtualization: int
     InstalledGlibcVersion: GlibcInfo
     MaxSwapMB: int
-    ContainerSwapMB: int
 
-    def __init__(self, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, SystemType: int, Virtualization: int, InstalledGlibcVersion: GlibcInfoAlias = None, IsSharedSetup: bool = False, AdminRights: int = -1, HardwarePlatformName: str = "", MaxSwapMB: int = 0, ContainerSwapMB: int = 0) -> None:
+    def __init__(self, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, SystemType: int, Virtualization: int, InstalledGlibcVersion: GlibcInfoAlias = None, IsSharedSetup: bool = False, AdminRights: int = -1, HardwarePlatformName: str = "", MaxSwapMB: int = 0) -> None:
         """
         Initializes the PlatformInfo object
         Author: p0t4t0sandwich
@@ -519,7 +521,6 @@ class PlatformInfo():
         if InstalledGlibcVersion != None:
             self.InstalledGlibcVersion = GlibcInfoAlias(**InstalledGlibcVersion)
         self.MaxSwapMB = MaxSwapMB
-        self.ContainerSwapMB = ContainerSwapMB
 
 # Type alias for PlatformInfo
 # Author: p0t4t0sandwich

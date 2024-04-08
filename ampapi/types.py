@@ -505,6 +505,57 @@ class PlatformInfo():
 # Author: p0t4t0sandwich
 PlatformInfoAlias = PlatformInfo
 
+class FileDirectory(NamedTuple):
+    """
+    A file directory object
+    Author: p0t4t0sandwich
+    :param IsDirectory: Whether the file is a directory
+    :type IsDirectory: bool
+    :param IsVirtualDirectory: Whether the file is a virtual directory
+    :type IsVirtualDirectory: bool
+    :param Filename: The filename
+    :type Filename: str
+    :param SizeBytes: The size in bytes
+    :type SizeBytes: float
+    :param Created: The creation date
+    :type Created: str
+    :param Modified: The modification date
+    :type Modified: str
+    :param IsDownloadable: Whether the file is downloadable
+    :type IsDownloadable: bool
+    :param IsEditable: Whether the file is editable
+    :type IsEditable: bool
+    :param IsArchive: Whether the file is an archive
+    :type IsArchive: bool
+    :param IsExcludedFromBackups: Whether the file is excluded from backups
+    :type IsExcludedFromBackups: bool
+    """
+    IsDirectory: bool
+    IsVirtualDirectory: bool
+    Filename: str
+    SizeBytes: float
+    Created: str
+    Modified: str
+    IsDownloadable: bool
+    IsEditable: bool
+    IsArchive: bool
+    IsExcludedFromBackups: bool
+
+    def __init__(self, IsDirectory: bool, IsVirtualDirectory: bool, Filename: str, SizeBytes: float, Created: str, Modified: str, IsDownloadable: bool, IsEditable: bool, IsArchive: bool, IsExcludedFromBackups: bool) -> None:
+        """
+        Initializes the FileDirectory object
+        """
+        self.IsDirectory = IsDirectory
+        self.IsVirtualDirectory = IsVirtualDirectory
+        self.Filename = Filename
+        self.SizeBytes = SizeBytes
+        self.Created = Created
+        self.Modified = Modified
+        self.IsDownloadable = IsDownloadable
+        self.IsEditable = IsEditable
+        self.IsArchive = IsArchive
+        self.IsExcludedFromBackups = IsExcludedFromBackups
+
 class FitnessInfo():
     """
     Fitness information object

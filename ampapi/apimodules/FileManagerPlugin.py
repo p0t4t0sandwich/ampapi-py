@@ -266,27 +266,27 @@ class FileManagerPlugin(AMPAPI):
         })
         return ActionResult(**response)
 
-    def GetDirectoryListing(self, Dir: str) -> list[Any]:
+    def GetDirectoryListing(self, Dir: str) -> list[FileDirectory]:
         """
         Name Description Optional
         :param Dir: {str}  False
-        :returns: list[Any]
+        :returns: list[FileDirectory]
         """
         response: dict = self.api_call("FileManagerPlugin/GetDirectoryListing", { 
             "Dir": Dir,
         })
-        return [Any(**x) for x in response]
+        return [FileDirectory(**x) for x in response]
 
-    async def GetDirectoryListingAsync(self, Dir: str) -> list[Any]:
+    async def GetDirectoryListingAsync(self, Dir: str) -> list[FileDirectory]:
         """
         Name Description Optional
         :param Dir: {str}  False
-        :returns: list[Any]
+        :returns: list[FileDirectory]
         """
         response: dict = await self.api_call_async("FileManagerPlugin/GetDirectoryListing", { 
             "Dir": Dir,
         })
-        return [Any(**x) for x in response]
+        return [FileDirectory(**x) for x in response]
 
     def GetFileChunk(self, Filename: str, Position: int, Length: int) -> Any:
         """

@@ -484,6 +484,8 @@ class PlatformInfo():
     :type Virtualization: int
     :param InstalledGlibcVersion: Version of Glibc installed
     :type InstalledGlibcVersion: GlibcInfo
+    :param MaxSwapMB: The maximum swap in MB
+    :type MaxSwapMB: int
     """
     IsSharedSetup: bool
     AdminRights: int
@@ -495,8 +497,9 @@ class PlatformInfo():
     SystemType: int
     Virtualization: int
     InstalledGlibcVersion: GlibcInfo
+    MaxSwapMB: int
 
-    def __init__(self, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, SystemType: int, Virtualization: int, InstalledGlibcVersion: GlibcInfoAlias = None, IsSharedSetup: bool = False, AdminRights: int = -1, HardwarePlatformName: str = "") -> None:
+    def __init__(self, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, SystemType: int, Virtualization: int, InstalledGlibcVersion: GlibcInfoAlias = None, IsSharedSetup: bool = False, AdminRights: int = -1, HardwarePlatformName: str = "", MaxSwapMB: int = 0) -> None:
         """
         Initializes the PlatformInfo object
         Author: p0t4t0sandwich
@@ -512,6 +515,7 @@ class PlatformInfo():
         self.Virtualization = Virtualization
         if InstalledGlibcVersion != None:
             self.InstalledGlibcVersion = GlibcInfoAlias(**InstalledGlibcVersion)
+        self.MaxSwapMB = MaxSwapMB
 
 # Type alias for PlatformInfo
 # Author: p0t4t0sandwich

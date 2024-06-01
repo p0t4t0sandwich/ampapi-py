@@ -127,7 +127,7 @@ class Branding(NamedTuple):
     SplashFrameURL: str
     ForgotPasswordURL: str
 
-class ConsoleEntry(NamedTuple):
+class ConsoleEntry():
     """
     Struct for the result of API.Core#GetUpdates.ConsoleEntries
     Author: p0t4t0sandwich
@@ -147,6 +147,17 @@ class ConsoleEntry(NamedTuple):
     SourceId: str
     Type: str
     Contents: str
+
+    # TODO: See if SourceId is obsolete
+    def __init__(self, Timestamp: str, Source: str, Type: str, Contents: str, SourceId: str = "") -> None:
+        """
+        Initializes the ConsoleEntry object
+        """
+        self.Timestamp = Timestamp
+        self.Source = Source
+        self.SourceId = SourceId
+        self.Type = Type
+        self.Contents = Contents
 
 class CPUInfo(NamedTuple):
     """

@@ -89,7 +89,7 @@ class AMPAPI():
         now: int = round(time.time())
         if now - self.lastAPICall > self.relogInterval:
             self.lastAPICall = now
-            self.Login()
+            await self.LoginAsync()
         else:
             self.lastAPICall = now
         session = {"SESSIONID": self.sessionId}

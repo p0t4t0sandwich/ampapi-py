@@ -1120,6 +1120,10 @@ class UpdateInfo(NamedTuple):
     ToolsVersion: str
     PatchOnly: bool
 
+# Type alias for Status
+# Author: p0t4t0sandwich
+StatusAlias = Status
+
 class Updates():
     """
     Response type for API.Core.GetUpdates
@@ -1135,13 +1139,13 @@ class Updates():
     :param Ports: The ports of the server
     :type Ports: list[str]
     """
-    Status: Status
+    Status: StatusAlias
     ConsoleEntries: list[ConsoleEntry]
     Messages: list[Message]
     Tasks: list[str]
     Ports: list[str]
 
-    def __init__(self, Status: Status, ConsoleEntries: list[ConsoleEntry], Messages: list[Message], Tasks: list[str], Ports: list[str]) -> None:
+    def __init__(self, Status: StatusAlias, ConsoleEntries: list[ConsoleEntry], Messages: list[Message], Tasks: list[str], Ports: list[str]) -> None:
         """
         Initializes the Updates object
         Author: p0t4t0sandwich

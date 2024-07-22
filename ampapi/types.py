@@ -502,6 +502,8 @@ class PlatformInfo():
     :type InstalledGlibcVersion: GlibcInfo
     :param MaxSwapMB: The maximum swap in MB
     :type MaxSwapMB: int
+    :param DockerNetworkIsHostMode: Whether the Docker network is in host mode
+    :type DockerNetworkIsHostMode: bool
     """
     IsSharedSetup: bool
     AdminRights: int
@@ -514,8 +516,9 @@ class PlatformInfo():
     Virtualization: int
     InstalledGlibcVersion: GlibcInfo
     MaxSwapMB: int
+    DockerNetworkIsHostMode: bool
 
-    def __init__(self, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, SystemType: int, Virtualization: int, InstalledGlibcVersion: GlibcInfoAlias = None, IsSharedSetup: bool = False, AdminRights: int = -1, HardwarePlatformName: str = "", MaxSwapMB: int = 0) -> None:
+    def __init__(self, CPUInfo: CPUInfoAlias, InstalledRAMMB: int, OS: int, PlatformName: str, SystemType: int, Virtualization: int, InstalledGlibcVersion: GlibcInfoAlias = None, IsSharedSetup: bool = False, AdminRights: int = -1, HardwarePlatformName: str = "", MaxSwapMB: int = 0, DockerNetworkIsHostMode: bool = False) -> None:
         """
         Initializes the PlatformInfo object
         Author: p0t4t0sandwich
@@ -532,6 +535,7 @@ class PlatformInfo():
         if InstalledGlibcVersion != None:
             self.InstalledGlibcVersion = GlibcInfoAlias(**InstalledGlibcVersion)
         self.MaxSwapMB = MaxSwapMB
+        self.DockerNetworkIsHostMode = DockerNetworkIsHostMode
 
 # Type alias for PlatformInfo
 # Author: p0t4t0sandwich

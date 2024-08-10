@@ -290,6 +290,8 @@ class Metric():
     :type Color2: str
     :param Color3: The third color
     :type Color3: str
+    :ShortName: The short name
+    :type ShortName: str
     """
     RawValue: int
     MaxValue: int
@@ -298,8 +300,9 @@ class Metric():
     Color: str
     Color2: str
     Color3: str
+    ShortName: str
 
-    def __init__(self, RawValue: int, MaxValue: int, Percent: float, Units: str, Color: str = "", Color2: str = "", Color3: str = "") -> None:
+    def __init__(self, RawValue: int, MaxValue: int, Percent: float, Units: str, Color: str = "", Color2: str = "", Color3: str = "", ShortName: str = "") -> None:
         """
         Initializes the Metric object
         Author: p0t4t0sandwich
@@ -311,6 +314,7 @@ class Metric():
         self.Color = Color
         self.Color2 = Color2
         self.Color3 = Color3
+        self.ShortName = ShortName
 
 class Instance():
     """

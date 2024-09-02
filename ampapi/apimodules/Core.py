@@ -2046,3 +2046,43 @@ class Core(AMPAPI):
         })
         return ActionResult(**response)
 
+    def GetAuthenticationRequirements(self, username: str) -> list[Any]:
+        """
+        Name Description Optional
+        :param username: {str}  False
+        :returns: list[Any]
+        """
+        response: dict = self.api_call("Core/GetAuthenticationRequirements", { 
+            "username": username,
+        })
+        return [Any(**x) for x in response]
+
+    async def GetAuthenticationRequirementsAsync(self, username: str) -> list[Any]:
+        """
+        Name Description Optional
+        :param username: {str}  False
+        :returns: list[Any]
+        """
+        response: dict = await self.api_call_async("Core/GetAuthenticationRequirements", { 
+            "username": username,
+        })
+        return [Any(**x) for x in response]
+
+    def RunSecurityCheck(self, ) -> list[dict]:
+        """
+        Name Description Optional
+        :returns: list[dict]
+        """
+        response: dict = self.api_call("Core/RunSecurityCheck", { 
+        })
+        return [dict(**x) for x in response]
+
+    async def RunSecurityCheckAsync(self, ) -> list[dict]:
+        """
+        Name Description Optional
+        :returns: list[dict]
+        """
+        response: dict = await self.api_call_async("Core/RunSecurityCheck", { 
+        })
+        return [dict(**x) for x in response]
+

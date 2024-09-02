@@ -478,3 +478,25 @@ class FileManagerPlugin(AMPAPI):
         })
         return ActionResult(**response)
 
+    def ReleaseFileUploadLock(self, Filename: str) -> ActionResult:
+        """
+        Name Description Optional
+        :param Filename: {str}  False
+        :returns: ActionResult
+        """
+        response: dict = self.api_call("FileManagerPlugin/ReleaseFileUploadLock", { 
+            "Filename": Filename,
+        })
+        return ActionResult(**response)
+
+    async def ReleaseFileUploadLockAsync(self, Filename: str) -> ActionResult:
+        """
+        Name Description Optional
+        :param Filename: {str}  False
+        :returns: ActionResult
+        """
+        response: dict = await self.api_call_async("FileManagerPlugin/ReleaseFileUploadLock", { 
+            "Filename": Filename,
+        })
+        return ActionResult(**response)
+

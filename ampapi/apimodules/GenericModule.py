@@ -36,3 +36,25 @@ class GenericModule(AMPAPI):
         })
         return response
 
+    def ReloadGenericConfig(self, ) -> Void:
+        """
+        Name Description Optional
+        :returns: Void
+        """
+        response: dict = self.api_call("GenericModule/ReloadGenericConfig", { 
+        })
+        if response == None:
+            response = {}
+        return Void(**response)
+
+    async def ReloadGenericConfigAsync(self, ) -> Void:
+        """
+        Name Description Optional
+        :returns: Void
+        """
+        response: dict = await self.api_call_async("GenericModule/ReloadGenericConfig", { 
+        })
+        if response == None:
+            response = {}
+        return Void(**response)
+

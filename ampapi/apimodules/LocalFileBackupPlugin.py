@@ -158,33 +158,37 @@ class LocalFileBackupPlugin(AMPAPI):
             response = {}
         return Void(**response)
 
-    def TakeBackup(self, Title: str, Description: str, Sticky: bool) -> ActionResult:
+    def TakeBackup(self, Title: str, Description: str, Sticky: bool, WasCreatedAutomatically: bool) -> ActionResult:
         """
         Name Description Optional
         :param Title: {str}  False
         :param Description: {str}  False
         :param Sticky: {bool}  False
+        :param WasCreatedAutomatically: {bool}  True
         :returns: ActionResult
         """
         response: dict = self.api_call("LocalFileBackupPlugin/TakeBackup", { 
             "Title": Title,
             "Description": Description,
             "Sticky": Sticky,
+            "WasCreatedAutomatically": WasCreatedAutomatically,
         })
         return ActionResult(**response)
 
-    async def TakeBackupAsync(self, Title: str, Description: str, Sticky: bool) -> ActionResult:
+    async def TakeBackupAsync(self, Title: str, Description: str, Sticky: bool, WasCreatedAutomatically: bool) -> ActionResult:
         """
         Name Description Optional
         :param Title: {str}  False
         :param Description: {str}  False
         :param Sticky: {bool}  False
+        :param WasCreatedAutomatically: {bool}  True
         :returns: ActionResult
         """
         response: dict = await self.api_call_async("LocalFileBackupPlugin/TakeBackup", { 
             "Title": Title,
             "Description": Description,
             "Sticky": Sticky,
+            "WasCreatedAutomatically": WasCreatedAutomatically,
         })
         return ActionResult(**response)
 
@@ -209,4 +213,26 @@ class LocalFileBackupPlugin(AMPAPI):
             "BackupId": BackupId,
         })
         return RunningTask(**response)
+
+    def RefreshBackupList(self, ) -> Void:
+        """
+        Name Description Optional
+        :returns: Void
+        """
+        response: dict = self.api_call("LocalFileBackupPlugin/RefreshBackupList", { 
+        })
+        if response == None:
+            response = {}
+        return Void(**response)
+
+    async def RefreshBackupListAsync(self, ) -> Void:
+        """
+        Name Description Optional
+        :returns: Void
+        """
+        response: dict = await self.api_call_async("LocalFileBackupPlugin/RefreshBackupList", { 
+        })
+        if response == None:
+            response = {}
+        return Void(**response)
 

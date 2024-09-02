@@ -382,6 +382,8 @@ class Instance():
     :type DisplayImageSource: str
     :param ContainerSwapMB: The container swap in MB
     :type ContainerSwapMB: int
+    :param UseHostModeNetwork: Whether the container uses host mode network
+    :type UseHostModeNetwork: bool
     """
     InstanceID: UUID
     TargetID: UUID
@@ -414,8 +416,9 @@ class Instance():
     DeploymentArgs: dict[str, str]
     DisplayImageSource: str
     ContainerSwapMB: int
+    UseHostModeNetwork: bool
 
-    def __init__(self, InstanceID: UUID, TargetID: UUID, InstanceName: str, FriendlyName: str, Module: str, AMPVersion: AMPVersionAlias, IsHTTPS: bool, IP: str, Port: int, Daemon: bool, DaemonAutostart: bool, ExcludeFromFirewall: bool, Running: bool, AppState: State, Tags: list[str], DiskUsageMB: int, ReleaseStream: str, ManagementMode: str, Suspended: bool, IsContainerInstance: bool, ContainerMemoryMB: int, ContainerMemoryPolicy: str, ContainerCPUs: int, ApplicationEndpoints: list[EndpointInfo], DeploymentArgs: dict[str, str], Metrics: dict[str, Metric] = {}, DisplayImageSource: str = "", Description: str = "", ModuleDisplayName: str = "", SpecificDockerImage: str = "", ContainerSwapMB: int = 0) -> None:
+    def __init__(self, InstanceID: UUID, TargetID: UUID, InstanceName: str, FriendlyName: str, Module: str, AMPVersion: AMPVersionAlias, IsHTTPS: bool, IP: str, Port: int, Daemon: bool, DaemonAutostart: bool, ExcludeFromFirewall: bool, Running: bool, AppState: State, Tags: list[str], DiskUsageMB: int, ReleaseStream: str, ManagementMode: str, Suspended: bool, IsContainerInstance: bool, ContainerMemoryMB: int, ContainerMemoryPolicy: str, ContainerCPUs: int, ApplicationEndpoints: list[EndpointInfo], DeploymentArgs: dict[str, str], Metrics: dict[str, Metric] = {}, DisplayImageSource: str = "", Description: str = "", ModuleDisplayName: str = "", SpecificDockerImage: str = "", ContainerSwapMB: int = 0, UseHostModeNetwork: bool = False) -> None:
         """
         Initializes the Instance object
         Author: p0t4t0sandwich
@@ -451,6 +454,7 @@ class Instance():
         self.DisplayImageSource = DisplayImageSource
         self.SpecificDockerImage = SpecificDockerImage
         self.ContainerSwapMB = ContainerSwapMB
+        self.UseHostModeNetwork = UseHostModeNetwork
 
 class GlibcInfo():
     """

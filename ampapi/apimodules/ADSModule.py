@@ -212,7 +212,7 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def CreateInstance(self, TargetADSInstance: UUID, NewInstanceId: UUID, Module: str, InstanceName: str, FriendlyName: str, IPBinding: str, PortNumber: int, AdminUsername: str, AdminPassword: str, ProvisionSettings: dict[str, str], AutoConfigure: bool, PostCreate: Any, StartOnBoot: bool, DisplayImageSource: str, TargetDatastore: int) -> ActionResult:
+    def CreateInstance(self, TargetADSInstance: UUID, NewInstanceId: UUID, Module: str, InstanceName: str, FriendlyName: str, IPBinding: str, PortNumber: int, AdminUsername: str, AdminPassword: str, ProvisionSettings: dict[str, str], AutoConfigure: bool, StartOnBoot: bool, DisplayImageSource: str, TargetDatastore: int, PostCreate: Any) -> ActionResult:
         """
         Name Description Optional
         :param TargetADSInstance: {UUID}  False
@@ -226,10 +226,10 @@ class ADSModule(AMPAPI):
         :param AdminPassword: {str}  False
         :param ProvisionSettings: {dict[str, str]}  False
         :param AutoConfigure: {bool} When enabled, all settings other than the Module, Target and FriendlyName are ignored and replaced with automatically generated values. True
-        :param PostCreate: {Any}  True
         :param StartOnBoot: {bool}  True
         :param DisplayImageSource: {str}  True
         :param TargetDatastore: {int}  True
+        :param PostCreate: {Any}  True
         :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/CreateInstance", { 
@@ -244,14 +244,14 @@ class ADSModule(AMPAPI):
             "AdminPassword": AdminPassword,
             "ProvisionSettings": ProvisionSettings,
             "AutoConfigure": AutoConfigure,
-            "PostCreate": PostCreate,
             "StartOnBoot": StartOnBoot,
             "DisplayImageSource": DisplayImageSource,
             "TargetDatastore": TargetDatastore,
+            "PostCreate": PostCreate,
         })
         return ActionResult(**response)
 
-    async def CreateInstanceAsync(self, TargetADSInstance: UUID, NewInstanceId: UUID, Module: str, InstanceName: str, FriendlyName: str, IPBinding: str, PortNumber: int, AdminUsername: str, AdminPassword: str, ProvisionSettings: dict[str, str], AutoConfigure: bool, PostCreate: Any, StartOnBoot: bool, DisplayImageSource: str, TargetDatastore: int) -> ActionResult:
+    async def CreateInstanceAsync(self, TargetADSInstance: UUID, NewInstanceId: UUID, Module: str, InstanceName: str, FriendlyName: str, IPBinding: str, PortNumber: int, AdminUsername: str, AdminPassword: str, ProvisionSettings: dict[str, str], AutoConfigure: bool, StartOnBoot: bool, DisplayImageSource: str, TargetDatastore: int, PostCreate: Any) -> ActionResult:
         """
         Name Description Optional
         :param TargetADSInstance: {UUID}  False
@@ -265,10 +265,10 @@ class ADSModule(AMPAPI):
         :param AdminPassword: {str}  False
         :param ProvisionSettings: {dict[str, str]}  False
         :param AutoConfigure: {bool} When enabled, all settings other than the Module, Target and FriendlyName are ignored and replaced with automatically generated values. True
-        :param PostCreate: {Any}  True
         :param StartOnBoot: {bool}  True
         :param DisplayImageSource: {str}  True
         :param TargetDatastore: {int}  True
+        :param PostCreate: {Any}  True
         :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/CreateInstance", { 
@@ -283,10 +283,10 @@ class ADSModule(AMPAPI):
             "AdminPassword": AdminPassword,
             "ProvisionSettings": ProvisionSettings,
             "AutoConfigure": AutoConfigure,
-            "PostCreate": PostCreate,
             "StartOnBoot": StartOnBoot,
             "DisplayImageSource": DisplayImageSource,
             "TargetDatastore": TargetDatastore,
+            "PostCreate": PostCreate,
         })
         return ActionResult(**response)
 
@@ -404,8 +404,8 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def DeployTemplate(self, TemplateID: int, NewUsername: str, NewPassword: str, NewEmail: str, RequiredTags: list[str], Tag: str, FriendlyName: str, Secret: str, PostCreate: Any, ExtraProvisionSettings: dict[str, str]) -> RunningTask:
-        """A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself.
+    def DeployTemplate(self, TemplateID: int, NewUsername: str, NewPassword: str, NewEmail: str, RequiredTags: list[str], Tag: str, FriendlyName: str, Secret: str, ExtraProvisionSettings: dict[str, str], PostCreate: Any) -> RunningTask:
+        """0: Do Nothing, 1: Update Once, 2: Update Always, 3: Update and Start Once, 4: Update and Start Always, 5. Start Always
         Name Description Optional
         :param TemplateID: {int} The ID of the template to be deployed, as per the Template Management UI in AMP itself. False
         :param NewUsername: {str} If specified, AMP will create a new user with this name for this instance. Must be unique. If this user already exists, this will be ignored but the new instance will be assigned to this user. True
@@ -415,8 +415,8 @@ class ADSModule(AMPAPI):
         :param Tag: {str} Unrelated to RequiredTags. This is to uniquely identify this instance to your own systems. It may be something like an order ID or service ID so you can find the associated instance again at a later time. If 'UseTagAsInstanceName' is enabled, then this will also be used as the instance name for the created instance - but it must be unique. True
         :param FriendlyName: {str} A friendly name for this instance. If left blank, AMP will generate one for you. True
         :param Secret: {str} Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request. True
-        :param PostCreate: {Any} 0: Do nothing, 1: Start instance only, 2: Start instance and update application, 3: Full application startup. True
         :param ExtraProvisionSettings: {dict[str, str]} A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself. True
+        :param PostCreate: {Any} 0: Do Nothing, 1: Update Once, 2: Update Always, 3: Update and Start Once, 4: Update and Start Always, 5. Start Always True
         :returns: RunningTask
         """
         response: dict = self.api_call("ADSModule/DeployTemplate", { 
@@ -428,13 +428,13 @@ class ADSModule(AMPAPI):
             "Tag": Tag,
             "FriendlyName": FriendlyName,
             "Secret": Secret,
-            "PostCreate": PostCreate,
             "ExtraProvisionSettings": ExtraProvisionSettings,
+            "PostCreate": PostCreate,
         })
         return RunningTask(**response)
 
-    async def DeployTemplateAsync(self, TemplateID: int, NewUsername: str, NewPassword: str, NewEmail: str, RequiredTags: list[str], Tag: str, FriendlyName: str, Secret: str, PostCreate: Any, ExtraProvisionSettings: dict[str, str]) -> RunningTask:
-        """A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself.
+    async def DeployTemplateAsync(self, TemplateID: int, NewUsername: str, NewPassword: str, NewEmail: str, RequiredTags: list[str], Tag: str, FriendlyName: str, Secret: str, ExtraProvisionSettings: dict[str, str], PostCreate: Any) -> RunningTask:
+        """0: Do Nothing, 1: Update Once, 2: Update Always, 3: Update and Start Once, 4: Update and Start Always, 5. Start Always
         Name Description Optional
         :param TemplateID: {int} The ID of the template to be deployed, as per the Template Management UI in AMP itself. False
         :param NewUsername: {str} If specified, AMP will create a new user with this name for this instance. Must be unique. If this user already exists, this will be ignored but the new instance will be assigned to this user. True
@@ -444,8 +444,8 @@ class ADSModule(AMPAPI):
         :param Tag: {str} Unrelated to RequiredTags. This is to uniquely identify this instance to your own systems. It may be something like an order ID or service ID so you can find the associated instance again at a later time. If 'UseTagAsInstanceName' is enabled, then this will also be used as the instance name for the created instance - but it must be unique. True
         :param FriendlyName: {str} A friendly name for this instance. If left blank, AMP will generate one for you. True
         :param Secret: {str} Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request. True
-        :param PostCreate: {Any} 0: Do nothing, 1: Start instance only, 2: Start instance and update application, 3: Full application startup. True
         :param ExtraProvisionSettings: {dict[str, str]} A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself. True
+        :param PostCreate: {Any} 0: Do Nothing, 1: Update Once, 2: Update Always, 3: Update and Start Once, 4: Update and Start Always, 5. Start Always True
         :returns: RunningTask
         """
         response: dict = await self.api_call_async("ADSModule/DeployTemplate", { 
@@ -457,8 +457,8 @@ class ADSModule(AMPAPI):
             "Tag": Tag,
             "FriendlyName": FriendlyName,
             "Secret": Secret,
-            "PostCreate": PostCreate,
             "ExtraProvisionSettings": ExtraProvisionSettings,
+            "PostCreate": PostCreate,
         })
         return RunningTask(**response)
 
@@ -692,21 +692,25 @@ class ADSModule(AMPAPI):
         })
         return [InstanceStatus(**x) for x in response]
 
-    def GetInstances(self, ) -> list[IADSInstance]:
+    def GetInstances(self, ForceIncludeSelf: bool) -> list[IADSInstance]:
         """
         Name Description Optional
+        :param ForceIncludeSelf: {bool}  True
         :returns: list[IADSInstance]
         """
         response: dict = self.api_call("ADSModule/GetInstances", { 
+            "ForceIncludeSelf": ForceIncludeSelf,
         })
         return [IADSInstance(**x) for x in response]
 
-    async def GetInstancesAsync(self, ) -> list[IADSInstance]:
+    async def GetInstancesAsync(self, ForceIncludeSelf: bool) -> list[IADSInstance]:
         """
         Name Description Optional
+        :param ForceIncludeSelf: {bool}  True
         :returns: list[IADSInstance]
         """
         response: dict = await self.api_call_async("ADSModule/GetInstances", { 
+            "ForceIncludeSelf": ForceIncludeSelf,
         })
         return [IADSInstance(**x) for x in response]
 
@@ -986,25 +990,29 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def RefreshInstanceConfig(self, InstanceId: str) -> ActionResult:
+    def RefreshInstanceConfig(self, InstanceId: str, AndUpdateInstance: bool) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {str}  False
+        :param AndUpdateInstance: {bool}  True
         :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/RefreshInstanceConfig", { 
             "InstanceId": InstanceId,
+            "AndUpdateInstance": AndUpdateInstance,
         })
         return ActionResult(**response)
 
-    async def RefreshInstanceConfigAsync(self, InstanceId: str) -> ActionResult:
+    async def RefreshInstanceConfigAsync(self, InstanceId: str, AndUpdateInstance: bool) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {str}  False
+        :param AndUpdateInstance: {bool}  True
         :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/RefreshInstanceConfig", { 
             "InstanceId": InstanceId,
+            "AndUpdateInstance": AndUpdateInstance,
         })
         return ActionResult(**response)
 
@@ -1142,29 +1150,33 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def Servers(self, id: str, REQ_RAWJSON: str) -> dict:
+    def Servers(self, id: str, Data: dict, RealIP: str) -> dict:
         """
         Name Description Optional
         :param id: {str}  False
-        :param REQ_RAWJSON: {str}  False
+        :param Data: {dict}  False
+        :param RealIP: {str}  False
         :returns: dict
         """
         response: dict = self.api_call("ADSModule/Servers", { 
             "id": id,
-            "REQ_RAWJSON": REQ_RAWJSON,
+            "Data": Data,
+            "RealIP": RealIP,
         })
         return dict(**response)
 
-    async def ServersAsync(self, id: str, REQ_RAWJSON: str) -> dict:
+    async def ServersAsync(self, id: str, Data: dict, RealIP: str) -> dict:
         """
         Name Description Optional
         :param id: {str}  False
-        :param REQ_RAWJSON: {str}  False
+        :param Data: {dict}  False
+        :param RealIP: {str}  False
         :returns: dict
         """
         response: dict = await self.api_call_async("ADSModule/Servers", { 
             "id": id,
-            "REQ_RAWJSON": REQ_RAWJSON,
+            "Data": Data,
+            "RealIP": RealIP,
         })
         return dict(**response)
 
@@ -1250,21 +1262,25 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def StartAllInstances(self, ) -> ActionResult:
+    def StartAllInstances(self, TargetADSInstance: UUID) -> ActionResult:
         """
         Name Description Optional
+        :param TargetADSInstance: {UUID}  False
         :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/StartAllInstances", { 
+            "TargetADSInstance": TargetADSInstance,
         })
         return ActionResult(**response)
 
-    async def StartAllInstancesAsync(self, ) -> ActionResult:
+    async def StartAllInstancesAsync(self, TargetADSInstance: UUID) -> ActionResult:
         """
         Name Description Optional
+        :param TargetADSInstance: {UUID}  False
         :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/StartAllInstances", { 
+            "TargetADSInstance": TargetADSInstance,
         })
         return ActionResult(**response)
 
@@ -1290,21 +1306,25 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def StopAllInstances(self, ) -> ActionResult:
+    def StopAllInstances(self, TargetADSInstance: UUID) -> ActionResult:
         """
         Name Description Optional
+        :param TargetADSInstance: {UUID}  False
         :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/StopAllInstances", { 
+            "TargetADSInstance": TargetADSInstance,
         })
         return ActionResult(**response)
 
-    async def StopAllInstancesAsync(self, ) -> ActionResult:
+    async def StopAllInstancesAsync(self, TargetADSInstance: UUID) -> ActionResult:
         """
         Name Description Optional
+        :param TargetADSInstance: {UUID}  False
         :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/StopAllInstances", { 
+            "TargetADSInstance": TargetADSInstance,
         })
         return ActionResult(**response)
 
@@ -1330,33 +1350,37 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def TestADSLoginDetails(self, url: str, username: str, password: str) -> ActionResult:
+    def TestADSLoginDetails(self, url: str, username: str, password: str, twoFactorToken: str) -> ActionResult:
         """
         Name Description Optional
         :param url: {str}  False
         :param username: {str}  False
         :param password: {str}  False
+        :param twoFactorToken: {str}  False
         :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/TestADSLoginDetails", { 
             "url": url,
             "username": username,
             "password": password,
+            "twoFactorToken": twoFactorToken,
         })
         return ActionResult(**response)
 
-    async def TestADSLoginDetailsAsync(self, url: str, username: str, password: str) -> ActionResult:
+    async def TestADSLoginDetailsAsync(self, url: str, username: str, password: str, twoFactorToken: str) -> ActionResult:
         """
         Name Description Optional
         :param url: {str}  False
         :param username: {str}  False
         :param password: {str}  False
+        :param twoFactorToken: {str}  False
         :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/TestADSLoginDetails", { 
             "url": url,
             "username": username,
             "password": password,
+            "twoFactorToken": twoFactorToken,
         })
         return ActionResult(**response)
 
@@ -1404,7 +1428,7 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def UpdateInstanceInfo(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy: Any, ContainerMaxCPU: Any, ContainerImage: str) -> ActionResult:
+    def UpdateInstanceInfo(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy: Any, ContainerMaxCPU: Any, ContainerImage: str, ContainerSwap: int, WelcomeMessage: str) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {str}  False
@@ -1418,6 +1442,8 @@ class ADSModule(AMPAPI):
         :param MemoryPolicy: {Any}  False
         :param ContainerMaxCPU: {Any}  False
         :param ContainerImage: {str}  False
+        :param ContainerSwap: {int}  False
+        :param WelcomeMessage: {str}  True
         :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/UpdateInstanceInfo", { 
@@ -1432,10 +1458,12 @@ class ADSModule(AMPAPI):
             "MemoryPolicy": MemoryPolicy,
             "ContainerMaxCPU": ContainerMaxCPU,
             "ContainerImage": ContainerImage,
+            "ContainerSwap": ContainerSwap,
+            "WelcomeMessage": WelcomeMessage,
         })
         return ActionResult(**response)
 
-    async def UpdateInstanceInfoAsync(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy: Any, ContainerMaxCPU: Any, ContainerImage: str) -> ActionResult:
+    async def UpdateInstanceInfoAsync(self, InstanceId: str, FriendlyName: str, Description: str, StartOnBoot: bool, Suspended: bool, ExcludeFromFirewall: bool, RunInContainer: bool, ContainerMemory: int, MemoryPolicy: Any, ContainerMaxCPU: Any, ContainerImage: str, ContainerSwap: int, WelcomeMessage: str) -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: {str}  False
@@ -1449,6 +1477,8 @@ class ADSModule(AMPAPI):
         :param MemoryPolicy: {Any}  False
         :param ContainerMaxCPU: {Any}  False
         :param ContainerImage: {str}  False
+        :param ContainerSwap: {int}  False
+        :param WelcomeMessage: {str}  True
         :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/UpdateInstanceInfo", { 
@@ -1463,6 +1493,8 @@ class ADSModule(AMPAPI):
             "MemoryPolicy": MemoryPolicy,
             "ContainerMaxCPU": ContainerMaxCPU,
             "ContainerImage": ContainerImage,
+            "ContainerSwap": ContainerSwap,
+            "WelcomeMessage": WelcomeMessage,
         })
         return ActionResult(**response)
 
@@ -1530,25 +1562,29 @@ class ADSModule(AMPAPI):
         })
         return ActionResult(**response)
 
-    def UpgradeAllInstances(self, RestartRunning: bool) -> ActionResult:
+    def UpgradeAllInstances(self, RestartRunning: bool, TargetADSInstance: UUID) -> ActionResult:
         """
         Name Description Optional
         :param RestartRunning: {bool}  False
+        :param TargetADSInstance: {UUID}  False
         :returns: ActionResult
         """
         response: dict = self.api_call("ADSModule/UpgradeAllInstances", { 
             "RestartRunning": RestartRunning,
+            "TargetADSInstance": TargetADSInstance,
         })
         return ActionResult(**response)
 
-    async def UpgradeAllInstancesAsync(self, RestartRunning: bool) -> ActionResult:
+    async def UpgradeAllInstancesAsync(self, RestartRunning: bool, TargetADSInstance: UUID) -> ActionResult:
         """
         Name Description Optional
         :param RestartRunning: {bool}  False
+        :param TargetADSInstance: {UUID}  False
         :returns: ActionResult
         """
         response: dict = await self.api_call_async("ADSModule/UpgradeAllInstances", { 
             "RestartRunning": RestartRunning,
+            "TargetADSInstance": TargetADSInstance,
         })
         return ActionResult(**response)
 
@@ -1573,4 +1609,108 @@ class ADSModule(AMPAPI):
             "InstanceName": InstanceName,
         })
         return ActionResult(**response)
+
+    def CreateInstanceFromSpec(self, SpecId: UUID, TargetADSInstance: UUID, FriendlyName: str, PostCreate: Any, StartOnBoot: bool, TargetDatastore: int) -> ActionResult:
+        """
+        Name Description Optional
+        :param SpecId: {UUID}  False
+        :param TargetADSInstance: {UUID}  False
+        :param FriendlyName: {str}  False
+        :param PostCreate: {Any}  True
+        :param StartOnBoot: {bool}  True
+        :param TargetDatastore: {int}  True
+        :returns: ActionResult
+        """
+        response: dict = self.api_call("ADSModule/CreateInstanceFromSpec", { 
+            "SpecId": SpecId,
+            "TargetADSInstance": TargetADSInstance,
+            "FriendlyName": FriendlyName,
+            "PostCreate": PostCreate,
+            "StartOnBoot": StartOnBoot,
+            "TargetDatastore": TargetDatastore,
+        })
+        return ActionResult(**response)
+
+    async def CreateInstanceFromSpecAsync(self, SpecId: UUID, TargetADSInstance: UUID, FriendlyName: str, PostCreate: Any, StartOnBoot: bool, TargetDatastore: int) -> ActionResult:
+        """
+        Name Description Optional
+        :param SpecId: {UUID}  False
+        :param TargetADSInstance: {UUID}  False
+        :param FriendlyName: {str}  False
+        :param PostCreate: {Any}  True
+        :param StartOnBoot: {bool}  True
+        :param TargetDatastore: {int}  True
+        :returns: ActionResult
+        """
+        response: dict = await self.api_call_async("ADSModule/CreateInstanceFromSpec", { 
+            "SpecId": SpecId,
+            "TargetADSInstance": TargetADSInstance,
+            "FriendlyName": FriendlyName,
+            "PostCreate": PostCreate,
+            "StartOnBoot": StartOnBoot,
+            "TargetDatastore": TargetDatastore,
+        })
+        return ActionResult(**response)
+
+    def DetachTarget(self, Id: UUID) -> ActionResult:
+        """
+        Name Description Optional
+        :param Id: {UUID}  False
+        :returns: ActionResult
+        """
+        response: dict = self.api_call("ADSModule/DetachTarget", { 
+            "Id": Id,
+        })
+        return ActionResult(**response)
+
+    async def DetachTargetAsync(self, Id: UUID) -> ActionResult:
+        """
+        Name Description Optional
+        :param Id: {UUID}  False
+        :returns: ActionResult
+        """
+        response: dict = await self.api_call_async("ADSModule/DetachTarget", { 
+            "Id": Id,
+        })
+        return ActionResult(**response)
+
+    def GetSupportedAppSummaries(self, ) -> list[dict]:
+        """
+        Name Description Optional
+        :returns: list[dict]
+        """
+        response: dict = self.api_call("ADSModule/GetSupportedAppSummaries", { 
+        })
+        return [dict(**x) for x in response]
+
+    async def GetSupportedAppSummariesAsync(self, ) -> list[dict]:
+        """
+        Name Description Optional
+        :returns: list[dict]
+        """
+        response: dict = await self.api_call_async("ADSModule/GetSupportedAppSummaries", { 
+        })
+        return [dict(**x) for x in response]
+
+    def ReactivateInstance(self, instanceId: UUID) -> RunningTask:
+        """
+        Name Description Optional
+        :param instanceId: {UUID}  False
+        :returns: RunningTask
+        """
+        response: dict = self.api_call("ADSModule/ReactivateInstance", { 
+            "instanceId": instanceId,
+        })
+        return RunningTask(**response)
+
+    async def ReactivateInstanceAsync(self, instanceId: UUID) -> RunningTask:
+        """
+        Name Description Optional
+        :param instanceId: {UUID}  False
+        :returns: RunningTask
+        """
+        response: dict = await self.api_call_async("ADSModule/ReactivateInstance", { 
+            "instanceId": instanceId,
+        })
+        return RunningTask(**response)
 
